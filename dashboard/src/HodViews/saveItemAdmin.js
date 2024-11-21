@@ -5,27 +5,24 @@ axios.defaults.withCredentials = true;
 const API_BASE_URL = 'http://localhost:8082';
 
 const SaveItemsAdmin = {
-  async addTeamSave(email, password, firstName, lastName, phone, address, role, userName, dob, image) {
+  async addTeamSave(username, id, email, password) {
     const token = await localStorage.getItem('jwtToken');
-    const username = await localStorage.getItem('userName');
+    const username = await localStorage.getItem('username');
 
     try {
       const formData = new FormData();
-      formData.append('username', userName);
+      formData.append('username', username);
+      formData.append('id', id);
       formData.append('email', email);
       formData.append('password', password);
-      formData.append('first_name', firstName);
-      formData.append('last_name', lastName);
-      formData.append('phone', phone);
-      formData.append('address', address);
-      formData.append('role', role);
-      formData.append('dob', dob);
+      
+      
       if (image) {
         formData.append('image', image); // Assuming 'image' is the key on the server to handle file uploads
       }
 
       const response = await axios.post(
-        `${API_BASE_URL}/add_team/`,
+        `${API_BASE_URL}/api/users`,
         formData,
         {
           headers: {
@@ -50,28 +47,30 @@ const SaveItemsAdmin = {
     }
   },
 
-  async addProductAdmin( postShortDescription, tag, title, postSlug, content, status, date, image, place) {
+  async addProductAdmin( title, date, status, productPlace, tags, descriptions, websiteImage, websiteGallery) {
     const token = await localStorage.getItem('jwtToken');
-    const username = await localStorage.getItem('userName');
+    const username = await localStorage.getItem('produts');
 
     try {
       const formData = new FormData();
-      formData.append('author', username);
-      formData.append('postShortDescription', postShortDescription);
-      formData.append('tag', tag);
-      formData.append('place', place);
       formData.append('title', title);
-      formData.append('postSlug', postSlug);
-      formData.append('content', content);
-      formData.append('status', status);
       formData.append('date', date);
+      formData.append('status', status);
+      formData.append('productPlace', productPlace);
+      formData.append('tags', tags);
+      formData.append('descriptions', descriptions);
+      formData.append('websiteImage', websiteImage);
+      formData.append('websiteGallery', websiteGallery);
+     
+      
+     
 
       if (image) {
         formData.append('image', image); // Assuming 'image' is the key on the server to handle file uploads
       }
 
       const response = await axios.post(
-        `${API_BASE_URL}/add_blog/`,
+        `${API_BASE_URL}/api/products`,
         formData,
         {
           headers: {
@@ -95,28 +94,23 @@ const SaveItemsAdmin = {
       throw error;
     }
   },
-  async addGalleryAdmin( place, postShortDescription, tag, title, postSlug, content, status, date, image) {
+  async addGalleryAdmin( galleryId, image, info) {
     const token = await localStorage.getItem('jwtToken');
-    const username = await localStorage.getItem('userName');
+    const username = await localStorage.getItem('gallery');
 
     try {
       const formData = new FormData();
-      formData.append('author', username);
-      formData.append('postShortDescription', postShortDescription);
-      formData.append('tag', tag);
-      formData.append('place', place);
-      formData.append('title', title);
-      formData.append('postSlug', postSlug);
-      formData.append('content', content);
-      formData.append('status', status);
-      formData.append('date', date);
+      formData.append('galleryId', galleryId);
+      formData.append('image', image);
+      formData.append('info', info);
+     
 
       if (image) {
         formData.append('image', image); // Assuming 'image' is the key on the server to handle file uploads
       }
 
       const response = await axios.post(
-        `${API_BASE_URL}/add_blog/`,
+        `${API_BASE_URL}/api/gallery`,
         formData,
         {
           headers: {
@@ -140,28 +134,24 @@ const SaveItemsAdmin = {
       throw error;
     }
   },
-  async addWebsiteImageAdmin( place, postShortDescription, tag, title, postSlug, content, status, date, image) {
+  async addWebsiteImageAdmin( imageUrl, altText, width, height) {
     const token = await localStorage.getItem('jwtToken');
-    const username = await localStorage.getItem('userName');
+    const username = await localStorage.getItem('websiteImage');
 
     try {
       const formData = new FormData();
-      formData.append('author', username);
-      formData.append('postShortDescription', postShortDescription);
-      formData.append('tag', tag);
-      formData.append('place', place);
-      formData.append('title', title);
-      formData.append('postSlug', postSlug);
-      formData.append('content', content);
-      formData.append('status', status);
-      formData.append('date', date);
+      formData.append('imageUrl', imageUrl);
+      formData.append('altText', altText);
+      formData.append('width', width);
+      formData.append('height', height);
+    
 
       if (image) {
         formData.append('image', image); // Assuming 'image' is the key on the server to handle file uploads
       }
 
       const response = await axios.post(
-        `${API_BASE_URL}/add_blog/`,
+        `${API_BASE_URL}/api/WebSiteImages`,
         formData,
         {
           headers: {
@@ -185,28 +175,25 @@ const SaveItemsAdmin = {
       throw error;
     }
   },
-  async addWebsiteTextAdmin( postShortDescription, tag, title, postSlug, content, status, date, image, place) {
+  async addWebsiteTextAdmin( title, content, metaDescription) {
     const token = await localStorage.getItem('jwtToken');
-    const username = await localStorage.getItem('userName');
+    const username = await localStorage.getItem('websiteText');
 
     try {
       const formData = new FormData();
-      formData.append('author', username);
-      formData.append('postShortDescription', postShortDescription);
-      formData.append('tag', tag);
-      formData.append('place', place);
+     
       formData.append('title', title);
-      formData.append('postSlug', postSlug);
       formData.append('content', content);
-      formData.append('status', status);
-      formData.append('date', date);
+      formData.append('metaDescription', metaDescription);
+      
+     
 
       if (image) {
         formData.append('image', image); // Assuming 'image' is the key on the server to handle file uploads
       }
 
       const response = await axios.post(
-        `${API_BASE_URL}/add_blog/`,
+        `${API_BASE_URL}("/api/websiteTexts")`,
         formData,
         {
           headers: {
