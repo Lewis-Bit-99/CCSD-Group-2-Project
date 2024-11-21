@@ -20,6 +20,7 @@ public class galleryController {
 
     @Autowired
     private galleryService gService;
+//Controller methods
 
     @GetMapping
     public List <gallery> getAllGallery() {
@@ -33,11 +34,13 @@ public class galleryController {
         .orElse(ResponseEntity.notFound().build());
     }
 
+    // Create new gallery in the system
     @PostMapping
     public gallery addGallery(@RequestBody gallery Gallery){
         return gService.addGallery(Gallery);
     }
-
+   
+    //Updates an existing gallery based on gallery ID
     @PutMapping("/(id)")
     public ResponseEntity<gallery> updateGallery(@PathVariable String id, @RequestBody gallery galleryDetails){
         gallery updateGallery = gService.updateGallery(id, galleryDetails);
@@ -46,6 +49,8 @@ public class galleryController {
         }
         return ResponseEntity.notFound().build();
     }
+    
+    //Delete a gallery from the system based on gallery ID
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteGallery(@PathVariable String id){
