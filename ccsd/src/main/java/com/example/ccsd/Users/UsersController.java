@@ -44,7 +44,20 @@ public class UsersController {
     }
 
     // Update an existing user
-  
+    @PostMapping("/{id}")
+    public ResponseEntity<user> updateUser(@PathVariable String id, @RequestBody user userDetails) {
+        Optional<user> updatedUser = userService.getUserById(id);
+        if (updatedUser.isPresent()) {
+            user currentUser = updatedUser.get();
+            // Update details (email, password, etc.)
+            currentUser.setUsername(userDetails.getUsername());
+            currentUser.setEmail(userDetails.getEmail());
+            currentUser.setPassword(userDetails.getPassword());
+            return ResponseEntity.ok(userService.adduser(currentUser)); // Save updated user
+        }
+        return ResponseEntity.notFound().build(); // If user not found, return not found
+    }
+
     // Delete a user by ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable String id) {
