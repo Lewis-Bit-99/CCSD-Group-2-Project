@@ -5,18 +5,14 @@ import Topbar from "./HodViews/scense/global/Topbar";
 import SidebarAdmin from "./HodViews/scense/global/SidebarAdmin";
 import DashboardAdmin from "./HodViews/scense/dashboard";
 import TeamAdmin from "./HodViews/scense/team";
-import AgentAdmin from "./HodViews/scense/agents";
 import AddTeam from "./HodViews/scense/team/addTeam";
-import AddAgent from "./HodViews/scense/agents/addAgent";
-import EditTeam from "./HodViews/scense/team/editTeam";
 import SignInSide from "./FrontEnd/scense/SignInSide";
-import EditAgent from "./HodViews/scense/agents/editAgent";
-import SocialMedia from "./HodViews/scense/websites/socialMedia";
 import WebsiteComponentsAdmin from "./HodViews/scense/websites/websiteComponents";
-import BlogsAdmin from "./HodViews/scense/websites/bolgs";
-import AddBlog from "./HodViews/scense/websites/addBlog";
 import Services from "./HodViews/scense/services";
 import AddProduct from "./HodViews/scense/services/addProduct";
+import AddWebsiteText from "./HodViews/scense/websites/addWebsiteTexts";
+import AddWebsiteImage from "./HodViews/scense/websites/addWebsiteImage";
+import AddWebsiteGallery from "./HodViews/scense/websites/addWebsiteGallery";
 
 
 
@@ -66,14 +62,6 @@ function App() {
         }
       />
       <Route
-        path="/agent-admin"
-        element={
-          <HodViewsLayout>
-            <AgentAdmin />
-          </HodViewsLayout>
-        }
-      />
-      <Route
         path="/addteam"
         element={
           <HodViewsLayout>
@@ -81,38 +69,7 @@ function App() {
           </HodViewsLayout>
         }
       />
-      <Route
-        path="/add-agent-admin"
-        element={
-          <HodViewsLayout>
-            <AddAgent />
-          </HodViewsLayout>
-        }
-      />
-      <Route
-        path="/editTeam/:user_id"
-        element={
-          <HodViewsLayout>
-            <EditTeam />
-          </HodViewsLayout>
-        }
-      />
-      <Route
-        path="/editAgent/:user_id"
-        element={
-          <HodViewsLayout>
-            <EditAgent />
-          </HodViewsLayout>
-        }
-      />
-      <Route
-        path="/social-media"
-        element={
-          <HodViewsLayout>
-            <SocialMedia />
-          </HodViewsLayout>
-        }
-      />
+
       <Route
         path="/website-components-admin"
         element={
@@ -122,21 +79,30 @@ function App() {
         }
       />
       <Route
-        path="/blogs-admin"
+        path="/website-text-admin"
         element={
           <HodViewsLayout>
-            <BlogsAdmin />
+            <AddWebsiteText />
           </HodViewsLayout>
         }
       />
       <Route
-        path="/add-blog"
+        path="/website-image-admin"
         element={
           <HodViewsLayout>
-            <AddBlog />
+            <AddWebsiteImage />
           </HodViewsLayout>
         }
       />
+      <Route
+        path="/website-image-gallery"
+        element={
+          <HodViewsLayout>
+            <AddWebsiteGallery />
+          </HodViewsLayout>
+        }
+      />
+
       <Route
         path="/services"
         element={

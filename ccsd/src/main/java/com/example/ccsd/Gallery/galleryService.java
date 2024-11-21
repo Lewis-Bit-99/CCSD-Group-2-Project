@@ -1,7 +1,9 @@
 package com.example.ccsd.Gallery;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -9,51 +11,38 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class galleryService {
-    
-    private String title ;
-    private double quantity ;
 
-    //getting all images
-   
-    public String getTitle() {
-        return title;
+    @Autowired
+    private galleryRepository GalleryRepository;
+    
+    public List<gallery> getAllGallery() {
+        return GalleryRepository.findAll();
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public Optional<gallery> getGalleryById(String id) {
+        return GalleryRepository.findById(id);
     }
-    
-    //getter for gallery Service
-    public double getQuantity() {
-        return quantity;
-    }
-    
-    //setter for gallery Service
-    public void setQuantity(double quantity) {
 
-        if(quantity >= 0.0 ){
-            this.quantity = quantity;
-            
-        }else{
-            System.out.println ("Invalid number");
+    public gallery addGallery(gallery Gallery) {
+        return GalleryRepository.save(Gallery);
+    }
+
+    public gallery updateGallery(String id, gallery galleryDetails) {
+        Optional<gallery> galleryOpt = GalleryRepository.findById(id);
+        if (galleryOpt.isPresent()) {
+
+            gallery Gallery = galleryOpt.get();
+            Gallery.setImage(galleryDetails.getImage());
+            Gallery.setInfo(galleryDetails.getInfo());
+            return GalleryRepository.save(Gallery);
         }
+        return null;
+    }
     
-    /*Creating new data
-    public gallery addGallery(gallery gal) {
-        return galleryService.save(gallery);
+    
+    public void deleteGallery(String id) {
+        GalleryRepository.deleteById(id);
     }
-
-    public gallery updateGallery(String id, galleryDetails) {}
-    galleryService gs = new galleryService();
-    gs.setTitle(title);
-    gs.setQuantity(quantity);
-
-    return updateGallery;*/
-
-        }
-
-
-    }
-
+}
 
 

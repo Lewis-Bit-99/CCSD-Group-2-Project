@@ -13,22 +13,22 @@ import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 import SaveItemsAdmin from '../../saveItemAdmin';
-import GetItemsAdmin from '../../getItemAdmin';
+
 import Select from '@mui/material/Select';
 import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
 
 import CK from '../../../Editor/ck';
 
 
-const AddProduct = () => {
+const AddWebsiteText = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [image, setImage] = useState(null);
 
+    const [place, setPlace] = useState(null);
     const [categories, setCategories] = useState([]); // to store the list of categories    
     const [postShortDescription, setPostShortDescription] = useState(null);
     const [tag, setTag] = useState(null);
-    const [place, setPlace] = useState(null);
     const [title, setTitle] = useState(null);
     const [postSlug, setPostSlug] = useState(null);
     const [status, setStatus] = useState(null);
@@ -43,7 +43,9 @@ const AddProduct = () => {
         setOpenAiImage(false);
     }
     
-
+    const handleChangeplace = (event) => {
+        setPlace(event.target.value);
+      };
     
 
     const editor = useRef(null)
@@ -53,11 +55,8 @@ const AddProduct = () => {
         setStatus(event.target.value);
       };
       
-    const handleChangeplace = (event) => {
-        setPlace(event.target.value);
-      };
-      
 
+      
 
     const handleImageChange = (event) => {
         const selectedImage = event.target.files[0];
@@ -68,10 +67,10 @@ const AddProduct = () => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-          const success = await SaveItemsAdmin.addProductAdmin(place, postShortDescription, tag, title, postSlug, content, status, date, image);
+          const success = await SaveItemsAdmin.addWebsiteTextAdmin( postShortDescription, tag, title, postSlug, content, status, date, image, place);
           
           if (success) {
-            navigate("/services");
+            navigate("/website-components-admin");
           } else {
             // Handle login failure and display an error message to the user
             alert("Error Saving data");
@@ -82,7 +81,6 @@ const AddProduct = () => {
           alert("An error occurred while saving.");
         }
       }
-
 
       
 
@@ -101,34 +99,17 @@ const AddProduct = () => {
                 <Button color='error' variant='contained' onClick={functionCloseAiImage}>Close</Button>
             </DialogActions>
         </Dialog>
-        <Header title="Add Product" subtitle="Please Fill All the Fields" />
+        <Header title="Add Website Text" subtitle="Please Fill All the Fields" />
             
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate >{/*onSubmit={handleAddBlog}*/}
                 <TextField
                 onChange={(e) => setTitle(e.target.value)}
-                label="Enter Product Title"
+                label="Enter Text Title"
                 id="title"
                 sx={{ m: 1, width: '30.5%' }}
                 variant="filled"
                 />
-                <TextField
-                onChange={(e) => setPostSlug(e.target.value)}
-                label="Enter Product Slug"
-                id="Slug"
-                sx={{ m: 1, width: '30.5%' }}
-                variant="filled"
-                />
-                <FormControl sx={{ m: 1, width: '30.5%' }} variant="filled">
-                    <FilledInput
-                    onChange={(e) => setDate(e.target.value)}
-                        id='date'
-                        type='date'
-                                            
-                    >
 
-                    </FilledInput>
-                <FormHelperText id="filled-dob-helper-text">publish Date</FormHelperText>
-                </FormControl>
                 <FormControl sx={{ m: 1, width: '15.5%' }} variant="filled">
                     <InputLabel id="status">Status</InputLabel>
                     <Select
@@ -143,7 +124,7 @@ const AddProduct = () => {
                     </Select>
                 </FormControl>
                 <FormControl sx={{ m: 1, width: '15.5%' }} variant="filled">
-                    <InputLabel id="place">Product Place</InputLabel>
+                    <InputLabel id="place">Text Place</InputLabel>
                     <Select
                         labelId="place"
                         id="place"
@@ -189,7 +170,7 @@ const AddProduct = () => {
                 </FilledInput>
                 </FormControl>
                 <FormControl sx={{ m: 1, width: '93%' }} variant="filled">
-                <InputLabel htmlFor="filled-adornment-short-description">Blog Short Description</InputLabel>
+                <InputLabel htmlFor="filled-adornment-short-description">Short Text</InputLabel>
                 <FilledInput
                    onChange={(e) => setPostShortDescription(e.target.value)}
                     id='short-description'
@@ -213,34 +194,6 @@ const AddProduct = () => {
                 </FilledInput>
 
                 </FormControl>
-                <FormControl sx={{ m: 1, width: '45%' }} variant="filled">
-                    <Input
-                        accept="image/*"
-                        id="image-upload"
-                        type="file"
-                        htmlFor="image-upload"
-                        onChange={handleImageChange}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                Use AI to Generate or Edit Image
-                                <IconButton
-                                    onClick={functionOpenAiImage}
-                                    aria-label="upload image"
-                                    edge="end"
-                                    component="label"
-
-                                >
-                                    <SmartToyOutlinedIcon></SmartToyOutlinedIcon>
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                    />
-                    <FormHelperText id="image-upload-helper-text">Blog Header Image</FormHelperText>
-                </FormControl>
-
-                <Box sx={{ m: 1, width: '93%', height: 600, color: theme.palette.mode === 'dark' ? 'black' : 'inherit' }} >
-                   <CK />
-                </Box>
 
               <Button
                 
@@ -253,7 +206,7 @@ const AddProduct = () => {
               </Button>
 
                 <Button
-                type="submit"
+                //type="submit"
                 sx={{ m: 1, width: '46%' }}
                 color='success'
                 variant="contained"
@@ -267,4 +220,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default AddWebsiteText;
