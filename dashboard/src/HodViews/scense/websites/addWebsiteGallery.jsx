@@ -20,7 +20,7 @@ import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
 import CK from '../../../Editor/ck';
 
 
-const AddProduct = () => {
+const AddWebsiteGallery = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [image, setImage] = useState(null);
@@ -28,13 +28,13 @@ const AddProduct = () => {
     const [categories, setCategories] = useState([]); // to store the list of categories    
     const [postShortDescription, setPostShortDescription] = useState(null);
     const [tag, setTag] = useState(null);
-    const [place, setPlace] = useState(null);
     const [title, setTitle] = useState(null);
     const [postSlug, setPostSlug] = useState(null);
     const [status, setStatus] = useState(null);
     const [date, setDate] = useState(null);
     const navigate = useNavigate();
     const [openAiImage, setOpenAiImage] = useState(false);
+    const [place, setPlace] = useState(null);
 
     const functionOpenAiImage=() =>{
         setOpenAiImage(true);
@@ -53,11 +53,11 @@ const AddProduct = () => {
         setStatus(event.target.value);
       };
       
-    const handleChangeplace = (event) => {
+
+      const handleChangeplace = (event) => {
         setPlace(event.target.value);
       };
-      
-
+    
 
     const handleImageChange = (event) => {
         const selectedImage = event.target.files[0];
@@ -68,10 +68,10 @@ const AddProduct = () => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-          const success = await SaveItemsAdmin.addProductAdmin(place, postShortDescription, tag, title, postSlug, content, status, date, image);
+          const success = await SaveItemsAdmin.addGalleryAdmin(place, postShortDescription, tag, title, postSlug, content, status, date, image);
           
           if (success) {
-            navigate("/services");
+            navigate("/website-components-admin");
           } else {
             // Handle login failure and display an error message to the user
             alert("Error Saving data");
@@ -101,20 +101,13 @@ const AddProduct = () => {
                 <Button color='error' variant='contained' onClick={functionCloseAiImage}>Close</Button>
             </DialogActions>
         </Dialog>
-        <Header title="Add Product" subtitle="Please Fill All the Fields" />
+        <Header title="Add Image" subtitle="Please Fill All the Fields" />
             
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate >{/*onSubmit={handleAddBlog}*/}
                 <TextField
                 onChange={(e) => setTitle(e.target.value)}
-                label="Enter Product Title"
+                label="Enter Image Title"
                 id="title"
-                sx={{ m: 1, width: '30.5%' }}
-                variant="filled"
-                />
-                <TextField
-                onChange={(e) => setPostSlug(e.target.value)}
-                label="Enter Product Slug"
-                id="Slug"
                 sx={{ m: 1, width: '30.5%' }}
                 variant="filled"
                 />
@@ -142,30 +135,6 @@ const AddProduct = () => {
                         <MenuItem value={1}>Publish</MenuItem>
                     </Select>
                 </FormControl>
-                <FormControl sx={{ m: 1, width: '15.5%' }} variant="filled">
-                    <InputLabel id="place">Product Place</InputLabel>
-                    <Select
-                        labelId="place"
-                        id="place"
-                        value={place}
-                        label="place"
-                        onChange={handleChangeplace}
-                    >
-                        <MenuItem value={1}>1</MenuItem>
-                        <MenuItem value={2}>2</MenuItem>
-                        <MenuItem value={3}>3</MenuItem>
-                        <MenuItem value={4}>4</MenuItem>
-                        <MenuItem value={5}>5</MenuItem>
-                        <MenuItem value={6}>6</MenuItem>
-                        <MenuItem value={7}>7</MenuItem>
-                        <MenuItem value={8}>8</MenuItem>
-                        <MenuItem value={9}>9</MenuItem>
-                        <MenuItem value={10}>10</MenuItem>
-                        <MenuItem value={11}>11</MenuItem>
-                        <MenuItem value={12}>12</MenuItem>
-                    </Select>
-                </FormControl>
-
 
                 <FormControl sx={{ m: 1, width: '60%' }} variant="filled">
                 <InputLabel htmlFor="filled-adornment-address">Tags</InputLabel>
@@ -188,30 +157,28 @@ const AddProduct = () => {
                 >
                 </FilledInput>
                 </FormControl>
-                <FormControl sx={{ m: 1, width: '93%' }} variant="filled">
-                <InputLabel htmlFor="filled-adornment-short-description">Blog Short Description</InputLabel>
-                <FilledInput
-                   onChange={(e) => setPostShortDescription(e.target.value)}
-                    id='short-description'
-                    type='text'
-                    multiline
-                    rows={3}
-                    endAdornment = {
-                        <InputAdornment position='end'>
-                            Use AI to Generate Short Descriptions
-                            <IconButton
-                                
-                                aria-label="short-description"
-                                edge="end"                                        
-                            >
-                            <SmartToyOutlinedIcon></SmartToyOutlinedIcon>
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    
-                >
-                </FilledInput>
-
+                <FormControl sx={{ m: 1, width: '15.5%' }} variant="filled">
+                    <InputLabel id="place">Text Place</InputLabel>
+                    <Select
+                        labelId="place"
+                        id="place"
+                        value={place}
+                        label="place"
+                        onChange={handleChangeplace}
+                    >
+                        <MenuItem value={1}>1</MenuItem>
+                        <MenuItem value={2}>2</MenuItem>
+                        <MenuItem value={3}>3</MenuItem>
+                        <MenuItem value={4}>4</MenuItem>
+                        <MenuItem value={5}>5</MenuItem>
+                        <MenuItem value={6}>6</MenuItem>
+                        <MenuItem value={7}>7</MenuItem>
+                        <MenuItem value={8}>8</MenuItem>
+                        <MenuItem value={9}>9</MenuItem>
+                        <MenuItem value={10}>10</MenuItem>
+                        <MenuItem value={11}>11</MenuItem>
+                        <MenuItem value={12}>12</MenuItem>
+                    </Select>
                 </FormControl>
                 <FormControl sx={{ m: 1, width: '45%' }} variant="filled">
                     <Input
@@ -237,34 +204,21 @@ const AddProduct = () => {
                     />
                     <FormHelperText id="image-upload-helper-text">Blog Header Image</FormHelperText>
                 </FormControl>
-
-                <Box sx={{ m: 1, width: '93%', height: 600, color: theme.palette.mode === 'dark' ? 'black' : 'inherit' }} >
-                   <CK />
-                </Box>
-
-              <Button
-                
-                sx={{ m: 1, width: '46%' }}
-                color='warning'
-                variant="contained"
-                
-              >
-                AI SEO Checker
-              </Button>
-
+      
                 <Button
                 type="submit"
-                sx={{ m: 1, width: '46%' }}
+                sx={{ m: 1, width: '46%', marginTop: '20px' }}
                 color='success'
                 variant="contained"
                 
               >
                 Save
               </Button>
+    
 
         </Box> 
     </Box>
   );
 };
 
-export default AddProduct;
+export default AddWebsiteGallery;

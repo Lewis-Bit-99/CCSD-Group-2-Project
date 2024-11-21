@@ -45,7 +45,6 @@ export default function SignInSide() {
   
     try {
       const success = await AuthService.login(email, password);
-      const userType = await localStorage.getItem('userType');
       
       if (success) {
         setIsLoggedInAdmin(true);
