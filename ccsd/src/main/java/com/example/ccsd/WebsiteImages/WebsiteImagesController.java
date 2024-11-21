@@ -32,6 +32,16 @@ public class WebsiteImagesController {
         return websiteImagesService.addWebsiteImages(websiteImages);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<WebsiteImages> updateWebsiteImages(@PathVariable String id, @RequestBody WebsiteImages websiteImagesDetails) {
+        WebsiteImages updatedWebsiteImages = websiteImagesService.updateWebsiteImages(id, websiteImagesDetails);
+        if (updatedWebsiteImages != null) {
+            return ResponseEntity.ok(updatedWebsiteImages);
+        }
+        return ResponseEntity.notFound().build();
+
+        }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable String id) {
         websiteImagesService.deleteWebsiteImages(id);
