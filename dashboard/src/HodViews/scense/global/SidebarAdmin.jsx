@@ -7,6 +7,7 @@ import { tokens } from "../../../base/theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import ScreenSearchDesktopIcon from '@mui/icons-material/ScreenSearchDesktop';
+import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import CategoryIcon from '@mui/icons-material/Category';
 
 
@@ -135,12 +136,32 @@ const SidebarAdmin = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
             <Typography
               variant="h6"
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
+              Users
+            </Typography>
+            <Item
+              title="Users"
+              to="/team-admin"
+              icon={<PeopleOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            ></Typography>
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              
               Products and Accounting
             </Typography>
             <Item
