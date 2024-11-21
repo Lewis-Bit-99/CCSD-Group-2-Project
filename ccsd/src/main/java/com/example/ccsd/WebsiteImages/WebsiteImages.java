@@ -1,13 +1,22 @@
 
 package com.example.ccsd.WebsiteImages;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "WebsiteImages")
 public class WebsiteImages {
+    @Id
+    private String id;
     private String imageUrl;  // URL of the image
     private String altText;   // Alternative text for the image
     private int width;        // Width in pixels
     private int height;       // Height in pixels
 
     // Constructor to initialize the object
+    public WebsiteImages(){
+    }
+
     public WebsiteImages(String imageUrl, String altText, int width, int height) {
         this.imageUrl = imageUrl;
         this.altText = altText;
@@ -15,10 +24,19 @@ public class WebsiteImages {
         this.height = height > 0 ? height : 0; // Ensure height is positive
     }
 
+     public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getImageUrl() {
         return imageUrl;
-}
-public void setImageUrl(String imageUrl) {
+    }
+
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
     public String getAltText() {
@@ -52,8 +70,6 @@ public void setImageUrl(String imageUrl) {
             System.out.println("Height must be positive!");
         }
     }
-
-    
 }
 
 
