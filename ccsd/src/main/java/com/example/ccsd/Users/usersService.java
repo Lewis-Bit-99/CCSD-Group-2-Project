@@ -40,4 +40,19 @@ public class usersService {
             throw new IllegalArgumentException("User not found");
         }
     }
+
+    // Optionally, you can add a method to update a user with email and password
+    public user updateuser(String id, user userDetails) {
+        Optional<user> existingUserOpt = userRepository.findById(id);
+        if (existingUserOpt.isPresent()) {
+            user existingUser = existingUserOpt.get();
+            // Update user details
+            existingUser.setUsername(userDetails.getUsername());
+            existingUser.setEmail(userDetails.getEmail());  // Ensure email is updated
+            existingUser.setPassword(userDetails.getPassword());  // Ensure password is updated
+            return userRepository.save(existingUser);
+        } else {
+            throw new IllegalArgumentException("User not found");
+        }
+    }
 }

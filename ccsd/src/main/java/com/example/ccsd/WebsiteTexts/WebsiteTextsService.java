@@ -14,15 +14,15 @@ public class WebsiteTextsService {
     private WebsiteTextsRepository websiteTextsRepository;
     
     public List<WebsiteTexts>getAllWebsiteTexts(){
-        return websiteTextsRepository.findAll();
+        return websiteTextsRepository.findAll();//
     }
 
     public Optional<WebsiteTexts>getAllWebsiteTextsById(String id){
-        return WebsiteTextsRepository.findById(id);
+        return WebsiteTextsRepository.findById(id);//
     }
     
     public WebsiteTexts addWebsiteTexts(WebsiteTexts texts){
-        return WebsiteTextsRepository.save(texts);
+        return WebsiteTextsRepository.save(texts);//
     }
 
     public void deleteWebsiteTexts(String id){
