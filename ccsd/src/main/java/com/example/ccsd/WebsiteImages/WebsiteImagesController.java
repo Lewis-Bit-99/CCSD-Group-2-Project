@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/WebSiteImages")
+@RequestMapping("/api/WebsiteImages")
 public class WebsiteImagesController {
 
     @Autowired
