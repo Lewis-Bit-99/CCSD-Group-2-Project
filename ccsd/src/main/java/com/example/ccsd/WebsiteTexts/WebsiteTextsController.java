@@ -20,7 +20,7 @@ public class WebsiteTextsController {
     private WebsiteTextsService websiteTextsService;
 
     @GetMapping
-    public List<WebsiteTexts> getAllWebsiteTexts(@PathVariable String id){
+    public List<WebsiteTexts> getAllWebsiteTexts(){
         return websiteTextsService.getAllWebsiteTexts();
     }
 
