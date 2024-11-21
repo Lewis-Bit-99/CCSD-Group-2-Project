@@ -38,7 +38,7 @@ public class galleryService {
         }
         return null;
     }
-    
+
     
     public void deleteGallery(String id) {
         GalleryRepository.deleteById(id);
