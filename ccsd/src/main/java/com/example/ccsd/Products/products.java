@@ -10,8 +10,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "products")
 public class products{
     @Id
+    private String id;
     private String title;
-    private Date date; // dd/mm/yy
+    private Date productDate; // dd/mm/yy
     private String status;
     private int productPlace;
     private String tags;
@@ -20,11 +21,12 @@ public class products{
     private String websiteGallery;
 
     public products(){}
-    public products(String title, Date date, 
+    public products(String id,String title, Date productDate, 
                     String status, int productPlace, String tags, 
                     String descriptions, String websiteImage, String websiteGallery) {
+        this.id = id;             
         this.title = title;
-        this.date = date;
+        this.productDate = productDate;
         this.status = status;
         this.productPlace = productPlace;
         this.tags = tags;
@@ -43,14 +45,20 @@ public class products{
         this.title = title;
     }
 
-   
-
-    public Date getDate() {
-        return date;
+    public String getId() {
+        return id;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Date getDate() {
+        return productDate;
+    }
+
+    public void setDate(Date productDate) {
+        this.productDate = productDate;
     }
 
     public String getStatus() {
