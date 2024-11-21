@@ -1,7 +1,12 @@
 package com.example.ccsd.WebsiteTexts;
 
-public class WebsiteTexts {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "books")
+public class WebsiteTexts {
+    @Id
+    private String id;
     private String title;
     private String content;
     private String metaDescription;
@@ -12,6 +17,9 @@ public class WebsiteTexts {
         this.metaDescription = metaDescription;
     }
 
+    public String getId() {
+        return id;
+    }
     public String getTitle() {
         return title;
     }
@@ -22,6 +30,10 @@ public class WebsiteTexts {
 
     public String getMetaDescription() {
         return metaDescription;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setTitle(String title) {
