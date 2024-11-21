@@ -14,7 +14,7 @@ public class WebsiteTexts {
     public WebsiteTexts(){
     }
 
-    public void WebsiteTexts(String title, String content, String metaDescription){
+    public WebsiteTexts(String title, String content, String metaDescription){
         this.title = title;
         this.content = content;
         this.metaDescription = metaDescription;
