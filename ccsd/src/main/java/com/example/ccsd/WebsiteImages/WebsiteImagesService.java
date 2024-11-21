@@ -1,13 +1,13 @@
 package com.example.ccsd.WebsiteImages;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.streotype.Service;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service 
-public class WebsiteImages {
+public class WebsiteImagesService {
 
     @Autowired 
     private WebsiteImagesRepository websiteImagesRepository;
@@ -20,38 +20,39 @@ public class WebsiteImages {
 
     //Getting single websiteImages
     public Optional<WebsiteImages> getWebsiteImagesById(String id) {
-        return websiteImagesRepository.findById();
+        return websiteImagesRepository.findById(id);
 
     }
-}
+
 // Creating new data in repository
 
-public WebsiteImages addBook(WebsiteImages websiteImages) {
+public WebsiteImages addWebsiteImages(WebsiteImages websiteImages){
     return websiteImagesRepository.save(websiteImages);
 }
 
 // Updating the book
 
-public updateWebsiteImages(String id, Book websiteImagesDetails) {
-    Optional<WebsiteImages> websiteImagesOpt = websiteImagesDetailsRepository.findById(id);
-    if (bookOpt.isPresent()) {
+public WebsiteImages updateWebsiteImages(String id, WebsiteImages websiteImagesDetails) {
+    Optional<WebsiteImages> websiteImagesOpt = websiteImagesRepository.findById(id);
+    if (websiteImagesOpt.isPresent()) {
 
         // Get from database
 
-        WebsiteImages websiteImages = websiteImagesDetailsOpt.get();
-        websiteImages.setTitle(websiteImagesDetails.getTitle());
-        book.setAuthor(websiteImagesDetails.getAuthor());
-        book.setIsbn(websiteImagesDetails.getIsbn());
-        book.setAvailable(bookDetails.isAvailable());
-        return bookRepository.save(book);
+        WebsiteImages websiteImages = websiteImagesOpt.get();
+        websiteImages.setId(websiteImagesDetails.getId());
+        websiteImages.setImageUrl(websiteImagesDetails.getImageUrl());
+        websiteImages.setAltText(websiteImagesDetails.getAltText());
+        websiteImages.setWidth(websiteImagesDetails.getWidth());
+        websiteImages.setHeight(websiteImagesDetails.getHeight());
+        return websiteImagesRepository.save(websiteImages);
     }
     return null;
 }
 
 // Deleting
 
-public void deleteBook(String id) {
-    bookRepository.deleteById(id);
+public void deleteWebsiteImages(String id) {
+    websiteImagesRepository.deleteById(id);
 }
 }
 

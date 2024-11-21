@@ -29,7 +29,7 @@ public class WebsiteImagesController {
 
     @PostMapping
     public WebsiteImages addWebsiteImages(@RequestBody WebsiteImages websiteImages) {
-        return websiteImages.addWebsiteImages(websiteImages);
+        return websiteImagesService.addWebsiteImages(websiteImages);
     }
 
     @DeleteMapping("/{id}")
