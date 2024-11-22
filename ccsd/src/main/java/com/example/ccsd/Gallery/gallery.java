@@ -1,8 +1,6 @@
 package com.example.ccsd.Gallery;
 
 
-
-import java.awt.Image;
 import java.sql.Date;
 
 import org.springframework.data.annotation.Id;
@@ -11,7 +9,7 @@ public class gallery {
 
     @Id
     private String Id;
-    private Image image;
+    private String image;
     private Date date;
     private String info;
     
@@ -20,7 +18,7 @@ public class gallery {
 
     public gallery(){}
 
-    public gallery(Image image, Date date, String info){
+    public gallery(String image, Date date, String info){
         this.image = image;
         this.date = date;
         this.info = info;
@@ -29,7 +27,7 @@ public class gallery {
     public String getId(){
         return Id;
     }
-    public Image getImage(){
+    public String getImage(){
         return image;
     }
 
@@ -39,7 +37,7 @@ public class gallery {
     public void setDate(Date date){
         this.date = date;
     }
-    public void setImage(Image image){
+    public void setImage(String image){
         this.image = image;
     }
     
