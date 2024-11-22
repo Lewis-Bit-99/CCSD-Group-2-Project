@@ -13,7 +13,9 @@ import AddProduct from "./HodViews/scense/services/addProduct";
 import AddWebsiteText from "./HodViews/scense/websites/addWebsiteTexts";
 import AddWebsiteImage from "./HodViews/scense/websites/addWebsiteImage";
 import AddWebsiteGallery from "./HodViews/scense/websites/addWebsiteGallery";
-
+import Landing from "./landingpage/landing";
+import "./App.css";
+import Payment from "./payment/payment";
 
 
 const HodViewsLayout = ({ children }) => {
@@ -39,12 +41,32 @@ const HodViewsLayout = ({ children }) => {
 function App() {
   return (
     <Routes>
+      
       <Route
         path="/"
+        element={
+          <Landing />
+        }
+      />
+      <Route
+        path="/sign-in"
         element={
           <SignInSide />
         }
       />
+      <Route
+        path="/payment"
+        element={
+          <Payment />
+        }
+      />
+      <Route
+        path="/payment/:productSlug"
+        element={
+          <Payment />
+        }
+      />
+
       <Route
         path="/dashboard-admin"
         element={
