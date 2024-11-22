@@ -36,6 +36,7 @@ const AddWebsiteGallery = () => {
     const [openAiImage, setOpenAiImage] = useState(false);
     const [place, setPlace] = useState(null);
 
+    
     const functionOpenAiImage=() =>{
         setOpenAiImage(true);
     }
