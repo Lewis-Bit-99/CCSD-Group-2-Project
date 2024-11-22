@@ -16,7 +16,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    // Getting single boks
+    // Getting single product
     public Optional<products> getProductById(String id) {
         return productRepository.findById(id);
     }
@@ -45,6 +45,7 @@ public class ProductService {
             product.setWebsiteImage(productDetails.getWebsiteImage());
             product.setLongDescriptions(productDetails.getLongDescriptions());
             product.setId(productDetails.getId());
+            product.setSlug(productDetails.getSlug());
             return productRepository.save(product);
         }
         return null;

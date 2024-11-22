@@ -19,11 +19,12 @@ public class products{
     private String descriptions;
     private String websiteImage;
     private String longDescriptions;
+    private String slug;
 
     public products(){}
     public products(String id,String title, Date productDate, 
                     String status, int productPlace, String tags, 
-                    String descriptions, String websiteImage, String longDescriptions) {
+                    String descriptions, String websiteImage, String longDescriptions, String slug) {
         this.id = id;             
         this.title = title;
         this.productDate = productDate;
@@ -33,6 +34,7 @@ public class products{
         this.descriptions = descriptions;
         this.websiteImage = websiteImage;
         this.longDescriptions = longDescriptions;
+        this.slug = slug;
     }
 
 
@@ -109,5 +111,13 @@ public class products{
         this.longDescriptions = longDescriptions;
     }
     
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
 
 }
