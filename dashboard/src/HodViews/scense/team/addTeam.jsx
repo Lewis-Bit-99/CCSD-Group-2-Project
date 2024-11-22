@@ -24,16 +24,10 @@ import SaveItemsAdmin from '../../saveItemAdmin';
 const AddTeam = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    const [image, setImage] = useState(null);
     const [showPassword, setShowPassword] = React.useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    /*const [firstName, setFirstName] = useState("");
-    //const [lastName, setLastname] = useState("");
-    const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
-    const [dob, setDob] = useState("");
-    const [role, setRole] = useState("");*/
+    
     const [userName, setuserName] = useState("");
     const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -51,7 +45,7 @@ const AddTeam = () => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-          const success = await SaveItemsAdmin.addTeamSave(email, password, firstName, lastName, phone, address, role, userName, dob, image);
+          const success = await SaveItemsAdmin.addTeamSave(email, password, userName );
           
           if (success) {
             navigate("/dashboard-admin");
@@ -73,14 +67,7 @@ const AddTeam = () => {
 
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate onSubmit={handleAddTeam}>
                
-                {/* <TextField
-                onChange={(e) => setFirstName(e.target.value)}
-                label="Enter Your First Name"
-                id="first_name"
-                sx={{ m: 1, width: '30%' }}
-                variant="filled
-                "
-                /> */}
+             
 
                 <TextField
                 onChange={(e) => setuserName(e.target.value)}
@@ -97,13 +84,7 @@ const AddTeam = () => {
                 sx={{ m: 1, width: '30%' }}
                 variant="filled"
                 />
-                {/* <TextField
-                onChange={(e) => setLastname(e.target.value)}
-                label="Enter Your Last Name"
-                id="last_name"
-                sx={{ m: 1, width: '30%' }}
-                variant="filled"
-                /> */}
+               
                 <FormControl sx={{ m: 1, width: '30%' }} variant="filled">
                 <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
                 <FilledInput
@@ -146,28 +127,7 @@ const AddTeam = () => {
                 </FilledInput>
 
                 </FormControl>
-                <FormControl sx={{ m: 1, width: '30%' }} variant="filled">
-                <InputLabel htmlFor="filled-adornment-phone">Phone</InputLabel>
-                <FilledInput
-                   onChange={(e) => setPhone(e.target.value)}
-                    id='phone'
-                    type='text'
-                    endAdornment = {
-                        <InputAdornment position='end'>
-                            <IconButton
-                                aria-label="Phone"
-                                edge="end"                                        
-                            >
-                            <PhoneIcon></PhoneIcon>
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    
-                >
-
-                </FilledInput>
-
-                </FormControl>
+               
                 <FormControl sx={{ m: 1, width: '30%' }} variant="filled">
                 <FilledInput
                    onChange={(e) => setDob(e.target.value)}
@@ -179,28 +139,7 @@ const AddTeam = () => {
                 </FilledInput>
                 <FormHelperText id="filled-dob-helper-text">Date of Birth</FormHelperText>
                 </FormControl>
-                <FormControl sx={{ m: 1, width: '30%' }} variant="filled">
-                    <InputLabel htmlFor="image-upload">Upload Image</InputLabel>
-                    <Input
-                        accept="image/*"
-                        id="image-upload"
-                        type="file"
-                        onChange={handleImageChange}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    aria-label="upload image"
-                                    edge="end"
-                                    component="label"
-                                    htmlFor="image-upload"
-                                >
-                                    <PhotoCamera />
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                    />
-                    <FormHelperText id="image-upload-helper-text">Select an image file</FormHelperText>
-                </FormControl>
+                
                 <FormControl sx={{ m: 1, width: '93%' }} variant="filled">
                 <InputLabel htmlFor="filled-adornment-address">Address</InputLabel>
                 <FilledInput
