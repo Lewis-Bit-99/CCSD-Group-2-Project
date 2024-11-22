@@ -50,7 +50,7 @@ const SaveItemsAdmin = {
     }
   },
 
-  async addProductAdmin( postShortDescription, /*tag,*/ title, postSlug, content, status, date, image, place) {
+  async addProductAdmin( postShortDescription, tag, title, postSlug, content, status, date, image, place) {
     const token = await localStorage.getItem('jwtToken');
     const username = await localStorage.getItem('userName');
 
@@ -58,7 +58,7 @@ const SaveItemsAdmin = {
       const formData = new FormData();
       formData.append('author', username);
       formData.append('postShortDescription', postShortDescription);
-      //formData.append('tag', tag);
+      formData.append('tag', tag);
       formData.append('place', place);
       formData.append('title', title);
       formData.append('postSlug', postSlug);
@@ -95,7 +95,7 @@ const SaveItemsAdmin = {
       throw error;
     }
   },
-  async addGalleryAdmin( place, postShortDescription, /*tag,*/ title, postSlug, content, status, date, image) {
+  async addGalleryAdmin( place, postShortDescription, tag, title, postSlug, content, status, date, image) {
     const token = await localStorage.getItem('jwtToken');
     const username = await localStorage.getItem('userName');
 
@@ -103,7 +103,7 @@ const SaveItemsAdmin = {
       const formData = new FormData();
       formData.append('author', username);
       formData.append('postShortDescription', postShortDescription);
-      //formData.append('tag', tag);
+      formData.append('tag', tag);
       formData.append('place', place);
       formData.append('title', title);
       formData.append('postSlug', postSlug);
@@ -138,7 +138,7 @@ if (error.response) {
 throw error;
 }
 },
-async addWebsiteImageAdmin( place, postShortDescription, /*tag,*/ title, postSlug, content, status, date, image) {
+async addWebsiteImageAdmin( place, postShortDescription, tag, title, postSlug, content, status, date, image) {
 const token = await localStorage.getItem('jwtToken');
 const username = await localStorage.getItem('userName');
 
@@ -146,7 +146,7 @@ try {
 const formData = new FormData();
 formData.append('author', username);
 formData.append('postShortDescription', postShortDescription);
-//formData.append('tag', tag);
+formData.append('tag', tag);
 formData.append('place', place);
 formData.append('title', title);
 formData.append('postSlug', postSlug);
@@ -183,7 +183,7 @@ if (error.response) {
 throw error;
 }
 },
-async addWebsiteTextAdmin( postShortDescription, /*tag,*/ title, postSlug, content, status, date, image, place) {
+async addWebsiteTextAdmin( postShortDescription, tag, title, postSlug, content, status, date, image, place) {
 const token = await localStorage.getItem('jwtToken');
 const username = await localStorage.getItem('userName');
 
@@ -191,7 +191,7 @@ try {
 const formData = new FormData();
 formData.append('author', username);
 formData.append('postShortDescription', postShortDescription);
-//formData.append('tag', tag);
+formData.append('tag', tag);
 formData.append('place', place);
 formData.append('title', title);
 formData.append('postSlug', postSlug);
