@@ -25,14 +25,14 @@ const AddWebsiteText = () => {
     const colors = tokens(theme.palette.mode);
     const [image, setImage] = useState(null);
 
-    const [place, setPlace] = useState(null);
-    const [categories, setCategories] = useState([]); // to store the list of categories    
+    //const [place, setPlace] = useState(null);
+    //const [categories, setCategories] = useState([]); // to store the list of categories    
     const [postShortDescription, setPostShortDescription] = useState(null);
     const [tag, setTag] = useState(null);
     const [title, setTitle] = useState(null);
     const [postSlug, setPostSlug] = useState(null);
     const [status, setStatus] = useState(null);
-    const [date, setDate] = useState(null);
+    //const [date, setDate] = useState(null);
     const navigate = useNavigate();
     const [openAiImage, setOpenAiImage] = useState(false);
 
@@ -43,9 +43,9 @@ const AddWebsiteText = () => {
         setOpenAiImage(false);
     }
     
-    const handleChangeplace = (event) => {
+    /*const handleChangeplace = (event) => {
         setPlace(event.target.value);
-      };
+      };*/
     
 
     const editor = useRef(null)
@@ -67,7 +67,7 @@ const AddWebsiteText = () => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-          const success = await SaveItemsAdmin.addWebsiteTextAdmin( postShortDescription, tag, title, postSlug, content, status, date, image, place);
+          const success = await SaveItemsAdmin.addWebsiteTextAdmin( postShortDescription, tag, title, postSlug, content, status, /*date,*/ image, /*place*/);
           
           if (success) {
             navigate("/website-components-admin");
@@ -123,30 +123,6 @@ const AddWebsiteText = () => {
                         <MenuItem value={1}>Publish</MenuItem>
                     </Select>
                 </FormControl>
-                <FormControl sx={{ m: 1, width: '15.5%' }} variant="filled">
-                    <InputLabel id="place">Text Place</InputLabel>
-                    <Select
-                        labelId="place"
-                        id="place"
-                        value={place}
-                        label="place"
-                        onChange={handleChangeplace}
-                    >
-                        <MenuItem value={1}>1</MenuItem>
-                        <MenuItem value={2}>2</MenuItem>
-                        <MenuItem value={3}>3</MenuItem>
-                        <MenuItem value={4}>4</MenuItem>
-                        <MenuItem value={5}>5</MenuItem>
-                        <MenuItem value={6}>6</MenuItem>
-                        <MenuItem value={7}>7</MenuItem>
-                        <MenuItem value={8}>8</MenuItem>
-                        <MenuItem value={9}>9</MenuItem>
-                        <MenuItem value={10}>10</MenuItem>
-                        <MenuItem value={11}>11</MenuItem>
-                        <MenuItem value={12}>12</MenuItem>
-                    </Select>
-                </FormControl>
-
 
                 <FormControl sx={{ m: 1, width: '60%' }} variant="filled">
                 <InputLabel htmlFor="filled-adornment-address">Tags</InputLabel>

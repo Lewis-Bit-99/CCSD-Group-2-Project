@@ -19,7 +19,6 @@ import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
 
 import CK from '../../../Editor/ck';
 
-
 const AddWebsiteImage = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
