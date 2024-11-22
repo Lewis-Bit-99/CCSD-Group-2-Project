@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { Box, useTheme, Button, DialogActions, Dialog, DialogContent, DialogTitle, Stack } from "@mui/material";
+import React, { useState, useEffect, useRef, Component } from 'react';
+import { Box, useTheme, Button, DialogActions, Dialog, DialogContent, DialogContentText, DialogTitle, Stack, Modal } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
 import FilledInput from '@mui/material/FilledInput';
@@ -13,9 +13,11 @@ import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 import SaveItemsAdmin from '../../saveItemAdmin';
+import GetItemsAdmin from '../../getItemAdmin';
 import Select from '@mui/material/Select';
 import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
 
+import CK from '../../../Editor/ck';
 
 
 const AddWebsiteGallery = () => {
@@ -34,7 +36,6 @@ const AddWebsiteGallery = () => {
     const [openAiImage, setOpenAiImage] = useState(false);
     const [place, setPlace] = useState(null);
 
-    
     const functionOpenAiImage=() =>{
         setOpenAiImage(true);
     }
@@ -102,10 +103,10 @@ const AddWebsiteGallery = () => {
         </Dialog>
         <Header title="Add Image" subtitle="Please Fill All the Fields" />
             
-        <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate >{/*onSubmit={handleAddBlog}*/}
+        <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate >{/onSubmit={handleAddBlog}/}
                 <TextField
                 onChange={(e) => setTitle(e.target.value)}
-                label="Please enter your na"
+                label="Enter Image Title"
                 id="title"
                 sx={{ m: 1, width: '30.5%' }}
                 variant="filled"
@@ -121,17 +122,17 @@ const AddWebsiteGallery = () => {
                     </FilledInput>
                 <FormHelperText id="filled-dob-helper-text">publish Date</FormHelperText>
                 </FormControl>
-               <FormControl sx={{ m: 1, width: '15.5%' }} variant="filled">
+                <FormControl sx={{ m: 1, width: '15.5%' }} variant="filled">
                     <InputLabel id="status">Status</InputLabel>
                     <Select
-                        labelId="hye my name"
+                        labelId="status"
                         id="status"
                         value={status}
                         label="status"
                         onChange={handleChange}
                     >
-                        <MenuItem value={0}>New Image</MenuItem>
-                        <MenuItem value={1}>Old Image</MenuItem>
+                        <MenuItem value={0}>Draft</MenuItem>
+                        <MenuItem value={1}>Publish</MenuItem>
                     </Select>
                 </FormControl>
 
@@ -173,7 +174,10 @@ const AddWebsiteGallery = () => {
                         <MenuItem value={6}>6</MenuItem>
                         <MenuItem value={7}>7</MenuItem>
                         <MenuItem value={8}>8</MenuItem>
-                
+                        <MenuItem value={9}>9</MenuItem>
+                        <MenuItem value={10}>10</MenuItem>
+                        <MenuItem value={11}>11</MenuItem>
+                        <MenuItem value={12}>12</MenuItem>
                     </Select>
                 </FormControl>
                 <FormControl sx={{ m: 1, width: '45%' }} variant="filled">
