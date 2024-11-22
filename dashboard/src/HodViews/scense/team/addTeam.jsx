@@ -27,6 +27,10 @@ const AddTeam = () => {
     const [showPassword, setShowPassword] = React.useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [phone, setPhone] = useState("");
+    const [address, setAddress] = useState("");
+    const [dob, setDob] = useState("");
+    const [role, setRole] = useState("");
     const [userName, setuserName] = useState("");
     const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword((show) => !show);
