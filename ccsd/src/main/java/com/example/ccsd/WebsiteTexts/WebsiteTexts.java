@@ -8,16 +8,18 @@ public class WebsiteTexts {
     @Id
     private String id;
     private String title;
+    private String status;
     //private String content;
     private String metaDescription;
 
     public WebsiteTexts(){
     }
 
-    public WebsiteTexts(String title, /*String content,*/ String metaDescription){
+    public WebsiteTexts(String title, String status, /*String content,*/ String metaDescription){
         this.title = title;
         //this.content = content;
         this.metaDescription = metaDescription;
+        this.status = status;
     }
 
     public String getId() {
@@ -30,6 +32,14 @@ public class WebsiteTexts {
     /*public String getContent() {
         return content;
     }*/
+
+    public String getStatus(){
+        return status;
+    }
+
+    public void setStatus(String status){
+        this.status = status;
+    }
 
     public String getMetaDescription() {
         return metaDescription;
