@@ -122,10 +122,10 @@ const AddWebsiteGallery = () => {
                     </FilledInput>
                 <FormHelperText id="filled-dob-helper-text">publish Date</FormHelperText>
                 </FormControl>
-                <FormControl sx={{ m: 1, width: '15.5%' }} variant="filled">
+               <FormControl sx={{ m: 1, width: '15.5%' }} variant="filled">
                     <InputLabel id="status">Status</InputLabel>
                     <Select
-                        labelId="status"
+                        labelId="hye my name"
                         id="status"
                         value={status}
                         label="status"
