@@ -95,7 +95,7 @@ const SaveItemsAdmin = {
       throw error;
     }
   },
-  async addGalleryAdmin( place, postShortDescription, /*tag*/, title, postSlug, content, status, date, image) {
+  async addGalleryAdmin( place, postShortDescription, /*tag,*/ title, postSlug, content, status, date, image) {
     const token = await localStorage.getItem('jwtToken');
     const username = await localStorage.getItem('userName');
 
@@ -138,7 +138,7 @@ if (error.response) {
 throw error;
 }
 },
-async addWebsiteImageAdmin( place, postShortDescription, /*tag*/, title, postSlug, content, status, date, image) {
+async addWebsiteImageAdmin( place, postShortDescription, /*tag,*/ title, postSlug, content, status, date, image) {
 const token = await localStorage.getItem('jwtToken');
 const username = await localStorage.getItem('userName');
 
