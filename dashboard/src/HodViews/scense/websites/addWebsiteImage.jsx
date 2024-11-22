@@ -24,14 +24,12 @@ const AddWebsiteImage = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [image, setImage] = useState(null);
-
     const [categories, setCategories] = useState([]); // to store the list of categories    
     const [postShortDescription, setPostShortDescription] = useState(null);
     const [tag, setTag] = useState(null);
     const [title, setTitle] = useState(null);
     const [postSlug, setPostSlug] = useState(null);
     const [status, setStatus] = useState(null);
-    const [date, setDate] = useState(null);
     const navigate = useNavigate();
     const [openAiImage, setOpenAiImage] = useState(false);
     const [place, setPlace] = useState(null);
@@ -41,8 +39,8 @@ const AddWebsiteImage = () => {
     }
     const functionCloseAiImage=() =>{
         setOpenAiImage(false);
-    }
-    
+    }     
+   
 
     
 
@@ -54,9 +52,9 @@ const AddWebsiteImage = () => {
       };
       
 
-      const handleChangeplace = (event) => {
-        setPlace(event.target.value);
-      };
+     const handleChangeplace = (event) => {
+       setPlace(event.target.value);
+      }; 
     
 
     const handleImageChange = (event) => {
@@ -67,8 +65,8 @@ const AddWebsiteImage = () => {
     const handleAddBlog = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
       
-        try {
-          const success = await SaveItemsAdmin.addWebsiteImageAdmin(place, postShortDescription, tag, title, postSlug, content, status, date, image);
+       try {
+          const success = await SaveItemsAdmin.addWebsiteImageAdmin(place, postShortDescription, tag, title, postSlug, content, status, image); 
           
           if (success) {
             navigate("/website-components-admin");
@@ -112,16 +110,10 @@ const AddWebsiteImage = () => {
                 variant="filled"
                 />
                 <FormControl sx={{ m: 1, width: '30.5%' }} variant="filled">
-                    <FilledInput
-                    onChange={(e) => setDate(e.target.value)}
-                        id='date'
-                        type='date'
-                                            
-                    >
+                    </FormControl>
 
-                    </FilledInput>
-                <FormHelperText id="filled-dob-helper-text">publish Date</FormHelperText>
-                </FormControl>
+                    
+                    
                 <FormControl sx={{ m: 1, width: '15.5%' }} variant="filled">
                     <InputLabel id="status">Status</InputLabel>
                     <Select
@@ -158,7 +150,7 @@ const AddWebsiteImage = () => {
                 </FilledInput>
                 </FormControl>
                 <FormControl sx={{ m: 1, width: '15.5%' }} variant="filled">
-                    <InputLabel id="place">Text Place</InputLabel>
+                   <InputLabel id="place">Text Place</InputLabel> 
                     <Select
                         labelId="place"
                         id="place"
