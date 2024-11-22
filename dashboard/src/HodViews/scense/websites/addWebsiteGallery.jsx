@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, Component } from 'react';
-import { Box, useTheme, Button, DialogActions, Dialog, DialogContent, DialogContentText, DialogTitle, Stack, Modal } from "@mui/material";
+import React, { useState, useRef } from 'react';
+import { Box, useTheme, Button, DialogActions, Dialog, DialogContent, DialogTitle, Stack } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
 import FilledInput from '@mui/material/FilledInput';
@@ -13,23 +13,21 @@ import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 import SaveItemsAdmin from '../../saveItemAdmin';
-import GetItemsAdmin from '../../getItemAdmin';
 import Select from '@mui/material/Select';
 import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
 
-import CK from '../../../Editor/ck';
 
 
 const AddWebsiteGallery = () => {
     const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
+    //const colors = tokens(theme.palette.mode);
     const [image, setImage] = useState(null);
 
-    const [categories, setCategories] = useState([]); // to store the list of categories    
-    const [postShortDescription, setPostShortDescription] = useState(null);
+    //const [categories, setCategories] = useState([]); // to store the list of categories    
+    //const [postShortDescription, setPostShortDescription] = useState(null);
     const [tag, setTag] = useState(null);
     const [title, setTitle] = useState(null);
-    const [postSlug, setPostSlug] = useState(null);
+    //const [postSlug, setPostSlug] = useState(null);
     const [status, setStatus] = useState(null);
     const [date, setDate] = useState(null);
     const navigate = useNavigate();
@@ -47,7 +45,7 @@ const AddWebsiteGallery = () => {
 
     
 
-    const editor = useRef(null)
+    //const editor = useRef(null)
     const [content, setContent] = useState(null);
 
     const handleChange = (event) => {
@@ -107,7 +105,7 @@ const AddWebsiteGallery = () => {
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate >{/*onSubmit={handleAddBlog}*/}
                 <TextField
                 onChange={(e) => setTitle(e.target.value)}
-                label="Enter Image Title"
+                label="Please enter your na"
                 id="title"
                 sx={{ m: 1, width: '30.5%' }}
                 variant="filled"
@@ -132,8 +130,8 @@ const AddWebsiteGallery = () => {
                         label="status"
                         onChange={handleChange}
                     >
-                        <MenuItem value={0}>Draft</MenuItem>
-                        <MenuItem value={1}>Publish</MenuItem>
+                        <MenuItem value={0}>New Image</MenuItem>
+                        <MenuItem value={1}>Old Image</MenuItem>
                     </Select>
                 </FormControl>
 
@@ -175,10 +173,7 @@ const AddWebsiteGallery = () => {
                         <MenuItem value={6}>6</MenuItem>
                         <MenuItem value={7}>7</MenuItem>
                         <MenuItem value={8}>8</MenuItem>
-                        <MenuItem value={9}>9</MenuItem>
-                        <MenuItem value={10}>10</MenuItem>
-                        <MenuItem value={11}>11</MenuItem>
-                        <MenuItem value={12}>12</MenuItem>
+                
                     </Select>
                 </FormControl>
                 <FormControl sx={{ m: 1, width: '45%' }} variant="filled">

@@ -28,8 +28,8 @@ const AddTeam = () => {
     const [showPassword, setShowPassword] = React.useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    //const [firstName, setFirstName] = useState("");
-    //const [lastName, setLastname] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastname] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
     const [dob, setDob] = useState("");
@@ -73,14 +73,15 @@ const AddTeam = () => {
 
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate onSubmit={handleAddTeam}>
                
-                {/* <TextField
+                { <TextField
                 onChange={(e) => setFirstName(e.target.value)}
                 label="Enter Your First Name"
                 id="first_name"
                 sx={{ m: 1, width: '30%' }}
                 variant="filled
                 "
-                /> */}
+                /> 
+                }
 
                 <TextField
                 onChange={(e) => setuserName(e.target.value)}
@@ -97,13 +98,14 @@ const AddTeam = () => {
                 sx={{ m: 1, width: '30%' }}
                 variant="filled"
                 />
-                {/* <TextField
+                {
+                    <TextField
                 onChange={(e) => setLastname(e.target.value)}
                 label="Enter Your Last Name"
                 id="last_name"
                 sx={{ m: 1, width: '30%' }}
                 variant="filled"
-                /> */}
+                /> }
                 <FormControl sx={{ m: 1, width: '30%' }} variant="filled">
                 <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
                 <FilledInput
