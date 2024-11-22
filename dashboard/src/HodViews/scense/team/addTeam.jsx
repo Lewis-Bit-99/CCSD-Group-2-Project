@@ -28,12 +28,12 @@ const AddTeam = () => {
     const [showPassword, setShowPassword] = React.useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastname] = useState("");
+    /*const [firstName, setFirstName] = useState("");
+    //const [lastName, setLastname] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
     const [dob, setDob] = useState("");
-    const [role, setRole] = useState("");
+    const [role, setRole] = useState("");*/
     const [userName, setuserName] = useState("");
     const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -72,13 +72,16 @@ const AddTeam = () => {
         <Header title="Add Team Member" subtitle="Enter New Member Details" />
 
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate onSubmit={handleAddTeam}>
-                <TextField
+               
+                {/* <TextField
                 onChange={(e) => setFirstName(e.target.value)}
                 label="Enter Your First Name"
                 id="first_name"
                 sx={{ m: 1, width: '30%' }}
-                variant="filled"
-                />
+                variant="filled
+                "
+                /> */}
+
                 <TextField
                 onChange={(e) => setuserName(e.target.value)}
                 label="Enter Desired User Name"
@@ -87,19 +90,20 @@ const AddTeam = () => {
                 variant="filled"
                 />
                 <TextField
+            
                 onChange={(e) => setRole(e.target.value)}
                 label="Enter Team Member Role"
                 id="role"
                 sx={{ m: 1, width: '30%' }}
                 variant="filled"
                 />
-                <TextField
+                {/* <TextField
                 onChange={(e) => setLastname(e.target.value)}
                 label="Enter Your Last Name"
                 id="last_name"
                 sx={{ m: 1, width: '30%' }}
                 variant="filled"
-                />
+                /> */}
                 <FormControl sx={{ m: 1, width: '30%' }} variant="filled">
                 <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
                 <FilledInput

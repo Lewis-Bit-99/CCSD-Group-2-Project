@@ -9,6 +9,7 @@ public class user {
 
     // Constructor
     public user(String username, int id, String email, String password) {
+        
         this.username = username;
         this.id = id;
         this.email = email;
