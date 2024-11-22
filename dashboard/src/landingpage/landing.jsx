@@ -31,7 +31,7 @@ const Landing = () => {
             <Features data={landingPageData.Features} backTextData={backendData.getWebsiteTexts} backendImagaData={backendData.getWebsiteImages} />
             <About data={landingPageData.About} backTextData={backendData.getWebsiteTexts} backendImagaData={backendData.getWebsiteImages} />
             <Services data={landingPageData.Services} backendProducts={backendData.getPrucuts}/>
-            <Gallery data={landingPageData.Gallery} backTextData={backendData.getWebsiteGallery} />
+            <Gallery data={landingPageData.Gallery} backGalaleryData={backendData.getWebsiteGallery} />
             <Testimonials data={landingPageData.Testimonials} backTextData={backendData.getWebsiteTestemonies}  />
             <Team data={landingPageData.Team} backTextData={backendData.getWebsiteTeams} />
             <Contact data={landingPageData.Contact} />
