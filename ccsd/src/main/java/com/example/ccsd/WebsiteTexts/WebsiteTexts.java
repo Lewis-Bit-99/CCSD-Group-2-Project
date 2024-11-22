@@ -7,9 +7,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class WebsiteTexts {
     @Id
     private String id;
-    private String title;
+    private String title;//
     private String content;
-    private String metaDescription;
+    private String metaDescription;//
 
     public WebsiteTexts(){
     }
