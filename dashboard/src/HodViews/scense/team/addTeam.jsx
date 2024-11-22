@@ -22,122 +22,82 @@ import SaveItemsAdmin from '../../saveItemAdmin';
 
 
 const AddTeam = () => {
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
-    const [showPassword, setShowPassword] = React.useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
-    const [dob, setDob] = useState("");
-    const [role, setRole] = useState("");
-    const [userName, setuserName] = useState("");
-    const navigate = useNavigate();
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [userName, setuserName] = useState("");
+  const navigate = useNavigate();
 
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event) => {
+      event.preventDefault();
+  };
 
-    const handleImageChange = (event) => {
-        const selectedImage = event.target.files[0];
-        setImage(selectedImage);
-    };
-
-    const handleAddTeam = async (event) => {
-        event.preventDefault(); // Prevent the default form submission behavior
-      
-        try {
-          const success = await SaveItemsAdmin.addTeamSave(email, password, userName,);
-          
+  const handleAddTeam = async (event) => {
+      event.preventDefault();
+      try {
+          const success = await SaveItemsAdmin.addTeamSave(email, password, userName);
           if (success) {
-            navigate("/dashboard-admin");
+              navigate("/dashboard-admin");
           } else {
-            // Handle login failure and display an error message to the user
-            alert("Error Saving data");
+              alert("Error Saving data");
           }
-        } catch (error) {
-          // Handle network or other errors
+      } catch (error) {
           console.error("Saving Error:", error);
           alert("An error occurred while saving.");
-        }
       }
+  };
 
   return (
-    <Box>
-    
-        <Header title="Add Team Member" subtitle="Enter New Member Details" />
-
-        <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate onSubmit={handleAddTeam}>
-               
-                
-
-                <TextField
-                onChange={(e) => setuserName(e.target.value)}
-                label="Enter Desired User Name"
-                id="user_name"
-                sx={{ m: 1, width: '30%' }}
-                variant="filled"
-                />
-                
-                <FormControl sx={{ m: 1, width: '30%' }} variant="filled">
-                <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
-                <FilledInput
-                    onChange={(e) => setPassword(e.target.value)}
-                    id="password"
-                    type={showPassword ? 'text' : 'password'}
-                    endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                        >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                    </InputAdornment>
-                    }
-                />
-                </FormControl>
-                <FormControl sx={{ m: 1, width: '30%' }} variant="filled">
-                <InputLabel htmlFor="filled-adornment-email">Email</InputLabel>
-                <FilledInput
-                    onChange={(e) => setEmail(e.target.value)}
-                    id='email'
-                    type='email'
-                    endAdornment = {
-                        <InputAdornment position='end'>
-                            <IconButton
-                                aria-label="Envelope"
-                                edge="end"                                        
-                            >
-                            <EmailIcon></EmailIcon>
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    
-                >
-
-                </FilledInput>
-
-                </FormControl>
-               
-                <FormControl sx={{ m: 1, width: '30%' }} variant="filled">
-                <FilledInput
-                   onChange={(e) => setDob(e.target.value)}
-                    id='dob'
-                    type='date'
-                                        
-                >
-
-                </FilledInput>
-                <FormHelperText id="filled-dob-helper-text">Date of Birth</FormHelperText>
-                </FormControl>
-           
-             
-        </Box> 
-    </Box>
+      <Box>
+          <Header title="Add Team Member" subtitle="Enter New Member Details" />
+          <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate onSubmit={handleAddTeam}>
+              <TextField
+                  onChange={(e) => setuserName(e.target.value)}
+                  label="Enter Desired User Name"
+                  id="user_name"
+                  sx={{ m: 1, width: '30%' }}
+                  variant="filled"
+              />
+              <FormControl sx={{ m: 1, width: '30%' }} variant="filled">
+                  <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
+                  <FilledInput
+                      onChange={(e) => setPassword(e.target.value)}
+                      id="password"
+                      type={showPassword ? 'text' : 'password'}
+                      endAdornment={
+                          <InputAdornment position="end">
+                              <IconButton
+                                  aria-label="toggle password visibility"
+                                  onClick={handleClickShowPassword}
+                                  onMouseDown={handleMouseDownPassword}
+                                  edge="end"
+                              >
+                                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                              </IconButton>
+                          </InputAdornment>
+                      }
+                  />
+              </FormControl>
+              <FormControl sx={{ m: 1, width: '30%' }} variant="filled">
+                  <InputLabel htmlFor="filled-adornment-email">Email</InputLabel>
+                  <FilledInput
+                      onChange={(e) => setEmail(e.target.value)}
+                      id="email"
+                      type="email"
+                      endAdornment={
+                          <InputAdornment position="end">
+                              <IconButton aria-label="Envelope" edge="end">
+                                  <EmailIcon />
+                              </IconButton>
+                          </InputAdornment>
+                      }
+                  />
+              </FormControl>
+          </Box>
+      </Box>
   );
 };
 
