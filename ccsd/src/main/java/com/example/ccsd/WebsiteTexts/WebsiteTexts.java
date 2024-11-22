@@ -8,15 +8,15 @@ public class WebsiteTexts {
     @Id
     private String id;
     private String title;
-    private String content;
+    //private String content;
     private String metaDescription;
 
     public WebsiteTexts(){
     }
 
-    public WebsiteTexts(String title, String content, String metaDescription){
+    public WebsiteTexts(String title, /*String content,*/ String metaDescription){
         this.title = title;
-        this.content = content;
+        //this.content = content;
         this.metaDescription = metaDescription;
     }
 
@@ -27,9 +27,9 @@ public class WebsiteTexts {
         return title;
     }
 
-    public String getContent() {
+    /*public String getContent() {
         return content;
-    }
+    }*/
 
     public String getMetaDescription() {
         return metaDescription;
@@ -43,9 +43,9 @@ public class WebsiteTexts {
         this.title = title;
     }
 
-    public void setContent(String content) {
+    /*public void setContent(String content) {
         this.content = content;
-    }
+    }*/
 
     public void setMetaDescription(String metaDescription) {
         this.metaDescription = metaDescription;
