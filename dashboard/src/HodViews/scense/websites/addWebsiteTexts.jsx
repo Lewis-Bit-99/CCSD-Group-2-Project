@@ -26,13 +26,13 @@ const AddWebsiteText = () => {
     const [image, setImage] = useState(null);
 
     //const [place, setPlace] = useState(null);
-    const [categories, setCategories] = useState([]); // to store the list of categories    
+    //const [categories, setCategories] = useState([]); // to store the list of categories    
     const [postShortDescription, setPostShortDescription] = useState(null);
     const [tag, setTag] = useState(null);
     const [title, setTitle] = useState(null);
     const [postSlug, setPostSlug] = useState(null);
     const [status, setStatus] = useState(null);
-    const [date, setDate] = useState(null);
+    //const [date, setDate] = useState(null);
     const navigate = useNavigate();
     const [openAiImage, setOpenAiImage] = useState(false);
 
@@ -67,7 +67,7 @@ const AddWebsiteText = () => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-          const success = await SaveItemsAdmin.addWebsiteTextAdmin( postShortDescription, tag, title, postSlug, content, status, date, image, /*place*/);
+          const success = await SaveItemsAdmin.addWebsiteTextAdmin( postShortDescription, tag, title, postSlug, content, status, /*date,*/ image, /*place*/);
           
           if (success) {
             navigate("/website-components-admin");
