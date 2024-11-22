@@ -26,15 +26,15 @@ const EditTeam = () => {
     const [teamDetails, setTeamDetails] = useState({});
     const [loading, setLoading] = useState(true); // New loading state
     const { user_id } = useParams();
-    const [firstName, setFirstName] = useState("");
+   // const [firstName, setFirstName] = useState("");
     const [password, setPassword] = useState("");
-    const [lastName, setLastname] = useState("");
-    const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
+    // const [lastName, setLastname] = useState("");
+    // const [phone, setPhone] = useState("");
+    // const [address, setAddress] = useState("");
     const [dob, setDob] = useState("");
     const [role, setRole] = useState("");
     const [userName, setuserName] = useState("");
-    const [image, setImage] = useState(null);
+   // const [image, setImage] = useState(null);
     const [email, setEmail] = useState("");
     useEffect(() => {
       GetItemsAdmin.getTeamDataAdminEdit(user_id)
@@ -83,7 +83,7 @@ const EditTeam = () => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-          const success = await EditItemsAdmin.editTeamSave(email, password, firstName, lastName, phone, address, role, userName, dob, image, user_id);
+          const success = await EditItemsAdmin.editTeamSave(email, password,id);
           
           if (success) {
             navigate("/dashboard-admin");
@@ -158,23 +158,7 @@ const EditTeam = () => {
 
                 </FormControl>
                 
-                <FormControl sx={{ m: 1, width: '30%' }} variant="filled">
               
-                <FormHelperText id="filled-dob-helper-text">Date of Birth</FormHelperText>
-                </FormControl>
-                <FormControl sx={{ m: 1, width: '93%' }} variant="filled">
-                <InputLabel htmlFor="filled-adornment-address">Address</InputLabel>
-               
-                <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                
-              >
-                Save
-              </Button>
-                </FormControl>
         </Box> 
     </Box>
   );
