@@ -20,14 +20,14 @@ import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
 
 const AddWebsiteGallery = () => {
     const theme = useTheme();
-    //const colors = tokens(theme.palette.mode);
+    const colors = tokens(theme.palette.mode);
     const [image, setImage] = useState(null);
 
-    //const [categories, setCategories] = useState([]); // to store the list of categories    
-    //const [postShortDescription, setPostShortDescription] = useState(null);
+    const [categories, setCategories] = useState([]); // to store the list of categories    
+    const [postShortDescription, setPostShortDescription] = useState(null);
     const [tag, setTag] = useState(null);
     const [title, setTitle] = useState(null);
-    //const [postSlug, setPostSlug] = useState(null);
+    const [postSlug, setPostSlug] = useState(null);
     const [status, setStatus] = useState(null);
     const [date, setDate] = useState(null);
     const navigate = useNavigate();
@@ -45,7 +45,7 @@ const AddWebsiteGallery = () => {
 
     
 
-    //const editor = useRef(null)
+    const editor = useRef(null)
     const [content, setContent] = useState(null);
 
     const handleChange = (event) => {
