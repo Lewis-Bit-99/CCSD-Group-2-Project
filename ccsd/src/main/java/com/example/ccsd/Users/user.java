@@ -3,7 +3,7 @@ package com.example.ccsd.Users;
 public class user {
 
     private String username;
-    private int id;
+    private int user_id;
     private String email;
     private String password;
 
@@ -11,7 +11,7 @@ public class user {
     public user(String username, int id, String email, String password) {
         
         this.username = username;
-        this.id = id;
+        this.user_id = user_id;
         this.email = email;
         this.password = password;
       
@@ -26,12 +26,12 @@ public class user {
         this.username = username;
     }
 
-    public int getId() {
-        return id;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUser_Id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getEmail() {

@@ -28,8 +28,8 @@ const AddTeam = () => {
     const [showPassword, setShowPassword] = React.useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastname] = useState("");
+    //const [firstName, setFirstName] = useState("");
+    //const [lastName, setLastname] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
     const [dob, setDob] = useState("");
@@ -47,24 +47,20 @@ const AddTeam = () => {
         setImage(selectedImage);
     };
 
-    const handleAddTeam = async (event) => {
-        event.preventDefault(); // Prevent the default form submission behavior
-      
-        try {
-          const success = await SaveItemsAdmin.addTeamSave(email, password, firstName, lastName, phone, address, role, userName, dob, image);
-          
+  const handleAddTeam = async (event) => {
+      event.preventDefault();
+      try {
+          const success = await SaveItemsAdmin.addTeamSave(email, password, userName);
           if (success) {
-            navigate("/dashboard-admin");
+              navigate("/dashboard-admin");
           } else {
-            // Handle login failure and display an error message to the user
-            alert("Error Saving data");
+              alert("Error Saving data");
           }
-        } catch (error) {
-          // Handle network or other errors
+      } catch (error) {
           console.error("Saving Error:", error);
           alert("An error occurred while saving.");
-        }
       }
+  };
 
   return (
     <Box>
@@ -73,15 +69,14 @@ const AddTeam = () => {
 
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate onSubmit={handleAddTeam}>
                
-                { <TextField
+                {/* <TextField
                 onChange={(e) => setFirstName(e.target.value)}
                 label="Enter Your First Name"
                 id="first_name"
                 sx={{ m: 1, width: '30%' }}
                 variant="filled
                 "
-                /> 
-                }
+                /> */}
 
                 <TextField
                 onChange={(e) => setuserName(e.target.value)}
@@ -98,14 +93,13 @@ const AddTeam = () => {
                 sx={{ m: 1, width: '30%' }}
                 variant="filled"
                 />
-                {
-                    <TextField
+                {/* <TextField
                 onChange={(e) => setLastname(e.target.value)}
                 label="Enter Your Last Name"
                 id="last_name"
                 sx={{ m: 1, width: '30%' }}
                 variant="filled"
-                /> }
+                /> */}
                 <FormControl sx={{ m: 1, width: '30%' }} variant="filled">
                 <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
                 <FilledInput
