@@ -18,12 +18,12 @@ public class products{
     private String tags;
     private String descriptions;
     private String websiteImage;
-    private String websiteGallery;
+    private String longDescriptions;
 
     public products(){}
     public products(String id,String title, Date productDate, 
                     String status, int productPlace, String tags, 
-                    String descriptions, String websiteImage, String websiteGallery) {
+                    String descriptions, String websiteImage, String longDescriptions) {
         this.id = id;             
         this.title = title;
         this.productDate = productDate;
@@ -32,7 +32,7 @@ public class products{
         this.tags = tags;
         this.descriptions = descriptions;
         this.websiteImage = websiteImage;
-        this.websiteGallery = websiteGallery;
+        this.longDescriptions = longDescriptions;
     }
 
 
@@ -101,12 +101,12 @@ public class products{
         this.websiteImage = websiteImage;
     }
 
-    public String getWebsiteGallery() {
-        return websiteGallery;
+    public String getLongDescriptions() {
+        return longDescriptions;
     }
 
-    public void setWebsiteGallery(String websiteGallery) {
-        this.websiteGallery = websiteGallery;
+    public void setLongDescriptions(String longDescriptions) {
+        this.longDescriptions = longDescriptions;
     }
     
 
