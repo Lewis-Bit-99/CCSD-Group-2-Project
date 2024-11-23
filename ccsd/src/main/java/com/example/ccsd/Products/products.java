@@ -8,33 +8,33 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @Document(collection = "products")
-public class products{
+public class products{      
     @Id
     private String id;
     private String title;
-    private Date productDate; // dd/mm/yy
+    private Date date; // dd/mm/yy
     private String status;
-    private int productPlace;
-    private String tags;
-    private String descriptions;
+    private int place;
+    private String tag;
+    private String postShortDescription;
     private String websiteImage;
-    private String longDescriptions;
-    private String slug;
+    private String content;
+    private String postSlug;
 
     public products(){}
-    public products(String id,String title, Date productDate, 
-                    String status, int productPlace, String tags, 
-                    String descriptions, String websiteImage, String longDescriptions, String slug) {
+    public products(String id,String title, Date date, 
+                    String status, int place, String tag, 
+                    String postShortDescription, String websiteImage, String content, String postSlug) {
         this.id = id;             
         this.title = title;
-        this.productDate = productDate;
+        this.date = date;
         this.status = status;
-        this.productPlace = productPlace;
-        this.tags = tags;
-        this.descriptions = descriptions;
+        this.place = place;
+        this.tag = tag;
+        this.postShortDescription = postShortDescription;
         this.websiteImage = websiteImage;
-        this.longDescriptions = longDescriptions;
-        this.slug = slug;
+        this.content = content;
+        this.postSlug = postSlug;
     }
 
 
@@ -56,11 +56,11 @@ public class products{
     }
 
     public Date getDate() {
-        return productDate;
+        return date;
     }
 
-    public void setDate(Date productDate) {
-        this.productDate = productDate;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getStatus() {
@@ -71,28 +71,28 @@ public class products{
         this.status = status;
     }
 
-    public int getProductPlace() {
-        return productPlace;
+    public int getPlace() {
+        return place;
     }
 
-    public void setProductPlace(int productPlace) {
-        this.productPlace = productPlace;
+    public void setPlace(int place) {
+        this.place = place;
     }
 
-    public String getTags() {
-        return tags;
+    public String getTag() {
+        return tag;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
-    public String getDescriptions() {
-        return descriptions;
+    public String getPostShortDescription() {
+        return postShortDescription;
     }
 
-    public void setDescriptions(String descriptions) {
-        this.descriptions = descriptions;
+    public void setPostShortDescription(String postShortDescription) {
+        this.postShortDescription = postShortDescription;
     }
 
     public String getWebsiteImage() {
@@ -103,21 +103,21 @@ public class products{
         this.websiteImage = websiteImage;
     }
 
-    public String getLongDescriptions() {
-        return longDescriptions;
+    public String getContent() {
+        return content;
     }
 
-    public void setLongDescriptions(String longDescriptions) {
-        this.longDescriptions = longDescriptions;
+    public void setContent(String content) {
+        this.content = content;
     }
     
 
-    public String getSlug() {
-        return slug;
+    public String getPostSlug() {
+        return postSlug;
     }
 
-    public void setSlug(String slug) {
-        this.slug = slug;
+    public void setPostSlug(String postSlug) {
+        this.postSlug = postSlug;
     }
 
 }

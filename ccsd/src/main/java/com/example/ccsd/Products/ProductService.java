@@ -39,13 +39,13 @@ public class ProductService {
             product.setTitle(productDetails.getTitle());
             product.setDate(productDetails.getDate());
             product.setStatus(productDetails.getStatus());
-            product.setProductPlace(productDetails.getProductPlace());
-            product.setTags(productDetails.getTags());
-            product.setDescriptions(productDetails.getDescriptions());
+            product.setPlace(productDetails.getPlace());
+            product.setTag(productDetails.getTag());
+            product.setPostShortDescription(productDetails.getPostShortDescription());
             product.setWebsiteImage(productDetails.getWebsiteImage());
-            product.setLongDescriptions(productDetails.getLongDescriptions());
+            product.setContent(productDetails.getContent());
             product.setId(productDetails.getId());
-            product.setSlug(productDetails.getSlug());
+            product.setPostSlug(productDetails.getPostSlug());
             return productRepository.save(product);
         }
         return null;

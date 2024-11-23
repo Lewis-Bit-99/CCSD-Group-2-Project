@@ -31,7 +31,7 @@ const AddProduct = () => {
     const [place, setPlace] = useState(null);
     const [title, setTitle] = useState(null);
     const [postSlug, setPostSlug] = useState(null);
-    const [status, setStatus] = useState(null);
+    const [status, setStatus] = useState(null); 
     const [date, setDate] = useState(null);
     const navigate = useNavigate();
     const [openAiImage, setOpenAiImage] = useState(false);
