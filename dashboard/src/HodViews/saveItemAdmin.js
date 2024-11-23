@@ -44,7 +44,7 @@ const SaveItemsAdmin = {
     }
   },
 
-  async addProductAdmin( postShortDescription, tag, title, postSlug, content, status, date, image, place) {
+  async addProductAdmin(postShortDescription, tag, title, postSlug, status, image, place) {
     const token = await localStorage.getItem('jwtToken');
     const username = await localStorage.getItem('userName');
 
@@ -56,16 +56,14 @@ const SaveItemsAdmin = {
       formData.append('place', place);
       formData.append('title', title);
       formData.append('postSlug', postSlug);
-      formData.append('content', content);
       formData.append('status', status);
-      formData.append('date', date);
 
       if (image) {
         formData.append('image', image); // Assuming 'image' is the key on the server to handle file uploads
       }
 
       const response = await axios.post(
-        '${API_BASE_URL}/add_blog/',
+        '${API_BASE_URL}/api/products',
         formData,
         {
           headers: {
