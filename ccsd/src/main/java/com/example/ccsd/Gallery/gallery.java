@@ -31,7 +31,7 @@ public class gallery {
         return image;
     }
 
-    public Date date(){
+    public Date getDate(){
         return date;
     }
     public void setDate(Date date){
