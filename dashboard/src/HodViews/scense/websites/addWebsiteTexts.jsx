@@ -21,53 +21,21 @@ import CK from '../../../Editor/ck';
 
 
 const AddWebsiteText = () => {
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
-    const [image, setImage] = useState(null);
-
-    //const [place, setPlace] = useState(null);
-    //const [categories, setCategories] = useState([]); // to store the list of categories    
     const [postShortDescription, setPostShortDescription] = useState(null);
     const [tag, setTag] = useState(null);
     const [title, setTitle] = useState(null);
-    const [postSlug, setPostSlug] = useState(null);
     const [status, setStatus] = useState(null);
-    //const [date, setDate] = useState(null);
     const navigate = useNavigate();
-    const [openAiImage, setOpenAiImage] = useState(false);
-
-    const functionOpenAiImage=() =>{
-        setOpenAiImage(true);
-    }
-    const functionCloseAiImage=() =>{
-        setOpenAiImage(false);
-    }
     
-    /*const handleChangeplace = (event) => {
-        setPlace(event.target.value);
-      };*/
-    
-
-    const editor = useRef(null)
-    const [content, setContent] = useState(null);
-
     const handleChange = (event) => {
         setStatus(event.target.value);
       };
-      
-
-      
-
-    const handleImageChange = (event) => {
-        const selectedImage = event.target.files[0];
-        setImage(selectedImage);
-    };
 
     const handleAddBlog = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-          const success = await SaveItemsAdmin.addWebsiteTextAdmin( postShortDescription, tag, title, postSlug, content, status, /*date,*/ image, /*place*/);
+          const success = await SaveItemsAdmin.addWebsiteTextAdmin( postShortDescription, tag, title, status);
           
           if (success) {
             navigate("/website-components-admin");
@@ -87,18 +55,6 @@ const AddWebsiteText = () => {
   return (
 
     <Box>
-        <Dialog open={openAiImage} fullWidth maxWidth="lg">
-            <DialogTitle> AI Image Generator or Edit </DialogTitle>
-            <DialogContent>
-                <Stack spacing={2} margin={2}>
-
-                </Stack>
-            </DialogContent>
-            <DialogActions>
-                <Button color='success' variant='contained'>Use Image</Button>
-                <Button color='error' variant='contained' onClick={functionCloseAiImage}>Close</Button>
-            </DialogActions>
-        </Dialog>
         <Header title="Add Website Text" subtitle="Please Fill All the Fields" />
             
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate >{/*onSubmit={handleAddBlog}*/}
@@ -129,19 +85,7 @@ const AddWebsiteText = () => {
                 <FilledInput
                    onChange={(e) => setTag(e.target.value)}
                     id='tag'
-                    type='text'
-                    endAdornment = {
-                        <InputAdornment position='end'>
-                            Use AI to Generate SEO Tags
-                            <IconButton
-                                aria-label="tag"
-                                edge="end"                                        
-                            >
-                            <SmartToyOutlinedIcon></SmartToyOutlinedIcon>
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    
+                    type='text'                    
                 >
                 </FilledInput>
                 </FormControl>
@@ -153,33 +97,10 @@ const AddWebsiteText = () => {
                     type='text'
                     multiline
                     rows={3}
-                    endAdornment = {
-                        <InputAdornment position='end'>
-                            Use AI to Generate Short Descriptions
-                            <IconButton
-                                
-                                aria-label="short-description"
-                                edge="end"                                        
-                            >
-                            <SmartToyOutlinedIcon></SmartToyOutlinedIcon>
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    
                 >
                 </FilledInput>
 
                 </FormControl>
-
-              <Button
-                
-                sx={{ m: 1, width: '46%' }}
-                color='warning'
-                variant="contained"
-                
-              >
-                AI SEO Checker
-              </Button>
 
                 <Button
                 //type="submit"

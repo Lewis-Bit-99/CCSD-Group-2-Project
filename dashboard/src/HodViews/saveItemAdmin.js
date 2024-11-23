@@ -189,10 +189,16 @@ try {
 
 const response = await axios.post(
   '${API_BASE_URL}/api/websiteTexts',
-  formData,
+  {
+    postShortDescription,
+    tag,
+    title,
+    postSlug,
+    status,
+  },
   {
     headers: {
-      'Content-Type': 'multipart/form-data', // Set content type to multipart/form-data for file uploads
+      'Content-Type': 'application/json', // Set content type to multipart/form-data for file uploads
       Authorization: 'Bearer ${token}',
     },
   }
