@@ -34,6 +34,7 @@ public class galleryService {
             gallery Gallery = galleryOpt.get();
             Gallery.setImage(galleryDetails.getImage());
             Gallery.setInfo(galleryDetails.getInfo());
+            Gallery.setDate(galleryDetails.getDate());
             return GalleryRepository.save(Gallery);
         }
         return null;
