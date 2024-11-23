@@ -35,9 +35,18 @@ public class WebsiteTextsController {
     }
 
     @PostMapping
-    public WebsiteTexts addWebsiteTexts(@RequestBody WebsiteTexts texts){
-        return websiteTextsService.addWebsiteTexts(texts);
+    public ResponseEntity<WebsiteTexts> addWebsiteText(
+        @RequestParam("postShortDescription") String postShortDescription,
+        @RequestParam("tag") String tag,
+        @RequestParam("title") String title,
+        @RequestParam("postSlug") String postSlug,
+        @RequestParam("status") String status
+    ) {
+        WebsiteTexts websiteText = new WebsiteTexts(title, status, tag, postShortDescription);
+        WebsiteTexts savedText = websiteTextsService.addWebsiteTexts(websiteText);
+        return ResponseEntity.ok(savedText);
     }
+    
 
     @DeleteMapping
     public ResponseEntity<Void> deleteWebsiteTexts(@PathVariable String title){
