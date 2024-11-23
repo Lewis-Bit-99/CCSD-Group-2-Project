@@ -200,19 +200,11 @@ const response = await axios.post('${API_BASE_URL}/api/websiteTexts', payload, {
   }
 );
 
-if (response.status === 200) {
-  return response.data;
-}
-} catch (error) {
-if (error.response) {
-  console.error('Server responded with an error:', error.response.data);
-} else if (error.request) {
-  console.error('No response received:', error.request);
-} else {
-  console.error('Error setting up the request:', error.message);
-}
-throw error;
-}
+return response.status === 200 || response.status === 201;
+    } catch (error) {
+      console.error('Error in addWebsiteTextAdmin:', error);
+      throw error;
+    }
 },
 
 
