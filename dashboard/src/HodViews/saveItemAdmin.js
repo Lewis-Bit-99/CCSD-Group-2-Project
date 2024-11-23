@@ -25,7 +25,7 @@ const SaveItemsAdmin = {
       }
 
       const response = await axios.post(
-        '${API_BASE_URL}/add_team/',
+        '${API_BASE_URL}/api/WebsiteImages/',
         formData,
         {
           headers: {
