@@ -42,7 +42,7 @@ const AddWebsiteText = () => {
     <Box>
         <Header title="Add Website Text" subtitle="Please Fill All the Fields" />
             
-        <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate onSubmit={handleAddBlog}/>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate onSubmit={handleAddBlog}>
                 <TextField
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
