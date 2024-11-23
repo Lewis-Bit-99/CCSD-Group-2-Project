@@ -5,8 +5,6 @@ import Header from "../../../components/Header";
 import { useNavigate } from 'react-router-dom';
 import SaveItemsAdmin from '../../saveItemAdmin';
 
-import Select from '@mui/material/Select';
-
 const AddWebsiteText = () => {
     const [postShortDescription, setPostShortDescription] = useState(null);
     const [tag, setTag] = useState(null);
