@@ -1,4 +1,3 @@
-
 package com.example.ccsd.WebsiteImages;
 
 import org.springframework.data.annotation.Id;
@@ -8,28 +7,62 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class WebsiteImages {
     @Id
     private String id;
-    private String imageUrl;  // URL of the image
-    private String altText;   // Alternative text for the image
-    private int width;        // Width in pixels
-    private int height;       // Height in pixels
+    private String title;     // Matches "title" from frontend
+    private String tag;       // Matches "tag" from frontend
+    private String status;    // Matches "status" from frontend
+    private int place;        // Matches "place" from frontend
+    private String imageUrl;  // URL of the uploaded image
 
-    // Constructor to initialize the object
-    public WebsiteImages(){
-    }
+    // Constructor
+    public WebsiteImages() {}
 
-    public WebsiteImages(String imageUrl, String altText, int width, int height) {
+    public WebsiteImages(String title, String tag, String status, int place, String imageUrl) {
+        this.title = title;
+        this.tag = tag;
+        this.status = status;
+        this.place = place;
         this.imageUrl = imageUrl;
-        this.altText = altText;
-        this.width = width > 0 ? width : 0; // Ensure width is positive
-        this.height = height > 0 ? height : 0; // Ensure height is positive
     }
 
-     public String getId() {
+    // Getters and Setters
+    public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getPlace() {
+        return place;
+    }
+
+    public void setPlace(int place) {
+        this.place = place;
     }
 
     public String getImageUrl() {
@@ -39,38 +72,4 @@ public class WebsiteImages {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-    public String getAltText() {
-        return altText;
-    }
-
-    public void setAltText(String altText) {
-        this.altText = altText;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        if (width > 0) {
-            this.width = width;
-        } else {
-            System.out.println("Width must be positive!");
-        }
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        if (height > 0) {
-            this.height = height;
-        } else {
-            System.out.println("Height must be positive!");
-        }
-    }
 }
-
-
-

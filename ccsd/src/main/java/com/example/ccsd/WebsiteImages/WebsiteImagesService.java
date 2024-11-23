@@ -1,58 +1,55 @@
 package com.example.ccsd.WebsiteImages;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
-@Service 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class WebsiteImagesService {
 
-    @Autowired 
+    @Autowired
     private WebsiteImagesRepository websiteImagesRepository;
 
-    //Getting all websiteImages
+    // Get all WebsiteImages
     public List<WebsiteImages> getAllWebsiteImages() {
         return websiteImagesRepository.findAll();
-
     }
 
-    //Getting single websiteImages
+    // Get a single WebsiteImages by ID
     public Optional<WebsiteImages> getWebsiteImagesById(String id) {
         return websiteImagesRepository.findById(id);
-
     }
 
-// Creating new data in repository
-
-public WebsiteImages addWebsiteImages(WebsiteImages websiteImages){
-    return websiteImagesRepository.save(websiteImages);
-}
-
-// Updating the book
-
-public WebsiteImages updateWebsiteImages(String id, WebsiteImages websiteImagesDetails) {
-    Optional<WebsiteImages> websiteImagesOpt = websiteImagesRepository.findById(id);
-    if (websiteImagesOpt.isPresent()) {
-
-        // Get from database
-
-        WebsiteImages websiteImages = websiteImagesOpt.get();
-        websiteImages.setId(websiteImagesDetails.getId());
-        websiteImages.setImageUrl(websiteImagesDetails.getImageUrl());
-        websiteImages.setAltText(websiteImagesDetails.getAltText());
-        websiteImages.setWidth(websiteImagesDetails.getWidth());
-        websiteImages.setHeight(websiteImagesDetails.getHeight());
+    // Create a new WebsiteImage
+    public WebsiteImages addWebsiteImages(WebsiteImages websiteImages) {
         return websiteImagesRepository.save(websiteImages);
     }
-    return null;
-}
 
-// Deleting
+    // Update an existing WebsiteImage
+    public WebsiteImages updateWebsiteImages(String id, WebsiteImages websiteImagesDetails) {
+        Optional<WebsiteImages> websiteImagesOpt = websiteImagesRepository.findById(id);
 
-public void deleteWebsiteImages(String id) {
-    websiteImagesRepository.deleteById(id);
-}
-}
+        if (websiteImagesOpt.isPresent()) {
+            // Get the existing WebsiteImages from the database
+            WebsiteImages websiteImages = websiteImagesOpt.get();
 
+            // Update fields with new data
+            websiteImages.setTitle(websiteImagesDetails.getTitle());
+            websiteImages.setTag(websiteImagesDetails.getTag());
+            websiteImages.setStatus(websiteImagesDetails.getStatus());
+            websiteImages.setPlace(websiteImagesDetails.getPlace());
+            websiteImages.setImageUrl(websiteImagesDetails.getImageUrl());
+
+            return websiteImagesRepository.save(websiteImages);
+        }
+
+        return null; // Return null if the image with the given ID doesn't exist
+    }
+
+    // Delete a WebsiteImage by ID
+    public void deleteWebsiteImages(String id) {
+        websiteImagesRepository.deleteById(id);
+    }
+}
