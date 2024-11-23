@@ -30,11 +30,20 @@ public class galleryService {
     public gallery updateGallery(String id, gallery galleryDetails) {
         Optional<gallery> galleryOpt = GalleryRepository.findById(id);
         if (galleryOpt.isPresent()) {
-
-            gallery Gallery = galleryOpt.get();
+           gallery Gallery = galleryOpt.get();
+           
+  
             Gallery.setImage(galleryDetails.getImage());
-            Gallery.setInfo(galleryDetails.getInfo());
+            Gallery.setTag(galleryDetails.getTag());
+            Gallery.setTitle(galleryDetails.getTitle());
+            Gallery.setStatus(galleryDetails.getStatus());
             Gallery.setDate(galleryDetails.getDate());
+            Gallery.setPlace(galleryDetails.getPlace());
+            Gallery.setTag(galleryDetails.getTag());
+            Gallery.setPostShortDescription(galleryDetails.getPostShortDescription());
+            Gallery.setPostSlug(galleryDetails.getPostSlug());
+            Gallery.setContent(galleryDetails.getContent());
+            
             return GalleryRepository.save(Gallery);
         }
         return null;
