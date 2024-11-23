@@ -57,8 +57,8 @@ public class UsersController {
     //         currentUser.setPassword(userDetails.getPassword());
     //         return ResponseEntity.ok(userService.adduser(currentUser)); // Save updated user
     //     }
-    //     return ResponseEntity.notFound().build(); // If user not found, return not found
-    // }
+    //   return ResponseEntity.notFound().build(); // If user not found, return not found
+   // }
 
     // Delete a user by ID
     @DeleteMapping("/{id}")
