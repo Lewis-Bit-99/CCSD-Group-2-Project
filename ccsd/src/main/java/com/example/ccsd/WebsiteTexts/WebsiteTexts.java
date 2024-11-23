@@ -1,63 +1,49 @@
 package com.example.ccsd.WebsiteTexts;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "websiteTexts")
 public class WebsiteTexts {
-    @Id
-    private String id;
     private String title;
+    private String tag;
     private String status;
-    //private String content;
-    private String metaDescription;
+    private String postShortDescription;
 
     public WebsiteTexts(){
     }
 
-    public WebsiteTexts(String title, String status, /*String content,*/ String metaDescription){
+    public WebsiteTexts(String title, String status, String tag, String postShortDescription){
         this.title = title;
-        //this.content = content;
-        this.metaDescription = metaDescription;
+        this.tag = tag;
+        this.postShortDescription = postShortDescription;
         this.status = status;
     }
 
-    public String getId() {
-        return id;
-    }
-    public String getTitle() {
+    public String getTitle(){
         return title;
     }
-
-    /*public String getContent() {
-        return content;
-    }*/
-
-    public String getStatus(){
-        return status;
-    }
-
-    public void setStatus(String status){
-        this.status = status;
-    }
-
-    public String getMetaDescription() {
-        return metaDescription;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }
 
-    /*public void setContent(String content) {
-        this.content = content;
-    }*/
+    public String getTag(){
+        return tag;
+    }
+    public void setTag(String tag) {
+        this.title = tag;
+    }
 
-    public void setMetaDescription(String metaDescription) {
-        this.metaDescription = metaDescription;
+    public String getStatus(){
+        return status;
+    }
+    public void setStatus(String status){
+        this.status = status;
+    }
+
+    public String getPostShortDescription() {
+        return postShortDescription;
+    }
+    public void setPostShortDescription(String postShortDescription) {
+        this.postShortDescription = postShortDescription;
     }
 }

@@ -17,16 +17,16 @@ public class WebsiteTextsService {
         return websiteTextsRepository.findAll();
     }
 
-    public Optional<WebsiteTexts>getWebsiteTextsById(String id){
-        return websiteTextsRepository.findById(id);
-    }
+    public Optional<WebsiteTexts> getWebsiteTextsByTitle(String title) {
+        return websiteTextsRepository.findByTitle(title);
+    }    
     
     public WebsiteTexts addWebsiteTexts(WebsiteTexts texts){
         return websiteTextsRepository.save(texts);
     }
 
-    public void deleteWebsiteTexts(String id){
-        websiteTextsRepository.deleteById(id);
+    public void deleteWebsiteTexts(String title){
+        websiteTextsRepository.deleteByTitle(title);
 
     }
 }
