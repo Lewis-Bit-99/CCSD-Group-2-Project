@@ -30,7 +30,7 @@ public class WebsiteTexts {
         return tag;
     }
     public void setTag(String tag) {
-        this.title = tag;
+        this.tag = tag;
     }
 
     public String getStatus(){
