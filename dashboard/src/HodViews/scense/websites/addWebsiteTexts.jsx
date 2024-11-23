@@ -25,6 +25,7 @@ const AddWebsiteText = () => {
     const [tag, setTag] = useState(null);
     const [title, setTitle] = useState(null);
     const [status, setStatus] = useState(null);
+    const navigate = useNavigate();
     
     const handleChange = (event) => {
         setStatus(event.target.value);
