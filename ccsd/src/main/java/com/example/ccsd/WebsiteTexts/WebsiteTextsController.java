@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+//import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,17 +35,9 @@ public class WebsiteTextsController {
     }
 
     @PostMapping
-public ResponseEntity<WebsiteTexts> addWebsiteText(
-    @RequestParam("postShortDescription") String postShortDescription,
-    @RequestParam("tag") String tag,
-    @RequestParam("title") String title,
-    @RequestParam("postSlug") String postSlug,
-    @RequestParam("status") String status
-) {
-    WebsiteTexts websiteText = new WebsiteTexts(title, status, tag, postShortDescription);
-    WebsiteTexts savedText = websiteTextsService.addWebsiteTexts(websiteText);
-    return ResponseEntity.ok(savedText);
-}
+    public WebsiteTexts addWebsiteTexts(@RequestParam WebsiteTexts texts){
+        return websiteTextsService.addWebsiteTexts(texts);
+    }
 
     @DeleteMapping
     public ResponseEntity<Void> deleteWebsiteTexts(@PathVariable String title){
