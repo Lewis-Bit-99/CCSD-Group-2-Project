@@ -176,14 +176,12 @@ throw error;
 },
 async addWebsiteTextAdmin( postShortDescription, tag, title, postSlug, status){
 const token = await localStorage.getItem('jwtToken');
-const username = await localStorage.getItem('userName');
 
 try {
   const formData = new FormData();
   formData.append('postShortDescription', postShortDescription);
   formData.append('tag', tag);
   formData.append('title', title);
-  formData.append('postSlug', postSlug);
   formData.append('status', status);
 
 
@@ -193,7 +191,6 @@ const response = await axios.post(
     postShortDescription,
     tag,
     title,
-    postSlug,
     status,
   },
   {
