@@ -1,22 +1,22 @@
 {
   "Header": {
-    "title": "We are a Landing Page",
-    "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sed commodo nibh ante facilisis bibendum."
+    "title": "Art Made Better with the Right Tools",
+    "paragraph": "We bring together the finest art stationery to fuel your passion for creativity. Whether you're a hobbyist or a professional artist, our collection is here to support your journey."
   },
   "About": {
-    "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "Why": [
-      "Lorem ipsum dolor",
-      "Tempor incididunt",
-      "Lorem ipsum dolor",
-      "Incididunt ut labore"
-    ],
-    "Why2": [
-      "Aliquip ex ea commodo",
-      "Lorem ipsum dolor",
-      "Exercitation ullamco",
-      "Lorem ipsum dolor"
-    ]
+    "paragraph": "Art is the soul's expression brought to life, weaving stories through colors, shapes, and forms. It transcends boundaries, igniting emotions and sparking creativity in every corner of the world. From the strokes of a brush to the chisel's precision, art captures the essence of humanity, embracing both the delicate and bold.",
+  "Why": [
+    "Inspires creativity and innovation",
+    "Transforms emotions into visual beauty",
+    "Bridges cultures and perspectives",
+    "Celebrates the timelessness of imagination"
+  ],
+  "Why2": [
+    "Elevates everyday experiences into masterpieces",
+    "Encourages self-expression and storytelling",
+    "Fosters community through shared appreciation",
+    "Preserves heritage and reimagines the future"
+  ]
   },
   "Gallery": [
     {
@@ -68,39 +68,39 @@
   "Services": [
     {
       "icon": "fa fa-wordpress",
-      "name": "Lorem ipsum dolor",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.",
-      "price": "1000RM"
+      "name": "Renaissance Streched Canvas",
+      "text": "Size: 50x70cm, 18mm thick.Stretched canvas made of 280g thickness 100% natural cotton, acid free. It’s suitable for acrylic, oil and mix media painting. ",
+      "price": "RM35.90"
     },
     {
       "icon": "fa fa-cart-arrow-down",
-      "name": "Consectetur adipiscing",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.",
-      "price": "1000RM"
+      "name": "Roubloff QD15 Painting brush",
+      "text": "Perfect tool for different water and pigment based techniques. Synthetic hair provides with elasticity and flexibility and protect cholinesky natural hair. ",
+      "price": "RM305.25"
     },
     {
       "icon": "fa fa-cloud-download",
-      "name": "Lorem ipsum dolor",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.",
-      "price": "1000RM"
+      "name": "Mijello Palette Studio 55",
+      "text": " Airtight with silicone padding. Made of impact-resistant plastic, durable and very light.Airtight with silicone padding. Palette Studio 55: 36x22.7cm",
+      "price": "RM110.99"
     },
     {
       "icon": "fa fa-language",
-      "name": "Consectetur adipiscing",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.",
-      "price": "1000RM"
+      "name": "Schmincke Akademie Aquarell Watercolor",
+      "text": "75745, Germany, 15ml / tube ,High light fastness, brilliant mixing results, good painting characteristics, Metal case with 24 color",
+      "price": "RM400.00"
     },
     {
       "icon": "fa fa-plane",
-      "name": "Lorem ipsum dolor",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.",
-      "price": "1000RM"
+      "name": "Black Frame Nordic",
+      "text": "Frame Wall : 1 Set 3pc , (1pc Size Is 70x50cm), Black Frame Casing Colour , Aluminium, Weight : 1pc 2kg",
+      "price": "RM94.88"
     },
     {
       "icon": "fa fa-pie-chart",
-      "name": "Consectetur adipiscing",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.",
-      "price": "1000RM"
+      "name": "Sketch Pencil Set ",
+      "text": "35 Pcs Sketching Art Set, with Portable kit allows you to easily store and save your drawing pencil combination.",
+      "price": "RM29.20"
     }
   ],
   "Testimonials": [
@@ -158,33 +158,35 @@
     }
   ],
   "Contact": {
-    "address": "4321 California St, San Francisco, CA 12345 ",
-    "phone": "+1 123 456 1234",
-    "email": "info@company.com",
-    "facebook": "fb.com",
-    "twitter": "twitter.com",
-    "youtube": "youtube.com"
+    "address": "Jalan Permata 6, Tasik Biru Kundang, 47000 Sungai Buloh, Selangor",
+    "phone": "010-5935590",
+    "email": "Lwis@CCSDG2.com",
+    "facebook": "CCSDG2_ART&LIVING Page",
+    "X(twitter)": "CCSD",
+    "youtube": "CCSDG2_ART&LIVING"
   },
   "Features": [
+   
     {
       "icon": "fa fa-comments-o",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+      "title": "Premium Quality Materials",
+      "text": "Crafted with care, our products are made using top-grade materials to ensure durability and excellence in every stroke."
     },
     {
       "icon": "fa fa-bullhorn",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+      "title": "Wide Range of Products",
+      "text": "From sketchpads to precision tools, we offer a diverse collection to meet the needs of artists at every level."
     },
     {
       "icon": "fa fa-group",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+      "title": "Eco-Friendly Options",
+      "text": "Supporting sustainability, we provide environmentally conscious products without compromising on quality or design."
     },
     {
       "icon": "fa fa-magic",
-      "title": "Lorem ipsum",
-      "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+      "title": "Inspiration and Support",
+      "text": "Join our creative community for tips, tutorials, and inspiration to help you make the most of your art journey."
     }
+  
   ]
 }
