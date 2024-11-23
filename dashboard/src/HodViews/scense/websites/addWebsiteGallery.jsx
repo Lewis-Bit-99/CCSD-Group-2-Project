@@ -9,7 +9,7 @@ import { tokens } from "../../../base/theme";
 const AddWebsiteGallery = () => {
 
   const navigate = useNavigate();
-
+  const [id, setId] = useState(null);
   const [image, setImage] = useState(null);
   const [tag, setTag] = useState('');
   const [title, setTitle] = useState('');
@@ -17,7 +17,6 @@ const AddWebsiteGallery = () => {
   const [date, setDate] = useState('');
   const [openAiImage, setOpenAiImage] = useState(false);
   const [place, setPlace] = useState('');
-
   const [postShortDescription, setPostShortDescription] = useState('');
   const [postSlug, setPostSlug] = useState('');
   const [content, setContent] = useState('');
@@ -66,14 +65,22 @@ const AddWebsiteGallery = () => {
       </Dialog>
 
       {/* Header */}
-      <Header title="Add Image" subtitle="Please Fill All the Fields" />
+      <Header title="Add New Gallery" subtitle="Please Fill All the Fields" />
 
       {/* Form */}
-      <Box component="form" onSubmit={handleAddBlog} sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+      <Box component="form" onSubmit={handleAddBlog} sx={{ display: 'flex', flexWrap: 'wrap', gap: 2}}>
+      <TextField
+          onChange={(e) => setId(e.target.value)}
+          value={id}
+          label="ID"
+          variant="filled"
+          sx={{ width: '30.5%' }}
+        />
+
         <TextField
           onChange={(e) => setTitle(e.target.value)}
           value={title}
-          label="Enter Image Title"
+          label="Please Enter Image Title"
           variant="filled"
           sx={{ width: '30.5%' }}
         />
