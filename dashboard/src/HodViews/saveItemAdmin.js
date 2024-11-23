@@ -89,7 +89,7 @@ const SaveItemsAdmin = {
       throw error;
     }
   },
-  async addGalleryAdmin( image, tag, title, status, date, OpenAiImage, place, postShortDescription, potSlug, content) {
+  async addGalleryAdmin( image, tag, title, status, date, OpenAiImage, place, postShortDescription, postSlug, content) {
     const token = await localStorage.getItem('jwtToken');
     const username = await localStorage.getItem('userName');
 

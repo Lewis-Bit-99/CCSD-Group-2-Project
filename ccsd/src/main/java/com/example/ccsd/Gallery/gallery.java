@@ -6,6 +6,7 @@ import java.sql.Date;
 import org.springframework.data.annotation.Id;
 
 public class gallery {
+  
 
     @Id
     private String Id;
@@ -15,25 +16,20 @@ public class gallery {
     private String status;
     private Date date;
     private String place;
-    private String postShortDescription;
-    private String postSlug;
-    private String content;
+
     
    
     // Constructors
 
     public gallery(){}
 
-    public gallery(String image, String tag, String title, String status, Date date, String place, String postShortDescription, String postSlug, String content){
+    public gallery(String image, String tag, String title, String status, Date date, String place){
         this.image = image;
         this.tag = tag;
         this.title = title;
         this.status = status;
         this.date = date;
         this.place = place;
-        this.postShortDescription = postShortDescription;
-        this.postSlug = postSlug;
-        this.content = content;
     }
 
     public String getId(){
@@ -63,17 +59,6 @@ public class gallery {
         return place;
     }
 
-    public String getPostShortDescription(){
-        return postShortDescription;
-    }
-
-    public String getPostSlug(){
-        return postSlug;
-    }
-
-    public String getContent(){
-        return content;
-    }
 
     public void setImage(String image){
         this.image = image;
@@ -100,17 +85,6 @@ public class gallery {
 
     }
    
-    public void setPostShortDescription(String postShortDescription){
-        this.postShortDescription = postShortDescription;
-    }
-
-    public void setPostSlug(String postSlug){
-        this.postSlug = postSlug;
-    }
-
-    public void setContent(String content){
-        this.content = content;
-    }
 
     
     }

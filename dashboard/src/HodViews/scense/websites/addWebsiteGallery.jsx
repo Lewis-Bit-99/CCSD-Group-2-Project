@@ -1,29 +1,22 @@
 import React, { useState } from 'react';
-import { Box, Button, FormControl, FormHelperText, Input, InputAdornment, Select, MenuItem, TextField, IconButton, FilledInput, InputLabel, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack } from "@mui/material";
+import { Box, Button, FormControl, FormHelperText, Input, InputAdornment, Select, MenuItem, TextField, FilledInput, InputLabel } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
 import Header from "../../../components/Header";
 import SaveItemsAdmin from '../../saveItemAdmin';
-import { tokens } from "../../../base/theme";
 
 const AddWebsiteGallery = () => {
 
   const navigate = useNavigate();
-  const [id, setId] = useState(null);
   const [image, setImage] = useState(null);
   const [tag, setTag] = useState('');
   const [title, setTitle] = useState('');
   const [status, setStatus] = useState('');
   const [date, setDate] = useState('');
-  const [openAiImage, setOpenAiImage] = useState(false);
   const [place, setPlace] = useState('');
-  const [postShortDescription, setPostShortDescription] = useState('');
-  const [postSlug, setPostSlug] = useState('');
-  const [content, setContent] = useState('');
 
-  // Handle AI image dialog open and close
-  const functionOpenAiImage = () => setOpenAiImage(true);
-  const functionCloseAiImage = () => setOpenAiImage(false);
+
+
 
   // Handle file input change (image upload)
   const handleImageChange = (event) => {
@@ -36,7 +29,7 @@ const AddWebsiteGallery = () => {
     event.preventDefault();
 
     try {
-      const success = await SaveItemsAdmin.addGalleryAdmin(place, postShortDescription, tag, title, postSlug, content, status, date, image);
+      const success = await SaveItemsAdmin.addGalleryAdmin(place, tag, title, status, date, image);
       if (success) {
         navigate("/website-components-admin");
       } else {
@@ -50,32 +43,12 @@ const AddWebsiteGallery = () => {
 
   return (
     <Box>
-      {/* AI Image Generator Dialog */}
-      <Dialog open={openAiImage} fullWidth maxWidth="lg">
-        <DialogTitle>AI Image Generator or Edit</DialogTitle>
-        <DialogContent>
-          <Stack spacing={2} margin={2}>
-            {/* Add editor or other components here */}
-          </Stack>
-        </DialogContent>
-        <DialogActions>
-          <Button color='success' variant='contained'>Use Image</Button>
-          <Button color='error' variant='contained' onClick={functionCloseAiImage}>Close</Button>
-        </DialogActions>
-      </Dialog>
-
+    
       {/* Header */}
       <Header title="Add New Gallery" subtitle="Please Fill All the Fields" />
 
       {/* Form */}
       <Box component="form" onSubmit={handleAddBlog} sx={{ display: 'flex', flexWrap: 'wrap', gap: 2}}>
-      <TextField
-          onChange={(e) => setId(e.target.value)}
-          value={id}
-          label="ID"
-          variant="filled"
-          sx={{ width: '30.5%' }}
-        />
 
         <TextField
           onChange={(e) => setTitle(e.target.value)}
@@ -117,10 +90,8 @@ const AddWebsiteGallery = () => {
             type="text"
             endAdornment={
               <InputAdornment position="end">
-                Use AI to Generate SEO Tags
-                <IconButton onClick={functionOpenAiImage}>
+
                   <SmartToyOutlinedIcon />
-                </IconButton>
               </InputAdornment>
             }
           />
@@ -148,14 +119,10 @@ const AddWebsiteGallery = () => {
             onChange={handleImageChange}
             endAdornment={
               <InputAdornment position="end">
-                Use AI to Generate or Edit Image
-                <IconButton onClick={functionOpenAiImage}>
                   <SmartToyOutlinedIcon />
-                </IconButton>
               </InputAdornment>
             }
           />
-          <FormHelperText>Blog Header Image</FormHelperText>
         </FormControl>
 
         {/* Save Button */}
