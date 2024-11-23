@@ -34,7 +34,7 @@ const AddWebsiteText = () => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-          const success = await SaveItemsAdmin.addWebsiteTextAdmin( postShortDescription, tag, title, postSlug, content, status, /*date,*/ image, /*place*/);
+          const success = await SaveItemsAdmin.addWebsiteTextAdmin( postShortDescription, tag, title, status);
           
           if (success) {
             navigate("/website-components-admin");
