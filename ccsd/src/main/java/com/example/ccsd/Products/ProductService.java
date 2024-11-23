@@ -37,13 +37,11 @@ public class ProductService {
 
             products product = productOpt.get();
             product.setTitle(productDetails.getTitle());
-            product.setDate(productDetails.getDate());
             product.setStatus(productDetails.getStatus());
             product.setPlace(productDetails.getPlace());
             product.setTag(productDetails.getTag());
             product.setPostShortDescription(productDetails.getPostShortDescription());
-            product.setWebsiteImage(productDetails.getWebsiteImage());
-            product.setContent(productDetails.getContent());
+            product.setImage(productDetails.getImage());
             product.setId(productDetails.getId());
             product.setPostSlug(productDetails.getPostSlug());
             return productRepository.save(product);
