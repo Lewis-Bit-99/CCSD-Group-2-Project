@@ -94,7 +94,7 @@ const AddWebsiteText = () => {
                 sx={{ m: 1, width: '46%' }}
                 color='success'
                 variant="contained"
-                
+                onclick={handleAddBlog}
               >
                 Save
               </Button>
