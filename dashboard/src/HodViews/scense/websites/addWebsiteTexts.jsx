@@ -9,7 +9,7 @@ const AddWebsiteText = () => {
     const [postShortDescription, setPostShortDescription] = useState(null);
     const [tag, setTag] = useState(null);
     const [title, setTitle] = useState(null);
-    const [status, setStatus] = useState(null);
+    const [status, setStatus] = useState("");
     const navigate = useNavigate();
     
     const handleChange = (event) => {
