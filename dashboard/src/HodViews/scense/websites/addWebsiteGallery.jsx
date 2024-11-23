@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { Box, Button, FormControl, FormHelperText, Input, InputAdornment, Select, MenuItem, TextField, IconButton, FilledInput, InputLabel, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack } from "@mui/material";
+import { Box, Button, FormControl, FormHelperText, Input, InputAdornment, Select, MenuItem, TextField, IconButton, FilledInput, InputLabel, Dialog, DialogActions, DialogContent, DialogTitle, Stack } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
 import Header from "../../../components/Header";
 import SaveItemsAdmin from '../../saveItemAdmin';
-import { tokens } from "../../../base/theme";
 
 const AddWebsiteGallery = () => {
-
   const navigate = useNavigate();
   const [id, setId] = useState(null);
   const [image, setImage] = useState(null);
@@ -35,10 +33,23 @@ const AddWebsiteGallery = () => {
   const handleAddBlog = async (event) => {
     event.preventDefault();
 
+    const formData = new FormData();
+    formData.append('place', place);
+    formData.append('postShortDescription', postShortDescription);
+    formData.append('tag', tag);
+    formData.append('title', title);
+    formData.append('postSlug', postSlug);
+    formData.append('content', content);
+    formData.append('status', status);
+    formData.append('date', date);
+    if (image) {
+      formData.append('image', image); // Appending image file
+    }
+
     try {
-      const success = await SaveItemsAdmin.addGalleryAdmin(place, postShortDescription, tag, title, postSlug, content, status, date, image);
+      const success = await SaveItemsAdmin.addGalleryAdmin(formData);  // Calling the backend function
       if (success) {
-        navigate("/website-components-admin");
+        navigate("/website-components-admin");  // Redirect on success
       } else {
         alert("Error saving data");
       }
@@ -59,7 +70,7 @@ const AddWebsiteGallery = () => {
           </Stack>
         </DialogContent>
         <DialogActions>
-          <Button color='success' variant='contained'>Use Image</Button>
+          <Button color='success' variant='contained' onClick={functionCloseAiImage}>Use Image</Button>
           <Button color='error' variant='contained' onClick={functionCloseAiImage}>Close</Button>
         </DialogActions>
       </Dialog>
@@ -69,7 +80,7 @@ const AddWebsiteGallery = () => {
 
       {/* Form */}
       <Box component="form" onSubmit={handleAddBlog} sx={{ display: 'flex', flexWrap: 'wrap', gap: 2}}>
-      <TextField
+        <TextField
           onChange={(e) => setId(e.target.value)}
           value={id}
           label="ID"
