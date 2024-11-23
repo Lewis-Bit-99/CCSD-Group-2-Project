@@ -1,8 +1,21 @@
-import React, { useState, useRef } from 'react';
-import { Box, useTheme, Button, DialogActions, Dialog, DialogContent, DialogTitle, Stack, FormControl, FilledInput, InputLabel, MenuItem, Select, FormHelperText, TextField } from "@mui/material";
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef, Component } from 'react';
+import { Box, useTheme, Button, DialogActions, Dialog, DialogContent, DialogContentText, DialogTitle, Stack, Modal } from "@mui/material";
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import FilledInput from '@mui/material/FilledInput';
+import InputLabel from '@mui/material/InputLabel';
 import { tokens } from "../../../base/theme";
 import Header from "../../../components/Header";
+import InputAdornment from '@mui/material/InputAdornment';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
+import { useNavigate } from 'react-router-dom';
+import SaveItemsAdmin from '../../saveItemAdmin';
+import GetItemsAdmin from '../../getItemAdmin';
+import Select from '@mui/material/Select';
+import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
 import CK from '../../../Editor/ck';
 
 const AddProduct = () => {
@@ -35,7 +48,7 @@ const AddProduct = () => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-            const success = await SaveItemsAdmin.addProductAdmin(place, postShortDescription, tag, title, postSlug, content, status, image);
+            const success = await SaveItemsAdmin.addProductAdmin(place, postShortDescription, tag, title, postSlug, status, image);
           
             if (success) {
                 navigate("/services");
@@ -66,13 +79,7 @@ const AddProduct = () => {
                     sx={{ m: 1, width: '30.5%' }}
                     variant="filled"
                 />
-                <FormControl sx={{ m: 1, width: '30.5%' }} variant="filled">
-                    <FilledInput
-                        id='date'
-                        type='date'
-                    />
-                    <FormHelperText id="filled-dob-helper-text">Publish Date</FormHelperText>
-                </FormControl>
+                
                 <FormControl sx={{ m: 1, width: '15.5%' }} variant="filled">
                     <InputLabel id="status">Status</InputLabel>
                     <Select
