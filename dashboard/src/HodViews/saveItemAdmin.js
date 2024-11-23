@@ -232,26 +232,22 @@ if (error.response) {
 throw error;
 }
 },
-async addWebsiteTextAdmin( postShortDescription, tag, title, postSlug, status){
+async addWebsiteTextAdmin( postShortDescription, tag, title, status){
 const token = await localStorage.getItem('jwtToken');
-const username = await localStorage.getItem('userName');
 
 try {
-  const formData = new FormData();
-  formData.append('postShortDescription', postShortDescription);
-  formData.append('tag', tag);
-  formData.append('title', title);
-  formData.append('postSlug', postSlug);
-  formData.append('status', status);
+  const payload = {
+    postShortDescription: postShortDescription,
+    tag: tag,
+    title: title,
+    status: status,
+  }
 
 
-const response = await axios.post(
-  '${API_BASE_URL}/api/websiteTexts',
-  {
+const response = await axios.post('${API_BASE_URL}/api/websiteTexts', payload, {
     postShortDescription,
     tag,
     title,
-    postSlug,
     status,
   },
   {

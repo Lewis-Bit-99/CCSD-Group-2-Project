@@ -1,24 +1,9 @@
-import React, { useState, useEffect, useRef, Component } from 'react';
-import { Box, useTheme, Button, DialogActions, Dialog, DialogContent, DialogContentText, DialogTitle, Stack, Modal } from "@mui/material";
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
+import React, { useState} from 'react';
+import { Box, Button, FormControl, InputLabel, Select, MenuItem, TextField } from "@mui/material";
 import FilledInput from '@mui/material/FilledInput';
-import InputLabel from '@mui/material/InputLabel';
-import { tokens } from "../../../base/theme";
 import Header from "../../../components/Header";
-import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import MenuItem from '@mui/material/MenuItem';
-import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 import SaveItemsAdmin from '../../saveItemAdmin';
-
-import Select from '@mui/material/Select';
-import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
-
-import CK from '../../../Editor/ck';
-
 
 const AddWebsiteText = () => {
     const [postShortDescription, setPostShortDescription] = useState(null);
@@ -57,13 +42,15 @@ const AddWebsiteText = () => {
     <Box>
         <Header title="Add Website Text" subtitle="Please Fill All the Fields" />
             
-        <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate >{/*onSubmit={handleAddBlog}*/}
+        <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate onSubmit={handleAddBlog}/>
                 <TextField
+                value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 label="Enter Text Title"
                 id="title"
                 sx={{ m: 1, width: '30.5%' }}
                 variant="filled"
+                required
                 />
 
                 <FormControl sx={{ m: 1, width: '15.5%' }} variant="filled">
