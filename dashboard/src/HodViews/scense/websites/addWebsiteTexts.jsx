@@ -16,7 +16,7 @@ const AddWebsiteText = () => {
         setStatus(event.target.value);
       };
 
-    const handleAddBlog = async (event) => {
+      const handleAddBlog = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
