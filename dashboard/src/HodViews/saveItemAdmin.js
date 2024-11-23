@@ -50,7 +50,7 @@ const SaveItemsAdmin = {
 
     try {
       const formData = new FormData();
-      formData.append('author', username);
+      
       formData.append('postShortDescription', postShortDescription);
       formData.append('tag', tag);
       formData.append('place', place);
@@ -87,7 +87,7 @@ const SaveItemsAdmin = {
       throw error;
     }
   },
-  async addGalleryAdmin( image, tag, title, status, date, OpenAiImage, place, postShortDescription, potSlug, content) {
+  async addGalleryAdmin( image, tag, title, status, date, OpenAiImage, place, postShortDescription, postSlug, content) {
     const token = await localStorage.getItem('jwtToken');
     const username = await localStorage.getItem('userName');
 
@@ -108,7 +108,7 @@ const SaveItemsAdmin = {
       if (image) {
         formData.append('image', image); // Assuming 'image' is the key on the server to handle file uploads
       }const response = await axios.post(
-  '${API_BASE_URL}/add_blog/',
+  '${API_BASE_URL}/api/gallery',
   formData,
   {
     headers: {
@@ -143,9 +143,10 @@ try {
   formData.append('title', title);
   formData.append('status', status);
   formData.append('place', place);
+  formData.append('imageUrl', imageUrl);
 
-if (image) {
-  formData.append('image', image); // Assuming 'image' is the key on the server to handle file uploads
+if (imageUrl) {
+  formData.append('imageUrl', imageUrl); // Assuming 'image' is the key on the server to handle file uploads
 }
 
 const response = await axios.post(
@@ -185,9 +186,6 @@ try {
   formData.append('postSlug', postSlug);
   formData.append('status', status);
 
-if (image) {
-  formData.append('image', image); // Assuming 'image' is the key on the server to handle file uploads
-}
 
 const response = await axios.post(
   '${API_BASE_URL}/api/websiteTexts',
