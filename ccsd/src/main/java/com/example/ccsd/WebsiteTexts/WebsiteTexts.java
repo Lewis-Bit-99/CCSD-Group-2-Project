@@ -12,11 +12,11 @@ public class WebsiteTexts {
     public WebsiteTexts(){
     }
 
-    public WebsiteTexts(String title, String status, String tag, String postShortDescription){
+    public WebsiteTexts(String title, String tag, String status, String postShortDescription){
         this.title = title;
         this.tag = tag;
-        this.postShortDescription = postShortDescription;
         this.status = status;
+        this.postShortDescription = postShortDescription;
     }
 
     public String getTitle(){
