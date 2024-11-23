@@ -26,9 +26,9 @@ public class WebsiteTextsController {
         return websiteTextsService.getAllWebsiteTexts();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<WebsiteTexts> getWebsiteTextsById(@PathVariable String id){
-        return websiteTextsService.getWebsiteTextsById(id)
+    @GetMapping("/{title}")
+    public ResponseEntity<WebsiteTexts> getWebsiteTextsByTitle(@PathVariable String title){
+        return websiteTextsService.getWebsiteTextsByTitle(title)
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
     }
@@ -39,8 +39,8 @@ public class WebsiteTextsController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteWebsiteTexts(@PathVariable String id){
-        websiteTextsService.deleteWebsiteTexts(id);
+    public ResponseEntity<Void> deleteWebsiteTexts(@PathVariable String title){
+        websiteTextsService.deleteWebsiteTexts(title);
         return ResponseEntity.noContent().build();
     }
 }
