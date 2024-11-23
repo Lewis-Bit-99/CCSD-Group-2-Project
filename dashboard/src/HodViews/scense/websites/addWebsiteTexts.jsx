@@ -90,7 +90,7 @@ const AddWebsiteText = () => {
                 </FormControl>
 
                 <Button
-                //type="submit"
+                type="submit"
                 sx={{ m: 1, width: '46%' }}
                 color='success'
                 variant="contained"
