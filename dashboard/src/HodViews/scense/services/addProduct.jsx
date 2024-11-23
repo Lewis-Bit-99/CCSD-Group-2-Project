@@ -79,7 +79,13 @@ const AddProduct = () => {
                     sx={{ m: 1, width: '30.5%' }}
                     variant="filled"
                 />
-                
+                <FormControl sx={{ m: 1, width: '30.5%' }} variant="filled">
+                    <FilledInput
+                        id='date'
+                        type='date'
+                    />
+                    <FormHelperText id="filled-dob-helper-text">Publish Date</FormHelperText>
+                </FormControl>
                 <FormControl sx={{ m: 1, width: '15.5%' }} variant="filled">
                     <InputLabel id="status">Status</InputLabel>
                     <Select
