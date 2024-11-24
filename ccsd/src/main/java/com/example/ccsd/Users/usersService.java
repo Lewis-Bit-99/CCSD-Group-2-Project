@@ -25,7 +25,6 @@ public class usersService {
     // Creating a new user in the repository
     public user adduser(user user) {
         if (user.getEmail() == null || user.getPassword() == null) {
-            // Ensure email and password are present
             throw new IllegalArgumentException("Email and Password must not be null");
         }
         return userRepository.save(user);
@@ -41,15 +40,14 @@ public class usersService {
         }
     }
 
-    // Optionally, you can add a method to update a user with email and password
+    // Updating a user by ID
     public user updateuser(String id, user userDetails) {
         Optional<user> existingUserOpt = userRepository.findById(id);
         if (existingUserOpt.isPresent()) {
             user existingUser = existingUserOpt.get();
-            // Update user details
             existingUser.setUsername(userDetails.getUsername());
-            existingUser.setEmail(userDetails.getEmail());  // Ensure email is updated
-            existingUser.setPassword(userDetails.getPassword());  // Ensure password is updated
+            existingUser.setEmail(userDetails.getEmail());
+            existingUser.setPassword(userDetails.getPassword());
             return userRepository.save(existingUser);
         } else {
             throw new IllegalArgumentException("User not found");

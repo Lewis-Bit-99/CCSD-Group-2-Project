@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsersController {
 
     @Autowired
-    private usersService userService; // Service to handle business logic for users
+    private usersService userService;
 
     // Get all users
     @GetMapping
@@ -38,32 +39,38 @@ public class UsersController {
     // Create a new user
     @PostMapping
     public ResponseEntity<user> addUser(@RequestBody user user) {
-        if (user.getEmail() == null || user.getPassword() == null) {
-            return ResponseEntity.badRequest().build(); // Return bad request if missing email or password
+        if (user.getEmail() == null || user.getPassword() == null || user.getUsername() == null) {
+            return ResponseEntity.badRequest().build();
         }
         user createdUser = userService.adduser(user);
-        return ResponseEntity.ok(createdUser); // Return created user with status 200 OK
+        return ResponseEntity.ok(createdUser);
     }
 
-    // Update an existing user
-    // @PostMapping("/{id}")
-    // public ResponseEntity<user> updateUser(@PathVariable String id, @RequestBody user userDetails) {
-    //     Optional<user> updatedUser = userService.getUserById(id);
-    //     if (updatedUser.isPresent()) {
-    //         user currentUser = updatedUser.get();
-    //         // Update details (email, password, etc.)
-    //         currentUser.setUsername(userDetails.getUsername());
-    //         currentUser.setEmail(userDetails.getEmail());
-    //         currentUser.setPassword(userDetails.getPassword());
-    //         return ResponseEntity.ok(userService.adduser(currentUser)); // Save updated user
-    //     }
-    //   return ResponseEntity.notFound().build(); // If user not found, return not found
-   // }
+    // Update a user
+    @PutMapping("/{id}")
+    public ResponseEntity<user> updateUser(@PathVariable String id, @RequestBody user userDetails) {
+        Optional<user> existingUserOpt = userService.getUserById(id);
+        if (existingUserOpt.isPresent()) {
+            user existingUser = existingUserOpt.get();
+            existingUser.setUsername(userDetails.getUsername());
+            existingUser.setEmail(userDetails.getEmail());
+            existingUser.setPassword(userDetails.getPassword());
+            user updatedUser = userService.adduser(existingUser);
+            return ResponseEntity.ok(updatedUser);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     // Delete a user by ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable String id) {
-        userService.deleteuser(id);
-        return ResponseEntity.noContent().build();
+        try {
+            userService.deleteuser(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            System.err.println("Error deleting user: " + e.getMessage());
+            return ResponseEntity.status(500).build();
+        }
     }
 }
