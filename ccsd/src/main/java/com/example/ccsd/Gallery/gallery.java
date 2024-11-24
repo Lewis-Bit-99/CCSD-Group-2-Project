@@ -11,9 +11,7 @@ public class gallery {
     private String title;
     private String status;
     private String place;
-    private String postShortDescription;
-    private String postSlug;
-    private String content;
+   
 
     // Constructors
     public gallery() {}
