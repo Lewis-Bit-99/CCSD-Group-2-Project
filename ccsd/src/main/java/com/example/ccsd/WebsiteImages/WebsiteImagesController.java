@@ -1,6 +1,10 @@
 package com.example.ccsd.WebsiteImages;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,50 +16,89 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/websiteimages")
+@RequestMapping("/api/WebsiteImage")
 public class WebsiteImagesController {
 
-    @Autowired
+       @Autowired
     private WebsiteImagesService websiteImagesService;
 
-    // Get all website images
     @GetMapping
-    public List<WebsiteImages> getAllWebsiteImages() {
-        return websiteImagesService.getAllWebsiteImages();
+    public List<WebsiteImages> getAllWebsiteImageses() {
+        List<WebsiteImages> websiteImagesList = websiteImagesService.getAllWebsiteImageses();
+        return websiteImagesList.stream()
+            .map((websiteImages) -> {
+
+                websiteImages.setImage64String(websiteImages.getImage64String());
+                return websiteImages;
+            })
+            .collect(Collectors.toList());
     }
 
-    // Get a single website image by ID
     @GetMapping("/{id}")
-    public ResponseEntity<WebsiteImages> getWebsiteImageById(@PathVariable String id) {
+    public ResponseEntity<WebsiteImages> getWebsiteImagesById(@PathVariable String id) {
         return websiteImagesService.getWebsiteImagesById(id)
-            .map(ResponseEntity::ok)
-            .orElse(ResponseEntity.notFound().build());
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    // Create a new website image in the system
-    @PostMapping(consumes = "application/json")
-    public WebsiteImages addWebsiteImage(@RequestBody WebsiteImages websiteImageDetails) {
-        return websiteImagesService.addWebsiteImages(websiteImageDetails);
+          @PostMapping
+    public ResponseEntity<Map<String, Object>> addProduct(
+            @RequestParam("title") String title,
+            @RequestParam("postShortDescription") String postShortDescription,
+            @RequestParam("date") String date,
+            @RequestParam("status") String status,
+            @RequestParam("tag") String tag,
+            @RequestParam("place") String place,
+            @RequestParam("content") String content,
+            @RequestParam("postSlug") String postSlug,
+
+            @RequestParam("image") MultipartFile image) throws IOException {
+
+        // Convert the image to a byte array
+        byte[] imageBytes = image.getBytes();  // Get image data
+
+        // Create a new Product instance
+        WebsiteImages websiteImages = new WebsiteImages();
+        websiteImages.setTitle(title);
+        websiteImages.setpostShortDescription(postShortDescription);
+        websiteImages.setDate(date);
+        websiteImages.setTag(tag);
+        websiteImages.setPlace(place);
+        websiteImages.setStatus(status);
+        websiteImages.setContent(content);
+        websiteImages.setPostSlug(postSlug);
+        websiteImages.setimage(imageBytes);  // Store image as byte array
+
+        // Save the product in MongoDB
+        WebsiteImages savedwebsiteImages = websiteImagesService.addWebsiteImages(websiteImages);
+
+        // Return a response
+        Map<String, Object> response = new HashMap<>();
+        response.put("success", true);
+        response.put("product", savedwebsiteImages);
+        
+        return ResponseEntity.ok(response);
     }
 
-    // Update an existing website image based on image ID
     @PutMapping("/{id}")
-    public ResponseEntity<WebsiteImages> updateWebsiteImage(@PathVariable String id, @RequestBody WebsiteImages websiteImageDetails) {
-        WebsiteImages updatedWebsiteImage = websiteImagesService.updateWebsiteImages(id, websiteImageDetails);
-        if (updatedWebsiteImage != null) {
-            return ResponseEntity.ok(updatedWebsiteImage);
+    public ResponseEntity<WebsiteImages> updateWebsiteImages(@PathVariable String id, @RequestBody WebsiteImages websiteImagesDetails) {
+        WebsiteImages updatedBook = websiteImagesService.updateWebsiteImages(id, websiteImagesDetails);
+        if (updatedBook != null) {
+            return ResponseEntity.ok(updatedBook);
         }
         return ResponseEntity.notFound().build();
     }
 
-    // Delete a website image from the system based on image ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteWebsiteImage(@PathVariable String id) {
-        websiteImagesService.deleteWebsiteImages(id);
+    public ResponseEntity<Void> deleteWebsiteImages(@PathVariable String id) {
+       websiteImagesService.deleteWebsiteImages(id);
         return ResponseEntity.noContent().build();
     }
 }
