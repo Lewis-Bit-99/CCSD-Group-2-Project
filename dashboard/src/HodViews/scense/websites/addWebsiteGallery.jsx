@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-
-import { Box, Button, FormControl, FormHelperText, Input, InputAdornment, Select, MenuItem, TextField, FilledInput, InputLabel } from "@mui/material";
-
-import { Box, Button, FormControl, FormHelperText, Input, InputAdornment, Select, MenuItem, TextField, IconButton, FilledInput, InputLabel, Dialog, DialogActions, DialogContent, DialogTitle, Stack } from "@mui/material";
-
+import { Box, Button, FormControl, InputAdornment, Select, MenuItem, TextField, FilledInput, InputLabel } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
 import Header from "../../../components/Header";
 import SaveItemsAdmin from '../../saveItemAdmin';
+import Input from '@mui/material/Input'; // Add this line
 
 const AddWebsiteGallery = () => {
   const navigate = useNavigate();
@@ -15,11 +12,10 @@ const AddWebsiteGallery = () => {
   const [tag, setTag] = useState('');
   const [title, setTitle] = useState('');
   const [status, setStatus] = useState('');
-  const [date, setDate] = useState('');
   const [place, setPlace] = useState('');
-
-
-
+  const [postShortDescription, setPostShortDescription] = useState('');
+  const [postSlug, setPostSlug] = useState('');
+  const [content, setContent] = useState('');
 
   // Handle file input change (image upload)
   const handleImageChange = (event) => {
@@ -31,24 +27,19 @@ const AddWebsiteGallery = () => {
   const handleAddBlog = async (event) => {
     event.preventDefault();
 
-    const formData = new FormData();
-    formData.append('place', place);
-    formData.append('postShortDescription', postShortDescription);
-    formData.append('tag', tag);
-    formData.append('title', title);
-    formData.append('postSlug', postSlug);
-    formData.append('content', content);
-    formData.append('status', status);
-    formData.append('date', date);
-    if (image) {
-      formData.append('image', image); // Appending image file
-    }
+    const galleryData = {
+      tag,
+      title,
+      status,
+      place,
+      postShortDescription,
+      postSlug,
+      content,
+      image: image ? URL.createObjectURL(image) : null, // If you are sending a base64 string or a file URL
+    };
 
     try {
-
-      const success = await SaveItemsAdmin.addGalleryAdmin(place, tag, title, status, date, image);
-
-      const success = await SaveItemsAdmin.addGalleryAdmin(formData);  // Calling the backend function
+      const success = await SaveItemsAdmin.addGalleryAdmin(galleryData);  // Calling the backend function
 
       if (success) {
         navigate("/website-components-admin");  // Redirect on success
@@ -63,40 +54,10 @@ const AddWebsiteGallery = () => {
 
   return (
     <Box>
-
-    
-
-      {/* AI Image Generator Dialog */}
-      <Dialog open={openAiImage} fullWidth maxWidth="lg">
-        <DialogTitle>AI Image Generator or Edit</DialogTitle>
-        <DialogContent>
-          <Stack spacing={2} margin={2}>
-            {/* Add editor or other components here */}
-          </Stack>
-        </DialogContent>
-        <DialogActions>
-          <Button color='success' variant='contained' onClick={functionCloseAiImage}>Use Image</Button>
-          <Button color='error' variant='contained' onClick={functionCloseAiImage}>Close</Button>
-        </DialogActions>
-      </Dialog>
-
-
-      {/* Header */}
       <Header title="Add New Gallery" subtitle="Please Fill All the Fields" />
 
       {/* Form */}
-      <Box component="form" onSubmit={handleAddBlog} sx={{ display: 'flex', flexWrap: 'wrap', gap: 2}}>
-
-
-        <TextField
-          onChange={(e) => setId(e.target.value)}
-          value={id}
-          label="ID"
-          variant="filled"
-          sx={{ width: '30.5%' }}
-        />
-
-
+      <Box component="form" onSubmit={handleAddBlog} sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
         <TextField
           onChange={(e) => setTitle(e.target.value)}
           value={title}
@@ -104,16 +65,6 @@ const AddWebsiteGallery = () => {
           variant="filled"
           sx={{ width: '30.5%' }}
         />
-
-        <FormControl sx={{ width: '30.5%' }} variant="filled">
-          <FilledInput
-            onChange={(e) => setDate(e.target.value)}
-            value={date}
-            type="date"
-            id="date"
-          />
-          <FormHelperText id="filled-dob-helper-text">Publish Date</FormHelperText>
-        </FormControl>
 
         <FormControl sx={{ width: '15.5%' }} variant="filled">
           <InputLabel id="status">Status</InputLabel>
@@ -137,7 +88,6 @@ const AddWebsiteGallery = () => {
             type="text"
             endAdornment={
               <InputAdornment position="end">
-
                   <SmartToyOutlinedIcon />
               </InputAdornment>
             }
