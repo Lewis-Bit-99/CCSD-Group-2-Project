@@ -48,15 +48,16 @@ public class productsService {
             products Products = ProductsOpt.get();
              // list to get the database
             Products.setAuthor(ProductsDetail.getAuthor());
-            Products.setPostShortDescription(ProductsDetail.getPostShortDescription());
-            Products.setTag(ProductsDetail.getTag());
-            Products.setPlace(ProductsDetail.getPlace());
-            Products.setTitle(ProductsDetail.getTitle());
             Products.setPostSlug(ProductsDetail.getPostSlug());
             Products.setContent(ProductsDetail.getContent());
             Products.setStatus(ProductsDetail.getStatus());
             Products.setDateProduct(ProductsDetail.getDateProduct());
             Products.setImageStore(ProductsDetail.getImageStore());
+            Products.setPostShortDescription(ProductsDetail.getPostShortDescription());
+            Products.setTag(ProductsDetail.getTag());
+            Products.setPlace(ProductsDetail.getPlace());
+            Products.setTitle(ProductsDetail.getTitle());
+            
             return ProductsRepository.save(Products);
     
         }

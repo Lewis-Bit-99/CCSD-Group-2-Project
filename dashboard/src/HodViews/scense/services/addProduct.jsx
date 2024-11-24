@@ -27,14 +27,19 @@ const AddProduct = () => {
 
     const [categories, setCategories] = useState([]); // to store the list of categories    
     const [postShortDescription, setPostShortDescription] = useState(null);
+    
+    const [date, setDate] = useState(null);
+    const navigate = useNavigate();
+    
+    const [openAiImage, setOpenAiImage] = useState(false);
     const [tag, setTag] = useState(null);
     const [place, setPlace] = useState(null);
+
     const [title, setTitle] = useState(null);
     const [postSlug, setPostSlug] = useState(null);
     const [status, setStatus] = useState(null);
-    const [date, setDate] = useState(null);
-    const navigate = useNavigate();
-    const [openAiImage, setOpenAiImage] = useState(false);
+
+
 
     const functionOpenAiImage=() =>{
         setOpenAiImage(true);
@@ -56,8 +61,6 @@ const AddProduct = () => {
     const handleChangeplace = (event) => {
         setPlace(event.target.value);
       };
-      
-
 
     const handleImageChange = (event) => {
          const selectedImage = event.target.files[0];
@@ -68,9 +71,7 @@ const AddProduct = () => {
     const handleAddBlog = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
 
-
-                                                                //original 
-        try {                                                  ////place, postShortDescription, tag, title, postSlug, content, status, date, image
+        try {                               
           const success = await SaveItemsAdmin.addProductAdmin(postShortDescription, tag, title, postSlug, content, status, date, image, place);
           console.log("test: " + success)
           if (success) {

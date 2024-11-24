@@ -43,7 +43,46 @@ public class products {
         this.dateProduct = dateProduct;
         this.imageStore = imageStore;
     }
+    
+// getter
+    public String getAuthor(){
+        return this.author;
+    }
 
+    public String getPostShortDescription(){
+         return this.postShortDescription;
+    }
+
+    public String getTag(){
+        return this.tag;
+    }
+    public String getPlace(){
+         return this.place;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public String getPostSlug() {
+        return this.postSlug;
+    }
+
+    public String getContent() {
+        return this.content;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public String getDateProduct(){
+         return this.dateProduct;
+    }
+
+    public byte[] getImageStore() {
+        return this.imageStore;
+    }
     public String getImageAsBase64() {
         return imageStore != null ? Base64.getEncoder().encodeToString(imageStore) : null;
     }
@@ -97,44 +136,6 @@ public class products {
     }
 
 
-    // getter
-    public String getAuthor(){
-        return this.author;
-    }
-
-    public String getPostShortDescription(){
-         return this.postShortDescription;
-    }
-
-    public String getTag(){
-        return this.tag;
-    }
-    public String getPlace(){
-         return this.place;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public String getPostSlug() {
-        return this.postSlug;
-    }
-
-    public String getContent() {
-        return this.content;
-    }
-
-    public String getStatus() {
-        return this.status;
-    }
-
-    public String getDateProduct(){
-         return this.dateProduct;
-    }
-
-    public byte[] getImageStore() {
-        return this.imageStore;
-    }
+    
 
 }
