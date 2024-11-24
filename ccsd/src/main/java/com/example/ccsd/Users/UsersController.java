@@ -1,7 +1,11 @@
+//usersController.java
+
 package com.example.ccsd.Users;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,64 +17,94 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/users")
-public class UsersController {
+public class usersController {
 
     @Autowired
-    private usersService userService;
+    private usersService usersService;
 
-    // Get all users
     @GetMapping
-    public List<user> getAllUsers() {
-        return userService.getAllUsers();
+    public List<users> getAllUsers() {
+        return usersService.getAllUsers();
     }
 
-    // Get a user by ID
+    // get user by id 
     @GetMapping("/{id}")
-    public ResponseEntity<user> getUserById(@PathVariable String id) {
-        Optional<user> user = userService.getUserById(id);
-        return user.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<users> getUserById(@PathVariable String UserId) {
+        return usersService.getUserById(UserId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    // Create a new user
-    @PostMapping
-    public ResponseEntity<user> addUser(@RequestBody user user) {
-        if (user.getEmail() == null || user.getPassword() == null || user.getUsername() == null) {
-            return ResponseEntity.badRequest().build();
-        }
-        user createdUser = userService.adduser(user);
-        return ResponseEntity.ok(createdUser);
+    
+ @PostMapping
+    public ResponseEntity<Map<String, Object>> addUser(
+            @RequestParam("email") String email,
+            @RequestParam("password") String password,
+            @RequestParam("firstName") String firstName,
+            @RequestParam("lastName") String lastName,
+            @RequestParam("phoneNumber") String phoneNumber,
+            @RequestParam("address") String address,
+            @RequestParam("role") String role,
+            @RequestParam("username") String username,
+            @RequestParam("dob") String dob,
+           
+           
+            @RequestParam("profPic") MultipartFile profPic) throws IOException {
+
+       
+        byte[] imageBytes = profPic.getBytes();  // Get image data
+
+        
+        users users = new users();
+        users.setEmail(email);
+        users.setPassword(password);
+        users.setFirstName(firstName);
+        users.setLastName(lastName);
+        users.setPhoneNumber(phoneNumber);
+        users.setAddress(address);
+        users.setRole(role);
+        users.setUsername(username);
+        users.setDob(dob);
+       
+      
+        users.setProfPic(imageBytes); 
+
+
+        users savedusers = usersService.addUser(users);
+
+        // Return a response
+        Map<String, Object> response = new HashMap<>();
+        response.put("success", true);
+        response.put("users", savedusers);
+        
+        return ResponseEntity.ok(response);
     }
 
-    // Update a user
     @PutMapping("/{id}")
-    public ResponseEntity<user> updateUser(@PathVariable String id, @RequestBody user userDetails) {
-        Optional<user> existingUserOpt = userService.getUserById(id);
-        if (existingUserOpt.isPresent()) {
-            user existingUser = existingUserOpt.get();
-            existingUser.setUsername(userDetails.getUsername());
-            existingUser.setEmail(userDetails.getEmail());
-            existingUser.setPassword(userDetails.getPassword());
-            user updatedUser = userService.adduser(existingUser);
-            return ResponseEntity.ok(updatedUser);
-        } else {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<users> updateUser(@PathVariable String id, @RequestBody users usersDetails) {
+        users updatedusers = usersService.updateUser(id, usersDetails);
+        if (updatedusers != null) {
+            return ResponseEntity.ok(updatedusers);
         }
+        return ResponseEntity.notFound().build();
     }
 
-    // Delete a user by ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable String id) {
-        try {
-            userService.deleteuser(id);
-            return ResponseEntity.noContent().build();
-        } catch (Exception e) {
-            System.err.println("Error deleting user: " + e.getMessage());
-            return ResponseEntity.status(500).build();
-        }
+    public ResponseEntity<Void> deleteUser(@PathVariable String userId) {
+        usersService.deleteUser(userId);
+        return ResponseEntity.noContent().build();
     }
+
+   
+
+
+    
 }

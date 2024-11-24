@@ -1,56 +1,117 @@
+//usersService.java
 package com.example.ccsd.Users;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 
 @Service
 public class usersService {
 
     @Autowired
-    private userRepository userRepository;
+    private usersRepository usersRepository;
 
-    // Getting all users
-    public List<user> getAllUsers() {
-        return userRepository.findAll();
+  
+    public List<users> getAllUsers() {
+        return usersRepository.findAll();
     }
 
-    // Getting a single user by ID
-    public Optional<user> getUserById(String id) {
-        return userRepository.findById(id);
+    
+    public Optional<users> getUserById(String userId) {
+        return usersRepository.findById(userId);
     }
 
-    // Creating a new user in the repository
-    public user adduser(user user) {
-        if (user.getEmail() == null || user.getPassword() == null) {
-            throw new IllegalArgumentException("Email and Password must not be null");
+   
+    public Optional<users> getUserByEmail(String email) {
+        return usersRepository.findById(email);
+    }
+
+
+   
+    public users addUser(users users) {
+        return usersRepository.save(users);
+    }
+
+   
+    public users updateUser(String id, users usersDetails) {
+        Optional<users> userOpt = usersRepository.findById(id);
+        if (userOpt.isPresent()) {
+
+           
+
+            users user = userOpt.get();
+            user.setFirstName(usersDetails.getFirstName());
+            user.setLastName(usersDetails.getLastName());
+            user.setPhoneNumber(usersDetails.getPhoneNumber());
+            user.setUsername(usersDetails.getUsername());
+            user.setDob(usersDetails.getDob());
+            user.setRole(usersDetails.getRole());
+            user.setAddress(usersDetails.getAddress());
+            user.setEmail(usersDetails.getEmail());
+            user.setPassword(usersDetails.getPassword());
+            user.setProfPic(usersDetails.getProfPic());
+            return usersRepository.save(user);
         }
-        return userRepository.save(user);
+        return null;
     }
 
-    // Deleting a user by ID
-    public void deleteuser(String id) {
-        Optional<user> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            userRepository.deleteById(id);
+
+
+    // Deleting user 
+    public void deleteUser(String id) {
+        usersRepository.deleteById(id);
+    }
+
+    
+    // Save image in a local directory
+    public String saveProfPicToStorage(String uploadDirectory, MultipartFile imageFile) throws IOException {
+        String uniqueFileName = UUID.randomUUID().toString() + "_" + imageFile.getOriginalFilename();
+    
+        Path uploadPath = Path.of(uploadDirectory);
+        Path filePath = uploadPath.resolve(uniqueFileName);
+    
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+    
+        Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+    
+        return uniqueFileName;  // Return the filename, which you can later use for linking
+    }
+    
+    // To view an image
+    public byte[] getProfPic(String imageDirectory, String imageName) throws IOException {
+        Path imagePath = Path.of(imageDirectory, imageName);
+
+        if (Files.exists(imagePath)) {
+            byte[] imageBytes = Files.readAllBytes(imagePath);
+            return imageBytes;
         } else {
-            throw new IllegalArgumentException("User not found");
+            return null; // Handle missing images
         }
     }
 
-    // Updating a user by ID
-    public user updateuser(String id, user userDetails) {
-        Optional<user> existingUserOpt = userRepository.findById(id);
-        if (existingUserOpt.isPresent()) {
-            user existingUser = existingUserOpt.get();
-            existingUser.setUsername(userDetails.getUsername());
-            existingUser.setEmail(userDetails.getEmail());
-            existingUser.setPassword(userDetails.getPassword());
-            return userRepository.save(existingUser);
+    // Delete an image
+    public String deleteProfPic(String imageDirectory, String imageName) throws IOException {
+        Path imagePath = Path.of(imageDirectory, imageName);
+
+        if (Files.exists(imagePath)) {
+            Files.delete(imagePath);
+            return "Success";
         } else {
-            throw new IllegalArgumentException("User not found");
+            return "Failed"; // Handle missing images
         }
     }
+
+
+    
 }
