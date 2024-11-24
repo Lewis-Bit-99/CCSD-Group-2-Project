@@ -14,15 +14,6 @@ public class gallery {
     @Id
     private String id;
     private String place;
-
-   
-
-    // Constructors
-    public gallery() {}
-
-    public gallery(String image, String tag, String title, String status, String place) {
-        this.image = image;
-
     private String postShortDescription;
     private String tag;
     private String title;
@@ -43,7 +34,6 @@ public class gallery {
         this.id = id;
         this.place = place;
         this.postShortDescription = postShortDescription;
-
         this.tag = tag;
         this.title = title;
         this.postSlug = postSlug;
