@@ -94,38 +94,37 @@ const SaveItemsAdmin = {
   },  
 
   async addWebsiteImageAdmin(place, categories, tag, title, status, imageUrl) {
-    const token = await localStorage.getItem('jwtToken');
-    if (!token) throw new Error('JWT Token is missing');
-
     try {
       const requestData = {
-        place: parseInt(place),
-        categories,
-        tag,
-        title,
-        status,
-        imageUrl,
+        place: parseInt(place),  // Ensure place is an integer
+        categories,              // Categories associated with the image
+        tag,                     // Tag for the image
+        title,                   // Title of the image
+        status,                  // Status (e.g., Draft, Publish)
+        imageUrl,                // Image URL
       };
-
+  
       const response = await axios.post(
-        `${API_BASE_URL}/api/WebsiteImages`,
-        requestData,
+        `${API_BASE_URL}/api/WebsiteImages`, // API endpoint
+        requestData,  // Payload with image data
         {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json', // The content type of the request
           },
         }
       );
-
+  
       if (response.status === 200) {
-        return response.data;
+        return response.data;  // Return the response data if successful
+      } else {
+        console.error("Unexpected response status:", response.status);
+        return false;
       }
     } catch (error) {
       console.error('Error:', error);
-      throw error;
+      throw error;  // Rethrow the error for further handling
     }
-  },
+  },  
 
   async addWebsiteTextAdmin(postShortDescription, tag, title, status) {
     try {
