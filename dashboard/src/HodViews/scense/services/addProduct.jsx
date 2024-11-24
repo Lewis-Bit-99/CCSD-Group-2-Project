@@ -119,7 +119,7 @@ const AddProduct = () => {
               />
             </FormControl>
     
-            <FormControl sx={{ width: '15.5%' }} variant="filled">
+            <FormControl sx={{ m: 1, width: '15.5%' }} variant="filled">
               <InputLabel id="place">Text Place</InputLabel>
               <Select
                 labelId="place"
