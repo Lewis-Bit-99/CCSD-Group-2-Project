@@ -1,9 +1,6 @@
 package com.example.ccsd.WebsiteTexts;
 
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 //import org.springframework.web.multipart.MultipartFile;
@@ -46,44 +42,6 @@ public class WebsiteTextsController {
     public WebsiteTexts addText(@RequestBody WebsiteTexts websiteTexts) {
         return websiteTextsService.addText(websiteTexts);
     }
-
-  /// second try
-//   @PostMapping
-//   public ResponseEntity<Map<String, Object>> addText(
-//           @RequestParam("title") String title,
-//           @RequestParam("postSlug") String postSlug,
-//           @RequestParam("postShortDescription") String postShortDescription,
-//           @RequestParam("tag") String tag,
-//           @RequestParam("place") String place,
-//           @RequestParam("date") String date,
-//           @RequestParam("status") String status) throws IOException {
-
-//       // Convert the image to a byte array
-//       byte[] imageBytes = image.getBytes();  // Get image data
-
-//       // Create a new Website Texts instance
-//       WebsiteTexts websitetexts = new WebsiteTexts();
-
-//       websitetexts.setTitle(title);
-//       websitetexts.setPostSlug(postSlug);
-//       websitetexts.setPostShortDescription(postShortDescription);
-//       websitetexts.setTag(tag);
-//       websitetexts.setPlace(place);
-//       websitetexts.setDate(date);
-//       websitetexts.setStatus(status);
-//       websitetexts.setImage(imageBytes);  // Store image as byte array
-
-//       // Save the text in MongoDB
-//       WebsiteTexts savedTexts = websiteTextsService.addText(websitetexts);
-
-//       // Return a response
-//       Map<String, Object> response = new HashMap<>();
-//       response.put("success", true);
-//       response.put("texts", savedTexts);
-      
-//       return ResponseEntity.ok(response);
-//   }
-  //////////////////////////////////////////////////////////////////
 
 
     @PutMapping("/{id}")
