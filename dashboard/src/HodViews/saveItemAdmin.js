@@ -70,99 +70,96 @@ const SaveItemsAdmin = {
   },
 
   async addGalleryAdmin(galleryData) {
+    const token = await localStorage.getItem('jwtToken');
+    if (!token) throw new Error('JWT Token is missing');
+
     try {
       const response = await axios.post(
-        `${API_BASE_URL}/api/gallery`, // API endpoint
-        galleryData, // Payload with gallery data
+        `${API_BASE_URL}/api/gallery`,
+        galleryData,
         {
           headers: {
-            'Content-Type': 'application/json', // The content type of the request
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-  
+
       if (response.status === 200) {
-        return response.data; // Return the response data if successful
-      } else {
-        console.error("Unexpected response status:", response.status);
-        return false;
+        return response.data;
       }
     } catch (error) {
       console.error('Error:', error);
-      throw error; // Rethrow the error for further handling
+      throw error;
     }
-  },  
+  },
 
   async addWebsiteImageAdmin(place, categories, tag, title, status, imageUrl) {
+    const token = await localStorage.getItem('jwtToken');
+    if (!token) throw new Error('JWT Token is missing');
+
     try {
       const requestData = {
-        place: parseInt(place),  // Ensure place is an integer
-        categories,              // Categories associated with the image
-        tag,                     // Tag for the image
-        title,                   // Title of the image
-        status,                  // Status (e.g., Draft, Publish)
-        imageUrl,                // Image URL
+        place: parseInt(place),
+        categories,
+        tag,
+        title,
+        status,
+        imageUrl,
       };
-  
+
       const response = await axios.post(
-        `${API_BASE_URL}/api/WebsiteImages`, // API endpoint
-        requestData,  // Payload with image data
+        `${API_BASE_URL}/api/WebsiteImages`,
+        requestData,
         {
           headers: {
-            'Content-Type': 'application/json', // The content type of the request
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-  
+
       if (response.status === 200) {
-        return response.data;  // Return the response data if successful
-      } else {
-        console.error("Unexpected response status:", response.status);
-        return false;
+        return response.data;
       }
     } catch (error) {
       console.error('Error:', error);
-      throw error;  // Rethrow the error for further handling
+      throw error;
     }
-  },  
+  },
 
-  async addWebsiteTextAdmin(postShortDescription, tag, title, status) {
+  async addWebsiteTextAdmin(postShortDescription, tag, title, postSlug, status) {
+    const token = await localStorage.getItem('jwtToken');
+    if (!token) throw new Error('JWT Token is missing');
+
     try {
-      const payload = {
-        postShortDescription: postShortDescription,
-        tag: tag,
-        title: title,
-        status: status,
+      const requestData = {
+        postShortDescription,
+        tag,
+        title,
+        postSlug,
+        status,
       };
-  
-      const response = await axios.post(`${API_BASE_URL}/api/websiteTexts`, payload, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      if (response.status === 200 || response.status === 201) {
+
+      const response = await axios.post(
+        `${API_BASE_URL}/api/websiteTexts`,
+        requestData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
         return response.data;
-      } else {
-        console.error('Unexpected response status:', response.status);
-        alert(`Unexpected response: ${response.statusText}`);
-        return false;
       }
     } catch (error) {
-      if (error.response) {
-        console.error('Server responded with an error:', error.response.data);
-        alert(`Error: ${error.response.data.message || 'Something went wrong on the server.'}`);
-      } else if (error.request) {
-        console.error('No response received:', error.request);
-        alert('Network error. Please check your connection.');
-      } else {
-        console.error('Error setting up the request:', error.message);
-        alert('An error occurred while setting up the request.');
-      }
-      throw error; 
+      console.error('Error:', error);
+      throw error;
     }
-  }
-    
+  },
 };
 
 export default SaveItemsAdmin;
