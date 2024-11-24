@@ -1,55 +1,91 @@
 package com.example.ccsd.Gallery;
 
-import org.springframework.data.annotation.Id;
 
+import java.util.Base64;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
+@Document(collection = "Gallery")
 public class gallery {
 
+    //field
     @Id
     private String id;
-    private String image;
-    private String tag;
-    private String title;
-    private String status;
     private String place;
     private String postShortDescription;
+    private String tag;
+    private String title;
     private String postSlug;
     private String content;
+    private String status;
+    private String date;
+    private byte[] image;
+    private String image64String;
+    
+    //Constructors
+    public gallery(){}
 
-    // Constructors
-    public gallery() {}
-
-    public gallery(String image, String tag, String title, String status, String place) {
-        this.image = image;
+    public gallery
+    (String id, String place, String postShortDescription, String tag, String title, String postSlug, String content, 
+    String status, String date, byte[] image) {
+    {
+        this.id = id;
+        this.place = place;
+        this.postShortDescription = postShortDescription;
         this.tag = tag;
         this.title = title;
+        this.postSlug = postSlug;
+        this.content = content;
         this.status = status;
-        this.place = place;
-        
+        this.date = date;
+        this.image = image;
+    }
+}
+    public String getImageAsBase64(){
+        return image != null ? Base64.getEncoder().encodeToString(image) : null;
     }
 
-    // Getters and setters
+    public void setImage64String(String image64String) {
+        this.image64String = image64String;   // Set Base64 string
+    }
 
-    public String getId() {
+    public String getImage64String() {
+        return this.image64String;  // Return Base64 string
+    }
+
+    //getter method
+    public String getId(){
         return id;
     }
 
-    public void setId(String id) {
+    //setter method
+    public void setId(String id){
         this.id = id;
     }
 
-    public String getImage() {
-        return image;
+    public String getPlace(){
+        return place;
+     }
+
+     public void setPlace(String place){
+        this.place = place;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public String getpostShortDescription(){
+        return postShortDescription;
     }
 
-    public String getTag() {
+    public void setpostShortDescription(String postShortDescription){
+        this.postShortDescription = postShortDescription;
+    }
+
+    public String getTag(){
         return tag;
-    }
+     }
 
-    public void setTag(String tag) {
+     public void setTag(String tag){
         this.tag = tag;
     }
 
@@ -57,25 +93,50 @@ public class gallery {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title){
         this.title = title;
     }
 
-    public String getStatus() {
-        return status;
+    public String getPostSlug(){
+        return postSlug;
+     }
+
+     public void setPostSlug(String postSlug){
+        this.postSlug = postSlug;
     }
 
-    public void setStatus(String status) {
+    public String getContent(){
+        return content;
+     }
+
+     public void setContent(String content){
+        this.content = content;
+    }
+
+    public String getStatus(){
+        return status;
+     }
+
+     public void setStatus(String status){
         this.status = status;
     }
 
-    public String getPlace() {
-        return place;
+    public String getDate(){
+        return date;
     }
 
-    public void setPlace(String place) {
-        this.place = place;
+    public void setDate(String date){
+        this.date = date;
     }
 
+    public byte[] getimage(){
+        return image;
+    }
+
+    public void setimage(byte[] image){
+        this.image = image;
+    }
 
 }
+
+

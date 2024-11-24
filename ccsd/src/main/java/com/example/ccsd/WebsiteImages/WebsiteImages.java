@@ -1,75 +1,146 @@
 package com.example.ccsd.WebsiteImages;
 
+import java.util.Base64;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "WebsiteImages")
+@Document(collection = "WebsiteImage")
 public class WebsiteImages {
     @Id
     private String id;
-    private String title;     // Matches "title" from frontend
-    private String tag;       // Matches "tag" from frontend
-    private String status;    // Matches "status" from frontend
-    private int place;        // Matches "place" from frontend
-    private String imageUrl;  // URL of the uploaded image
+    private String place;
+    private String postShortDescription;
+    private String tag;
+    private String title;
+    private String postSlug;
+    private String content;
+    private String status;
+    private String date;
+    private byte [] image;
+    private String image64String;
 
-    // Constructor
-    public WebsiteImages() {}
 
-    public WebsiteImages(String title, String tag, String status, int place, String imageUrl) {
-        this.title = title;
-        this.tag = tag;
-        this.status = status;
+
+
+    public WebsiteImages(){}
+
+    public WebsiteImages
+    (String id,  String place, String postShortDescription, String tag,  String title, String postSlug, String content , String status, String date,  
+      byte[] image)
+    {
+        this.id = id;
         this.place = place;
-        this.imageUrl = imageUrl;
+        this.postShortDescription = postShortDescription;
+        this.tag = tag;
+        this.title = title;
+        this.postSlug = postSlug;
+        this.content = content;
+        this.status = status;
+        this.date = date;
+        this.image = image;
+
     }
 
-    // Getters and Setters
-    public String getId() {
+
+
+    //getter method
+    public String getId(){
         return id;
     }
 
-    public void setId(String id) {
+    //setter method
+    public void setId(String id){
         this.id = id;
+    }
+
+    public String getPlace(){
+        return place;
+     }
+
+     public void setPlace(String place){
+        this.place = place;
+    }
+
+
+    public String getpostShortDescription(){
+        return postShortDescription;
+    }
+
+    public void setpostShortDescription(String postShortDescription){
+        this.postShortDescription = postShortDescription;
+    }
+
+    public String getTag(){
+        return tag;
+     }
+
+     public void setTag(String tag){
+        this.tag = tag;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title){
         this.title = title;
     }
 
-    public String getTag() {
-        return tag;
+    public String getPostSlug() {
+        return postSlug;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setPostSlug(String postSlug){
+        this.postSlug = postSlug;
     }
 
-    public String getStatus() {
+    public String getContent(){
+        return content;
+     }
+
+     public void setContent(String content){
+        this.content = content;
+    }
+
+    public String getStatus(){
         return status;
-    }
+     }
 
-    public void setStatus(String status) {
+     public void setStatus(String status){
         this.status = status;
     }
 
-    public int getPlace() {
-        return place;
+    public String getDate(){
+         return date;
+     }
+
+     public void setDate(String date){
+         this.date = date;
+     }
+
+
+
+    public byte [] getimage(){
+        return image;
     }
 
-    public void setPlace(int place) {
-        this.place = place;
+    public void setimage(byte[] image){
+        this.image = image;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImageAsBase64(){
+        return image != null ? Base64.getEncoder().encodeToString(image) : null;
+    }
+// Set Base64 string
+    public void setImage64String(String image64String){
+        this.image64String = image64String;
+    }
+ // Return Base64 string
+    public String getImage64String(){
+        return this.image64String;  
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
+
+
 }
