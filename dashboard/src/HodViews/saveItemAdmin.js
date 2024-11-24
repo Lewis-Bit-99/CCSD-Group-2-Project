@@ -70,29 +70,28 @@ const SaveItemsAdmin = {
   },
 
   async addGalleryAdmin(galleryData) {
-    const token = await localStorage.getItem('jwtToken');
-    if (!token) throw new Error('JWT Token is missing');
-
     try {
       const response = await axios.post(
-        `${API_BASE_URL}/api/gallery`,
-        galleryData,
+        `${API_BASE_URL}/api/gallery`, // API endpoint
+        galleryData, // Payload with gallery data
         {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json', // The content type of the request
           },
         }
       );
-
+  
       if (response.status === 200) {
-        return response.data;
+        return response.data; // Return the response data if successful
+      } else {
+        console.error("Unexpected response status:", response.status);
+        return false;
       }
     } catch (error) {
       console.error('Error:', error);
-      throw error;
+      throw error; // Rethrow the error for further handling
     }
-  },
+  },  
 
   async addWebsiteImageAdmin(place, categories, tag, title, status, imageUrl) {
     const token = await localStorage.getItem('jwtToken');
