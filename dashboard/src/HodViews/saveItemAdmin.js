@@ -129,8 +129,10 @@ const SaveItemsAdmin = {
   },
 
   async addWebsiteTextAdmin(postShortDescription, tag, title, postSlug, status) {
+
     const token = await localStorage.getItem('jwtToken');
     if (!token) throw new Error('JWT Token is missing');
+
 
     try {
       const requestData = {
@@ -140,7 +142,6 @@ const SaveItemsAdmin = {
         postSlug,
         status,
       };
-
       const response = await axios.post(
         `${API_BASE_URL}/api/websiteTexts`,
         requestData,
