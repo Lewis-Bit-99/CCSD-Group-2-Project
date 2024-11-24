@@ -10,20 +10,21 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class users {
     @Id
     private String userId;
-    private String username;
     private String firstName;
     private String lastName;
-    private String role;
     private String phoneNumber;
+    private String username;
     private String dob;
     private String address;
-    private byte[] profPic;
+    private String role;
     private String email;
     private String password;
-    
+    private byte[] profPic;
 
-     
+     // Constructors
      public users() {}
+
+
 
     public users(String userId,  String email,  String password, String firstName, String  lastName, String phoneNumber,String address, String role,  String username, String dob,  byte[] profPic){
         this.userId = userId;

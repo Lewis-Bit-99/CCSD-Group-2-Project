@@ -59,10 +59,10 @@ public class usersController {
            
             @RequestParam("profPic") MultipartFile profPic) throws IOException {
 
-       
+        // Convert the image to a byte array
         byte[] imageBytes = profPic.getBytes();  // Get image data
 
-        
+        // Create a new users instance
         users users = new users();
         users.setEmail(email);
         users.setPassword(password);
@@ -75,9 +75,10 @@ public class usersController {
         users.setDob(dob);
        
       
-        users.setProfPic(imageBytes); 
+        users.setProfPic(imageBytes); //store image as byte array
 
 
+        // Save the users in MongoDB
         users savedusers = usersService.addUser(users);
 
         // Return a response
@@ -87,6 +88,7 @@ public class usersController {
         
         return ResponseEntity.ok(response);
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<users> updateUser(@PathVariable String id, @RequestBody users usersDetails) {
@@ -103,7 +105,7 @@ public class usersController {
         return ResponseEntity.noContent().build();
     }
 
-   
+    
 
 
     
