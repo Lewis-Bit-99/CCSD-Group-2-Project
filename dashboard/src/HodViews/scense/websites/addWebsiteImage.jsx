@@ -30,7 +30,7 @@ const AddWebsiteImage = () => {
   const navigate = useNavigate();
 
   // State variables
-  const [imageUrl, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
   const [categories, setCategories] = useState([]);
   const [tag, setTag] = useState('');
   const [title, setTitle] = useState('');
@@ -42,13 +42,13 @@ const AddWebsiteImage = () => {
   // Handlers
   const handleChangeStatus = (event) => setStatus(event.target.value);
   const handleChangePlace = (event) => setPlace(event.target.value);
-  const handleImageChange = (event) => setImage(event.target.files[0]);
+  const handleImageChange = (event) => setImageUrl(event.target.files[0]);
 
   const handleAddBlog = async (event) => {
     event.preventDefault();
     try {
       const success = await SaveItemsAdmin.addWebsiteImageAdmin(
-        place,
+        parseInt(place),
         tag,
         title,
         status,
@@ -109,8 +109,8 @@ const AddWebsiteImage = () => {
             value={status}
             onChange={handleChangeStatus}
           >
-            <MenuItem value={0}>Draft</MenuItem>
-            <MenuItem value={1}>Publish</MenuItem>
+            <MenuItem value="DRAFT">Draft</MenuItem>
+            <MenuItem value="PUBLISHED">Publish</MenuItem>
           </Select>
         </FormControl>
 
