@@ -109,7 +109,7 @@ const SaveItemsAdmin = {
       };
 
       const response = await axios.post(
-        `${API_BASE_URL}/api/WebsiteImages`,
+        `${API_BASE_URL}/api/websiteimages`,
         requestData,
         {
           headers: {
