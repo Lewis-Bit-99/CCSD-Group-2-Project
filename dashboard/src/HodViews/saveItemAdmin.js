@@ -6,8 +6,7 @@ const API_BASE_URL = 'http://localhost:8082';
 
 const SaveItemsAdmin = {
   async addTeamSave(email, password, userName) {
-    const token = await localStorage.getItem('jwtToken');
-    if (!token) throw new Error('JWT Token is missing');
+
 
     try {
       const requestData = { email, password, username: userName };
@@ -18,7 +17,6 @@ const SaveItemsAdmin = {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -33,8 +31,7 @@ const SaveItemsAdmin = {
   },
 
   async addProductAdmin(postShortDescription, tag, title, postSlug, status, image, place) {
-    const token = await localStorage.getItem('jwtToken');
-    if (!token) throw new Error('JWT Token is missing');
+
 
     try {
       const formData = new FormData();
@@ -55,7 +52,7 @@ const SaveItemsAdmin = {
         {
           headers: {
             'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${token}`,
+         
           },
         }
       );
@@ -70,8 +67,7 @@ const SaveItemsAdmin = {
   },
 
   async addGalleryAdmin(galleryData) {
-    const token = await localStorage.getItem('jwtToken');
-    if (!token) throw new Error('JWT Token is missing');
+
 
     try {
       const response = await axios.post(
@@ -80,7 +76,7 @@ const SaveItemsAdmin = {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
+   
           },
         }
       );
@@ -95,8 +91,7 @@ const SaveItemsAdmin = {
   },
 
   async addWebsiteImageAdmin(place, categories, tag, title, status, imageUrl) {
-    const token = await localStorage.getItem('jwtToken');
-    if (!token) throw new Error('JWT Token is missing');
+
 
     try {
       const requestData = {
@@ -114,7 +109,6 @@ const SaveItemsAdmin = {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -129,8 +123,7 @@ const SaveItemsAdmin = {
   },
 
   async addWebsiteTextAdmin(postShortDescription, tag, title, postSlug, status) {
-    const token = await localStorage.getItem('jwtToken');
-    if (!token) throw new Error('JWT Token is missing');
+
 
     try {
       const payload = {
@@ -147,7 +140,6 @@ const SaveItemsAdmin = {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
           },
         }
       );
