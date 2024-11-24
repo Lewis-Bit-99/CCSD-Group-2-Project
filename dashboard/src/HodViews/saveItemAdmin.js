@@ -129,8 +129,6 @@ const SaveItemsAdmin = {
   },
 
   async addWebsiteTextAdmin(postShortDescription, tag, title, status) {
-    const token = await localStorage.getItem('jwtToken');
-  
     try {
       const payload = {
         postShortDescription: postShortDescription,
@@ -139,19 +137,19 @@ const SaveItemsAdmin = {
         status: status,
       };
   
-      // Ensure that the token is being properly inserted into the Authorization header
+      // Make the POST request without Authorization header
       const response = await axios.post(`${API_BASE_URL}/api/websiteTexts`, payload, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,  // Correct template literal usage
         },
       });
   
-      if (response.status === 200) {
-        return response.data;
+      if (response.status === 200 || response.status === 201) {
+        return response.data; // Return the response data if successful
       } else {
-        // Handle unexpected status codes here if needed
+        // Handle unexpected status codes
         console.error('Unexpected response status:', response.status);
+        alert(`Unexpected response: ${response.statusText}`);
         return false;
       }
     } catch (error) {
@@ -168,9 +166,10 @@ const SaveItemsAdmin = {
         console.error('Error setting up the request:', error.message);
         alert('An error occurred while setting up the request.');
       }
-      throw error;  // Rethrow the error for further handling if needed
+      throw error; // Rethrow the error for further handling if needed
     }
-  }  
+  }
+    
 };
 
 export default SaveItemsAdmin;
