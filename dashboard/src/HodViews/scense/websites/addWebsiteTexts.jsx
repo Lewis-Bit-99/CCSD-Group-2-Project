@@ -9,7 +9,7 @@ const AddWebsiteText = () => {
     const [postShortDescription, setPostShortDescription] = useState(null);
     const [tag, setTag] = useState(null);
     const [title, setTitle] = useState(null);
-    const [status, setStatus] = useState("");
+    const [status, setStatus] = useState(null);
     const navigate = useNavigate();
     
     const handleChange = (event) => {
@@ -62,10 +62,11 @@ const AddWebsiteText = () => {
                         label="status"
                         onChange={handleChange}
                     >
-                        <MenuItem value={0}>Draft</MenuItem>
-                        <MenuItem value={1}>Publish</MenuItem>
+                        <MenuItem value="Draft">Draft</MenuItem>
+                        <MenuItem value="Publish">Publish</MenuItem>
                     </Select>
                 </FormControl>
+
 
                 <FormControl sx={{ m: 1, width: '60%' }} variant="filled">
                 <InputLabel htmlFor="filled-adornment-address">Tags</InputLabel>
