@@ -13,9 +13,7 @@
     const [title, setTitle] = useState('');
     const [status, setStatus] = useState('');
     const [place, setPlace] = useState('');
-    const [postShortDescription, setPostShortDescription] = useState('');
-    const [postSlug, setPostSlug] = useState('');
-    const [content, setContent] = useState('');
+   
 
     // Handle file input change (image upload)
     const handleImageChange = (event) => {
@@ -32,9 +30,7 @@
         title,
         status,
         place,
-        postShortDescription,
-        postSlug,
-        content,
+        
         image: image ? URL.createObjectURL(image) : null, // If you are sending a base64 string or a file URL
       };
 
