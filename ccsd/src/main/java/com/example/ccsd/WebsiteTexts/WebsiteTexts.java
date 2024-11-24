@@ -6,13 +6,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class WebsiteTexts {
     private String title;
     private String tag;
-    private int status;
+    private String status;
     private String postShortDescription;
 
     public WebsiteTexts(){
     }
 
-    public WebsiteTexts(String title, String tag, int status, String postShortDescription){
+    public WebsiteTexts(String title, String tag, String status, String postShortDescription){
         this.title = title;
         this.tag = tag;
         this.status = status;
@@ -33,10 +33,10 @@ public class WebsiteTexts {
         this.tag = tag;
     }
 
-    public int getStatus(){
+    public String getStatus(){
         return status;
     }
-    public void setStatus(int status){
+    public void setStatus(String status){
         this.status = status;
     }
 
