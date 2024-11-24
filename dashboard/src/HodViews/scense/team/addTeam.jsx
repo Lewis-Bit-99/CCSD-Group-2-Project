@@ -1,3 +1,4 @@
+//addTeam.jsx
 
 import React, { useState } from 'react';
 import { Box, Typography, useTheme, Button, Grid } from "@mui/material";
@@ -17,7 +18,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';  
+import PhotoCamera from '@mui/icons-material/PhotoCamera';  // Import the PhotoCamera icon
 import { useNavigate } from 'react-router-dom';
 import SaveItemsAdmin from '../../saveItemAdmin';
 
@@ -49,7 +50,9 @@ const AddTeam = () => {
     };
 
     const handleAddTeam = async (event) => {
-        event.preventDefault(); 
+        event.preventDefault(); // Prevent the default form submission behavior
+      //firstName, lastName, phone, userName, dob, address, role, email, password, image
+      // email, password, firstName, lastName, phone, address, role, userName, dob, image
         try {
           const success = await SaveItemsAdmin.addTeamSave(email, password, firstName, lastName, phone, address, role, userName, dob, image);
         

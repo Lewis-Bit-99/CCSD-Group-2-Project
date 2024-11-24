@@ -12,13 +12,11 @@ import GetItemsAdmin from "../../getItemAdmin";
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 const TeamAdmin = () => {
-    const [teamDeatails, setTeamDetails] = useState([]);
-
+    const [teamDetails, setTeamDetails] = useState([]); // Corrected variable name
 
     useEffect(() => {
         GetItemsAdmin.getTeamDataAdmin()
             .then((result) => {
-                // Assuming result.data is the array you want
                 const teamData = result.data || [];
                 setTeamDetails(teamData);
             })
@@ -26,13 +24,9 @@ const TeamAdmin = () => {
                 console.error("Error fetching team data:", error);
             });
     }, []);
-    
-    
 
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    
-
 
     const columns = [
         { field: "id", headerName: "ID" },
@@ -50,7 +44,7 @@ const TeamAdmin = () => {
                         m="0 auto"
                         p="5px"
                         justifyContent="center"
-                        alignItems="center" // Added for vertical alignment
+                        alignItems="center"
                         backgroundColor={
                             access === "admin"
                                 ? colors.greenAccent[600]
@@ -80,7 +74,7 @@ const TeamAdmin = () => {
                             m="0 auto"
                             p="5px"
                             justifyContent="center"
-                            alignItems="center" // Added for vertical alignment
+                            alignItems="center"
                             backgroundColor={
                                 row.access === "admin"
                                     ? colors.greenAccent[600]
@@ -98,31 +92,29 @@ const TeamAdmin = () => {
                 );
             },
         },
-        
     ];
-    
-      
 
     return (
         <Box>
             <Header title="Team" subtitle="Managing the Team" />
             <Box>
                 <DataGrid
-                    rows={teamDeatails}
+                    rows={teamDetails} // Corrected variable name
                     columns={columns}
                     pageSize={12}
                 />
             </Box>
             <Link to="/AddTeam" style={{ textDecoration: 'none' }}>
                 <Grid container justifyContent="flex-end">
-                    <Box sx={{ m: 2, }}>
-                        <Button 
+                    <Box sx={{ m: 2 }}>
+                        <Button
                             startIcon={<PersonAddAltOutlinedIcon />}
                             justifyContent="center"
                             variant="contained"
                             size="large"
-                            color = "success"
-                            >Add Team Member
+                            color="success"
+                        >
+                            Add Team Member
                         </Button>
                     </Box>
                 </Grid>
