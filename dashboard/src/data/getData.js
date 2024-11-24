@@ -40,38 +40,33 @@ const GetData = {
   },
 
   async getWebsiteTexts() {
-    const token = await localStorage.getItem('jwtToken');
-
-    
     try {
-      const response = await axios.get(
-        `${API_BASE_URL}/view_teams_admin_edit`,
-
-        {
-          // request headers
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          }
-        }
-      );
+      const response = await axios.get(`${API_BASE_URL}/view_teams_admin_edit`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
   
- 
       if (response.status === 200) {
         return response.data;
+      } else {
+        console.error('Unexpected response status:', response.status);
+        return null;
       }
     } catch (error) {
       if (error.response) {
+        // Server responded with an error
         console.error('Server responded with an error:', error.response.data);
       } else if (error.request) {
+        // No response received
         console.error('No response received:', error.request);
       } else {
+        // Any other error
         console.error('Error setting up the request:', error.message);
       }
-      throw error;
+      throw error; // Optionally rethrow the error
     }
-    
-  },
+  },  
 
   async getWebsiteImages() {
     const token = await localStorage.getItem('jwtToken');
