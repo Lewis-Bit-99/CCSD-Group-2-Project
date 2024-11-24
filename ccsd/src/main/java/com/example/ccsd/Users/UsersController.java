@@ -25,7 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/users")
-public class usersController {
+public class UsersController {
 
     @Autowired
     private usersService usersService;
