@@ -9,14 +9,14 @@ const AddWebsiteText = () => {
     const [postShortDescription, setPostShortDescription] = useState(null);
     const [tag, setTag] = useState(null);
     const [title, setTitle] = useState(null);
-    const [status, setStatus] = useState(null);
+    const [status, setStatus] = useState("");
     const navigate = useNavigate();
     
     const handleChange = (event) => {
         setStatus(event.target.value);
       };
 
-    const handleAddBlog = async (event) => {
+      const handleAddBlog = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
@@ -42,7 +42,7 @@ const AddWebsiteText = () => {
     <Box>
         <Header title="Add Website Text" subtitle="Please Fill All the Fields" />
             
-        <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate onSubmit={handleAddBlog}/>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate onSubmit={handleAddBlog}>
                 <TextField
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -90,11 +90,11 @@ const AddWebsiteText = () => {
                 </FormControl>
 
                 <Button
-                //type="submit"
+                type="submit"
                 sx={{ m: 1, width: '46%' }}
                 color='success'
                 variant="contained"
-                
+                onclick={handleAddBlog}
               >
                 Save
               </Button>
