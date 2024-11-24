@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, useTheme, Button, Grid } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
 import FilledInput from '@mui/material/FilledInput';
 import InputLabel from '@mui/material/InputLabel';
 import { tokens } from "../../../base/theme";
 import Header from "../../../components/Header";
 import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import EmailIcon from '@mui/icons-material/Email';
-import PhoneIcon from '@mui/icons-material/Phone';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';  // Import the PhotoCamera icon
 import { useNavigate } from 'react-router-dom';
 import EditItemsAdmin from '../../editItemAdmin';
 import GetItemsAdmin from '../../getItemAdmin';
@@ -26,30 +21,20 @@ const EditTeam = () => {
     const [teamDetails, setTeamDetails] = useState({});
     const [loading, setLoading] = useState(true); // New loading state
     const { user_id } = useParams();
-   // const [firstName, setFirstName] = useState("");
     const [password, setPassword] = useState("");
-    // const [lastName, setLastname] = useState("");
-    // const [phone, setPhone] = useState("");
-    // const [address, setAddress] = useState("");
     const [dob, setDob] = useState("");
     const [role, setRole] = useState("");
     const [userName, setuserName] = useState("");
-   // const [image, setImage] = useState(null);
     const [email, setEmail] = useState("");
     useEffect(() => {
       GetItemsAdmin.getTeamDataAdminEdit(user_id)
         .then((result) => {
           const teamData = result || {};
-        //   setFirstName(teamData.first_name);
           setEmail(teamData.email);
-        //   setLastname(teamData.last_name);
           setEmail(teamData.email);
           setuserName(teamData.user_name);
           setDob(teamData.dob);
           setRole(teamData.access);
-        //   setPhone(teamData.phone);
-        //   setImage(teamData.photo);
-        //   setAddress(teamData.address)
 
           setLoading(false); // Set loading to false when data is loaded
         })
@@ -58,14 +43,10 @@ const EditTeam = () => {
         });
     }, [user_id]);
   
-
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     
-    
     const [showPassword, setShowPassword] = React.useState(false);
-    
-
     
     const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -158,7 +139,6 @@ const EditTeam = () => {
 
                 </FormControl>
                 
-              
         </Box> 
     </Box>
   );

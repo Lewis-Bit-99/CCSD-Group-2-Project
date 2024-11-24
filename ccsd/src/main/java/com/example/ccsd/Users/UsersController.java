@@ -38,27 +38,12 @@ public class UsersController {
     // Create a new user
     @PostMapping
     public ResponseEntity<user> addUser(@RequestBody user user) {
-        if (user.getEmail() == null || user.getPassword() == null) {
-            return ResponseEntity.badRequest().build(); // Return bad request if missing email or password
+        if (user.getEmail() == null || user.getPassword() == null || user.getUsername() == null) {
+            return ResponseEntity.badRequest().build();
         }
         user createdUser = userService.adduser(user);
-        return ResponseEntity.ok(createdUser); // Return created user with status 200 OK
+        return ResponseEntity.ok(createdUser);
     }
-
-    // Update an existing user
-    // @PostMapping("/{id}")
-    // public ResponseEntity<user> updateUser(@PathVariable String id, @RequestBody user userDetails) {
-    //     Optional<user> updatedUser = userService.getUserById(id);
-    //     if (updatedUser.isPresent()) {
-    //         user currentUser = updatedUser.get();
-    //         // Update details (email, password, etc.)
-    //         currentUser.setUsername(userDetails.getUsername());
-    //         currentUser.setEmail(userDetails.getEmail());
-    //         currentUser.setPassword(userDetails.getPassword());
-    //         return ResponseEntity.ok(userService.adduser(currentUser)); // Save updated user
-    //     }
-    //   return ResponseEntity.notFound().build(); // If user not found, return not found
-   // }
 
     // Delete a user by ID
     @DeleteMapping("/{id}")

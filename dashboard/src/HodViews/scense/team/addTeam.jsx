@@ -14,7 +14,6 @@ import EmailIcon from '@mui/icons-material/Email';
 import { useNavigate } from 'react-router-dom';
 import SaveItemsAdmin from '../../saveItemAdmin';
 
-
 const AddTeam = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
@@ -97,11 +96,7 @@ const AddTeam = () => {
                             </IconButton>
                         </InputAdornment>
 
-
-
-
                     }
-                    
                 >
 
                 </FilledInput>
@@ -118,8 +113,6 @@ const AddTeam = () => {
                
                 </FormControl>
 
-                
-                
         </Box> 
     </Box>
   );

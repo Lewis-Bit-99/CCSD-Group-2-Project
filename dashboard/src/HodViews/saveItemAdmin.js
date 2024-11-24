@@ -72,6 +72,7 @@ const SaveItemsAdmin = {
   async addGalleryAdmin(galleryData) {
     const token = await localStorage.getItem('jwtToken');
     if (!token) throw new Error('JWT Token is missing');
+    
 
     try {
       const response = await axios.post(
