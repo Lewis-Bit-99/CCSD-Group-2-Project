@@ -39,7 +39,7 @@ export const Services = () => {
     <div id="services" className="text-center">
       <div className="container">
         <div className="section-title">
-          <h2>Our Services</h2>
+          <h2>Our Product</h2>
         </div>
         <div className="row">
            {/* //GET DATA FROM DB */}
@@ -89,7 +89,7 @@ export const Services = () => {
                   </div>
                 </div>
               ))
-            : "loading"}
+            : ''}
         </div>
       </div>
     </div>
