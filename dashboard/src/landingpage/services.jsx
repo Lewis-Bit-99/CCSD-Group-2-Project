@@ -5,9 +5,9 @@ export const Services = (props) => {
     <div id="services" className="text-center">
       <div className="container">
         <div className="section-title">
-          <h2>Our Services</h2>
+          <h2>Our Products</h2>
           <p>
-          Elevate your life with timeless design and inspired craftsmanship
+          Your Life Is An Art
           </p>
         </div>
         <div className="row">
