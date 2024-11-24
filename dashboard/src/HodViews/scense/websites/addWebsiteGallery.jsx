@@ -222,3 +222,90 @@ const AddWebsiteGallery = () => {
 };
 
 export default AddWebsiteGallery;
+
+    return (
+      <Box>
+        <Header title="Add New Gallery" subtitle="Please Fill All the Fields" />
+
+        {/* Form */}
+        <Box component="form" onSubmit={handleAddBlog} sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+          <TextField
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
+            label="Please Enter Image Title"
+            variant="filled"
+            sx={{ width: '30.5%' }}
+          />
+
+          <FormControl sx={{ width: '15.5%' }} variant="filled">
+            <InputLabel id="status">Status</InputLabel>
+            <Select
+              labelId="status"
+              id="status"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+            >
+              <MenuItem value={0}>Draft</MenuItem>
+              <MenuItem value={1}>Publish</MenuItem>
+            </Select>
+          </FormControl>
+
+          <FormControl sx={{ width: '60%' }} variant="filled">
+            <InputLabel htmlFor="filled-adornment-address">Tags</InputLabel>
+            <FilledInput
+              onChange={(e) => setTag(e.target.value)}
+              value={tag}
+              id="tag"
+              type="text"
+              endAdornment={
+                <InputAdornment position="end">
+                    <SmartToyOutlinedIcon />
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+
+          <FormControl sx={{ width: '15.5%' }} variant="filled">
+            <InputLabel id="place">Text Place</InputLabel>
+            <Select
+              labelId="place"
+              id="place"
+              value={place}
+              onChange={(e) => setPlace(e.target.value)}
+            >
+              {[...Array(12).keys()].map(i => (
+                <MenuItem key={i + 1} value={i + 1}>{i + 1}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <FormControl sx={{ width: '45%' }} variant="filled">
+            <Input
+              accept="image/*"
+              id="image-upload"
+              type="file"
+              onChange={handleImageChange}
+              endAdornment={
+                <InputAdornment position="end">
+                    <SmartToyOutlinedIcon />
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+
+          {/* Save Button */}
+          <Button
+            type="submit"
+            sx={{ width: '46%', marginTop: '20px' }}
+            color="success"
+            variant="contained" 
+          >
+            Save
+          </Button>
+        </Box>
+      </Box>
+    );
+  };
+
+  export default AddWebsiteGallery;
+
