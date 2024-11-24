@@ -37,12 +37,8 @@ public class galleryService {
             Gallery.setTag(galleryDetails.getTag());
             Gallery.setTitle(galleryDetails.getTitle());
             Gallery.setStatus(galleryDetails.getStatus());
-            Gallery.setDate(galleryDetails.getDate());
             Gallery.setPlace(galleryDetails.getPlace());
             Gallery.setTag(galleryDetails.getTag());
-            Gallery.setPostShortDescription(galleryDetails.getPostShortDescription());
-            Gallery.setPostSlug(galleryDetails.getPostSlug());
-            Gallery.setContent(galleryDetails.getContent());
             
             return GalleryRepository.save(Gallery);
         }
