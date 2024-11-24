@@ -49,7 +49,7 @@ public class WebsiteImagesController {
     }
 
           @PostMapping
-    public ResponseEntity<Map<String, Object>> addProduct(
+        public ResponseEntity<Map<String, Object>> addProduct(
             @RequestParam("title") String title,
             @RequestParam("postShortDescription") String postShortDescription,
             @RequestParam("date") String date,
