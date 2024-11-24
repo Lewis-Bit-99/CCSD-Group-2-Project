@@ -123,8 +123,6 @@ const SaveItemsAdmin = {
   },
 
   async addWebsiteTextAdmin(postShortDescription, tag, title, postSlug, status) {
-
-
     try {
       const payload = {
         postShortDescription,
@@ -133,7 +131,6 @@ const SaveItemsAdmin = {
         postSlug,
         status,
       };
-
       const response = await axios.post(
         `${API_BASE_URL}/api/websiteTexts`,
         payload,
