@@ -16,15 +16,13 @@ const SaveItemsAdmin = {
       formData.append('password', password);
 
       const response = await axios.post(
-
-        '${API_BASE_URL}/api/WebsiteImages/',
-        '${API_BASE_URL}/api/users',
-
+        `${API_BASE_URL}/api/WebsiteImages/`,
+        `${API_BASE_URL}/api/users`,
         formData,
         {
           headers: {
             'Content-Type': 'multipart/form-data', // Set content type to multipart/form-data for file uploads
-            Authorization: 'Bearer ${token}',
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -63,12 +61,12 @@ const SaveItemsAdmin = {
       }
 
       const response = await axios.post(
-        '${API_BASE_URL}/api/products',
+        `${API_BASE_URL}/api/products`,
         formData,
         {
           headers: {
             'Content-Type': 'multipart/form-data', // Set content type to multipart/form-data for file uploads
-            Authorization: 'Bearer ${token}',
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -108,12 +106,12 @@ const SaveItemsAdmin = {
       if (image) {
         formData.append('image', image); // Assuming 'image' is the key on the server to handle file uploads
       }const response = await axios.post(
-  '${API_BASE_URL}/api/gallery',
+  `${API_BASE_URL}/api/gallery`,
   formData,
   {
     headers: {
       'Content-Type': 'multipart/form-data', // Set content type to multipart/form-data for file uploads
-      Authorization: 'Bearer ${token}',
+      Authorization: `Bearer ${token}`,
     },
   }
 );
@@ -138,31 +136,26 @@ const username = await localStorage.getItem('userName');
 
 try {
   const formData = new FormData();
-  formData.append('categories', categories); // Added categories here
+  formData.append('place', parseInt(place));
   formData.append('tag', tag);
   formData.append('title', title);
   formData.append('status', status);
-  formData.append('place', place);
   formData.append('imageUrl', imageUrl);
+  
+  const response = await axios.post(
+    `${API_BASE_URL}/api/WebsiteImages`,
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      }
+    }
+  );
 
-if (imageUrl) {
-  formData.append('imageUrl', imageUrl); // Assuming 'image' is the key on the server to handle file uploads
-}
-
-const response = await axios.post(
-  '${API_BASE_URL}/api/WebsiteImages',
-  formData,
-  {
-    headers: {
-      'Content-Type': 'multipart/form-data', // Set content type to multipart/form-data for file uploads
-      Authorization: 'Bearer ${token}',
-    },
+  if (response.status === 200) {
+    return response.data;
   }
-);
-
-if (response.status === 200) {
-  return response.data;
-}
 } catch (error) {
 if (error.response) {
   console.error('Server responded with an error:', error.response.data);
@@ -188,12 +181,12 @@ try {
 
 
 const response = await axios.post(
-  '${API_BASE_URL}/api/websiteTexts',
+  `${API_BASE_URL}/api/websiteTexts`,
   formData,
   {
     headers: {
       'Content-Type': 'multipart/form-data', // Set content type to multipart/form-data for file uploads
-      Authorization: 'Bearer ${token}',
+      Authorization: `Bearer ${token}`,
     },
   }
 );
