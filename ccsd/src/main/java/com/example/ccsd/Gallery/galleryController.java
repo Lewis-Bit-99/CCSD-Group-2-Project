@@ -1,6 +1,10 @@
 package com.example.ccsd.Gallery;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,50 +16,94 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/gallery")
+@RequestMapping("/api/Gallery")
+
 public class galleryController {
-
+    
     @Autowired
-    private galleryService gService;
+    private galleryService GalleryService;
 
-    // Get all gallery items
     @GetMapping
-    public List<gallery> getAllGallery() {
-        return gService.getAllGallery();    
+    public List<gallery> getAllGallerys() {
+        List<gallery> galleryList = GalleryService.getAllGallerys();
+        
+
+        return galleryList.stream()
+        .map(gallery -> {
+                // Add Base64 encoded image to each
+            gallery.setImage64String(gallery.getImageAsBase64());
+            return gallery;
+        })
+        .collect(Collectors.toList()); 
     }
 
-    // Get a single gallery item by ID
     @GetMapping("/{id}")
     public ResponseEntity<gallery> getGalleryById(@PathVariable String id) {
-        return gService.getGalleryById(id)
-            .map(ResponseEntity::ok)
-            .orElse(ResponseEntity.notFound().build());
+        return GalleryService.getGalleryById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    // Create new gallery in the system
-    @PostMapping(consumes = "application/json")
-    public gallery addGallery(@RequestBody gallery galleryDetails) {
-        return gService.addGallery(galleryDetails);
-    }
+     @PostMapping
+    public ResponseEntity<Map<String, Object>> addGallery(
+            @RequestParam("title") String title,
+            @RequestParam("postSlug") String postSlug,
+            @RequestParam("postShortDescription") String postShortDescription,
+            @RequestParam("tag") String tag,
+            @RequestParam("place") String place,
+            @RequestParam("date") String date,
+            @RequestParam("status") String status,
+            @RequestParam("content") String content,
+            @RequestParam("image") MultipartFile image) throws IOException {
 
-    // Update an existing gallery based on gallery ID
+        // Convert the image to a byte array
+        byte[] imageBytes = image.getBytes();  // Get image data
+
+        // Create a new gallery instance
+        gallery Gallery = new gallery();
+        Gallery.setTitle(title);
+        Gallery.setPostSlug(postSlug);
+        Gallery.setpostShortDescription(postShortDescription);
+        Gallery.setTag(tag);
+        Gallery.setPlace(place);
+        Gallery.setDate(date);
+        Gallery.setStatus(status);
+        Gallery.setimage(imageBytes);
+        Gallery.setContent(content);  
+        // Store image as byte array
+
+        // Save the product in MongoDB
+        gallery savedGallery = GalleryService.addGallery(Gallery);
+
+        // Return a response
+        Map<String, Object> response = new HashMap<>();
+        response.put("success", true);
+        response.put("product", savedGallery);
+        
+        return ResponseEntity.ok(response);
+    }
+    //////////////////////////////////////////////////////////////////
+
     @PutMapping("/{id}")
-    public ResponseEntity<gallery> updateGallery(@PathVariable String id, @RequestBody gallery galleryDetails) {
-        gallery updateGallery = gService.updateGallery(id, galleryDetails);
-        if (updateGallery != null) {
-            return ResponseEntity.ok(updateGallery);
+    public ResponseEntity<gallery> updategallery(@PathVariable String id, @RequestBody gallery GalleryDetails) {
+        gallery updatedgallery = GalleryService.updategallery(id, GalleryDetails);
+        if (updatedgallery != null) {
+            return ResponseEntity.ok(updatedgallery);
         }
         return ResponseEntity.notFound().build();
     }
 
-    // Delete a gallery from the system based on gallery ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteGallery(@PathVariable String id) {
-        gService.deleteGallery(id);
+    public ResponseEntity<Void> deletegallery(@PathVariable String id) {
+        GalleryService.deletegallery(id);
         return ResponseEntity.noContent().build();
     }
+   
 }
