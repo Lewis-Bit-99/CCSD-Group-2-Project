@@ -137,7 +137,6 @@ const SaveItemsAdmin = {
         status: status,
       };
   
-      // Make the POST request without Authorization header
       const response = await axios.post(`${API_BASE_URL}/api/websiteTexts`, payload, {
         headers: {
           'Content-Type': 'application/json',
@@ -145,28 +144,24 @@ const SaveItemsAdmin = {
       });
   
       if (response.status === 200 || response.status === 201) {
-        return response.data; // Return the response data if successful
+        return response.data;
       } else {
-        // Handle unexpected status codes
         console.error('Unexpected response status:', response.status);
         alert(`Unexpected response: ${response.statusText}`);
         return false;
       }
     } catch (error) {
       if (error.response) {
-        // Server responded with an error (e.g., 400 or 500)
         console.error('Server responded with an error:', error.response.data);
         alert(`Error: ${error.response.data.message || 'Something went wrong on the server.'}`);
       } else if (error.request) {
-        // No response was received (e.g., network issues)
         console.error('No response received:', error.request);
         alert('Network error. Please check your connection.');
       } else {
-        // Any other error (e.g., request setup issues)
         console.error('Error setting up the request:', error.message);
         alert('An error occurred while setting up the request.');
       }
-      throw error; // Rethrow the error for further handling if needed
+      throw error; 
     }
   }
     
