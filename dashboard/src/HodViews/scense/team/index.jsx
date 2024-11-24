@@ -8,29 +8,57 @@ import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import Header from "../../../components/Header";
-import GetItemsAdmin from "../../getItemAdmin";
+import axios from 'axios'; // Import axios
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import DeleteOutline from '@mui/icons-material/DeleteOutline'; // Correct import
 
 const TeamAdmin = () => {
     const [teamDetails, setTeamDetails] = useState([]);
 
     useEffect(() => {
-        GetItemsAdmin.getTeamDataAdmin()
-            .then((result) => {
-                const teamData = result.data || [];
+        const fetchTeamData = async () => {
+            try {
+                const token = localStorage.getItem('jwtToken');
+                const response = await axios.get('http://localhost:8082/api/users', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const teamData = response.data || [];
                 setTeamDetails(teamData);
-            })
-            .catch((error) => {
+            } catch (error) {
                 console.error("Error fetching team data:", error);
-            });
+            }
+        };
+        fetchTeamData();
     }, []);
+
+    const handleDeleteUser = async (id) => {
+        try {
+            const token = localStorage.getItem('jwtToken');
+            const response = await axios.delete(`http://localhost:8082/api/users/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            if (response.status === 204) { // No Content status for successful deletion
+                setTeamDetails(teamDetails.filter(user => user.user_id !== id));
+            } else {
+                alert("Error deleting user");
+            }
+        } catch (error) {
+            console.error("Error deleting user:", error);
+            alert("An error occurred while deleting.");
+        }
+    };
+    
 
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
     const columns = [
-        { field: "id", headerName: "ID" },
-        { field: "name", headerName: "NAME", flex: 1, cellClassName: "name-column--cell" },
+        { field: "user_id", headerName: "ID", width: 90 },
+        { field: "username", headerName: "NAME", flex: 1, cellClassName: "name-column--cell" },
         { field: "email", headerName: "EMAIL", flex: 1 },
         {
             field: "access",
@@ -51,7 +79,7 @@ const TeamAdmin = () => {
                         }
                         borderRadius="4px"
                     >
-                        {access === "Teacher" && <AdminPanelSettingsOutlinedIcon />}
+                        {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
                         {access === "manager" && <SecurityOutlinedIcon />}
                         {access === "user" && <LockOpenOutlinedIcon />}
                         <Typography variant="body1" color={colors.grey[100]} sx={{ ml: "5px" }}>
@@ -67,7 +95,7 @@ const TeamAdmin = () => {
             flex: 1,
             renderCell: ({ row }) => {
                 return (
-                    <Link to={`/editTeam/${row.id}`} style={{ textDecoration: "none" }}>
+                    <Link to={`/editTeam/${row.user_id}`} style={{ textDecoration: "none" }}>
                         <Box
                             width="40%"
                             m="0 auto"
@@ -90,16 +118,33 @@ const TeamAdmin = () => {
                 );
             },
         },
+        {
+            field: "delete",
+            headerName: "DELETE",
+            flex: 1,
+            renderCell: ({ row }) => {
+                return (
+                    <Button
+                        variant="contained"
+                        color="error"
+                        onClick={() => handleDeleteUser(row.user_id)}
+                    >
+                        <DeleteOutline />
+                    </Button>
+                );
+            },
+        },
     ];
 
     return (
         <Box>
             <Header title="Team" subtitle="Managing the Team" />
-            <Box>
+            <Box sx={{ height: 500, width: '100%' }}>
                 <DataGrid
                     rows={teamDetails}
                     columns={columns}
                     pageSize={12}
+                    getRowId={(row) => row.user_id} // Ensure each row has a unique key
                 />
             </Box>
             <Link to="/AddTeam" style={{ textDecoration: 'none' }}>
