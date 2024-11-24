@@ -1,24 +1,32 @@
-import { Image } from "./image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+ // Import the CSS file
+
+axios.defaults.withCredentials = true;
 
 const API_BASE_URL = 'http://localhost:8082';
 
-export const Gallery = (props) => {
-  const [galleryData, setGalleryData] = useState(null);
+export const Gallery = () => {
+  const token = localStorage.getItem('jwtToken');
+  const [gallery, setGallery] = useState([]);
 
   useEffect(() => {
-    const fetchGalleryData = async () => {
-      try {
-        const response = await axios.get(`${API_BASE_URL}/api/gallery`);
-        setGalleryData(response.data);
-      } catch (error) {
-        console.error('Error fetching gallery data:', error);
-      }
-    };
+    // Fetch all gallery from the API
+    axios.get(`${API_BASE_URL}/api/Gallery`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(response => {
+        setGallery(response.data);
+      })
+      .catch(error => console.error('Error fetching gallery', error));
+  }, [token]);
 
-    fetchGalleryData();
-  }, []);
+  if (!gallery.length) {
+    return <div>Loading...</div>; // Loading State
+  }
 
   return (
     <div id="portfolio" className="text-center">
@@ -26,25 +34,32 @@ export const Gallery = (props) => {
         <div className="section-title">
           <h2>Gallery</h2>
           <p>
-            Art build your life more colourful by using it
+            "Browse our gallery to see our IT services"
           </p>
         </div>
         <div className="row">
           <div className="portfolio-items">
-            {galleryData
-              ? galleryData.map((d, i) => (
-                  <div
-                    key={`${d.title}-${i}`}
-                    className="col-sm-6 col-md-4 col-lg-4"
-                  >
-                    <Image
-                      title={d.title}
-                      largeImage={d.image}
-                      smallImage={d.image}
+            {gallery.length > 0 ? (
+              gallery.map((d, i) => (
+                <div key={`${d.title}-${i}`} className="col-sm-6 col-md-4 col-lg-4">
+                  {d.image && (
+                    <img
+                      src={`data:image/jpg;base64,${d.image}`}
+                      alt={d.title}
+                      className="img-fluid"
+                      style={{ width: '150px', height: '150px' }}
                     />
-                  </div>
-                ))
-              : "Loading..."}
+                  )}
+                  <h3>{d.title}</h3>
+                  <p>Date: <span>{d.date}</span></p>
+                  <p>Status: <span>{d.status}</span></p>
+                  <p className="tag">Tag: <span>{d.tag}</span></p>
+                  <p className="place">Textplace: <span>{d.place}</span></p>
+                </div>
+              ))
+            ) : (
+              <p>404 not found</p>
+            )}
           </div>
         </div>
       </div>
