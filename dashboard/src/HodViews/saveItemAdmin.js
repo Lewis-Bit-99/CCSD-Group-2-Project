@@ -133,7 +133,7 @@ const SaveItemsAdmin = {
     if (!token) throw new Error('JWT Token is missing');
 
     try {
-      const requestData = {
+      const payload = {
         postShortDescription,
         tag,
         title,
@@ -143,7 +143,7 @@ const SaveItemsAdmin = {
 
       const response = await axios.post(
         `${API_BASE_URL}/api/websiteTexts`,
-        requestData,
+        payload,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -154,12 +154,24 @@ const SaveItemsAdmin = {
 
       if (response.status === 200) {
         return response.data;
+      } else {
+        console.error('Unexpected response status:', response.status);
+        return false;
       }
     } catch (error) {
-      console.error('Error:', error);
+      if (error.response) {
+        console.error('Server responded with an error:', error.response.data);
+        alert(`Error: ${error.response.data.message || 'Something went wrong on the server.'}`);
+      } else if (error.request) {
+        console.error('No response received:', error.request);
+        alert('Network error. Please check your connection.');
+      } else {
+        console.error('Error setting up the request:', error.message);
+        alert('An error occurred while setting up the request.');
+      }
       throw error;
     }
-  },
+  }
 };
 
 export default SaveItemsAdmin;
